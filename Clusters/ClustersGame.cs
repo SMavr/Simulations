@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Clusters.Extensions;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
@@ -8,26 +9,26 @@ namespace Clusters;
 
 public class ClustersGame : Game
 {
-    private GraphicsDeviceManager _graphics;
-    private SpriteBatch _spriteBatch;
+    private readonly GraphicsDeviceManager graphics;
+    private SpriteBatch spriteBatch;
+
 
     public ClustersGame()
     {
-        _graphics = new GraphicsDeviceManager(this);
+        graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
-
+        graphics.SetDimensions(800, 600);
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
+        spriteBatch = new SpriteBatch(GraphicsDevice);
 
         // TODO: use this.Content to load your game content here
     }
@@ -47,10 +48,13 @@ public class ClustersGame : Game
         GraphicsDevice.Clear(Color.Black);
 
 
-        _spriteBatch.Begin();
-        _spriteBatch.DrawCircle(new Vector2(150, 150), 4, 100, Color.Red, 5);
-        _spriteBatch.End();
+        spriteBatch.Begin();
+        spriteBatch.DrawCircle(new Vector2(150, 150), 4, 100, Color.Red, 5);
+        spriteBatch.End();
 
         base.Draw(gameTime);
     }
+
+   
+
 }
