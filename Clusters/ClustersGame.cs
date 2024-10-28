@@ -11,6 +11,7 @@ public class ClustersGame : Game
 {
     private readonly GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
+    private Circle circle = new Circle(new Vector2(150, 150), Color.Red);
 
 
     public ClustersGame()
@@ -49,12 +50,9 @@ public class ClustersGame : Game
 
 
         spriteBatch.Begin();
-        spriteBatch.DrawCircle(new Vector2(150, 150), 4, 100, Color.Red, 5);
+        circle.Draw(spriteBatch);
         spriteBatch.End();
 
         base.Draw(gameTime);
     }
-
-   
-
 }
