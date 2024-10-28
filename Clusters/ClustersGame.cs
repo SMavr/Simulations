@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+
 namespace Clusters;
 
 public class ClustersGame : Game
@@ -44,7 +45,10 @@ public class ClustersGame : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // TODO: Add your drawing code here
+
+        //_spriteBatch.Begin();
+        //_spriteBatch.DrawCircle(new Vector2(150, 150), 50, 100, Color.Red, 5); // Draw a red circle
+        //_spriteBatch.End();
 
         base.Draw(gameTime);
     }
