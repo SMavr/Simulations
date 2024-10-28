@@ -44,11 +44,11 @@ public class ClustersGame : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.Clear(Color.Black);
 
 
         _spriteBatch.Begin();
-        _spriteBatch.DrawCircle(new Vector2(150, 150), 50, 100, Color.Red, 5);
+        _spriteBatch.DrawCircle(new Vector2(150, 150), 4, 100, Color.Red, 5);
         _spriteBatch.End();
 
         base.Draw(gameTime);
