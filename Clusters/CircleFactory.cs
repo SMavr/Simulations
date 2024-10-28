@@ -10,9 +10,9 @@ internal class CircleFactory
     Random random = new();
     List<Circle> circles = new List<Circle>();
 
-    public void AddCircles()
+    public void AddCircles(int circleNumber)
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < circleNumber; i++)
         {
             Circle circle = new Circle(new Vector2(random.Next(0, WindowConstants.Width), random.Next(0, WindowConstants.Width)), Color.Red);
             circles.Add(circle);

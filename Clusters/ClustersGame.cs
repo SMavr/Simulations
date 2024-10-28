@@ -3,8 +3,6 @@ using Clusters.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended;
-using System;
 
 
 namespace Clusters;
@@ -27,7 +25,7 @@ public class ClustersGame : Game
         graphics.SetDimensions(WindowConstants.Width, WindowConstants.Height);
 
 
-        circleFactory.AddCircles();
+        circleFactory.AddCircles(30);
 
         base.Initialize();
     }
