@@ -27,7 +27,7 @@ internal class Circle
 
     public void Move(float deltaTime)
     {
-        Position += new Vector2(-100 * deltaTime, 3 * deltaTime);
+        Position += new Vector2(100 * deltaTime, 3 * deltaTime);
 
         // Check horizontal wrapping
         if (Position.X + radius * 2 < 0) // Past the left side

@@ -13,8 +13,7 @@ public class ClustersGame : Game
 {
     private readonly GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
-    private Circle circle = new Circle(new Vector2(150, 150), Color.Red);
-
+    private CircleFactory circleFactory = new CircleFactory();
 
     public ClustersGame()
     {
@@ -26,6 +25,10 @@ public class ClustersGame : Game
     protected override void Initialize()
     {
         graphics.SetDimensions(WindowConstants.Width, WindowConstants.Height);
+
+
+        circleFactory.AddCircles();
+
         base.Initialize();
     }
 
@@ -41,8 +44,7 @@ public class ClustersGame : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-        circle.Move(deltaTime);
+       // float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         base.Update(gameTime);
     }
@@ -53,7 +55,7 @@ public class ClustersGame : Game
 
 
         spriteBatch.Begin();
-        circle.Draw(spriteBatch);
+        circleFactory.DrawCircles(spriteBatch);
         spriteBatch.End();
 
         base.Draw(gameTime);
