@@ -1,4 +1,5 @@
-﻿using Clusters.Extensions;
+﻿using Clusters.Constants;
+using Clusters.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -24,7 +25,7 @@ public class ClustersGame : Game
 
     protected override void Initialize()
     {
-        graphics.SetDimensions(800, 600);
+        graphics.SetDimensions(WindowConstants.Width, WindowConstants.Height);
         base.Initialize();
     }
 

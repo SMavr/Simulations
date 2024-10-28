@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Clusters.Constants;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using System;
@@ -26,12 +27,26 @@ internal class Circle
 
     public void Move(float deltaTime)
     {
-        Position += new Vector2(random.Next(-100, 100) * deltaTime, random.Next(-100, -100) * deltaTime);
+        Position += new Vector2(-100 * deltaTime, 3 * deltaTime);
 
-        if (Position.Y + radius * 2 < 0)
+        // Check horizontal wrapping
+        if (Position.X + radius * 2 < 0) // Past the left side
         {
-            Position = new Vector2(Position.X, 600);
+            Position = new Vector2(WindowConstants.Width, Position.Y);
+        }
+        else if (Position.X > WindowConstants.Width) // Past the right side
+        {
+            Position = new Vector2(-radius * 2, Position.Y);
         }
 
+        // Check vertical wrapping
+        if (Position.Y + radius * 2 < 0) // Past the top
+        {
+            Position = new Vector2(Position.X, WindowConstants.Height);
+        }
+        else if (Position.Y > WindowConstants.Height) // Past the bottom
+        {
+            Position = new Vector2(Position.X, -radius * 2);
+        }
     }
 }
