@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
+using System;
 
 
 namespace Clusters;
@@ -40,6 +41,7 @@ public class ClustersGame : Game
             Exit();
 
         float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+        circle.Move(deltaTime);
 
         base.Update(gameTime);
     }
