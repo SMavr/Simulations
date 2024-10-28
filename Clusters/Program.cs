@@ -1,3 +1,3 @@
 ﻿
-using var game = new Clusters.Game1();
+using var game = new Clusters.ClustersGame();
 game.Run();
