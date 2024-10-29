@@ -13,6 +13,7 @@ internal class Circle
 
     private Random random = new ();
     private int radius = 2;
+    private float detectionRadious = 200;
 
     public Circle(Vector2 position, Color color)
     {
@@ -27,7 +28,8 @@ internal class Circle
 
     public void Move(float deltaTime)
     {
-        Position += new Vector2(random.Next(-300, 300) * deltaTime, random.Next(-300, 300) * deltaTime);
+       // Position += new Vector2(random.Next(-300, 300) * deltaTime, random.Next(-300, 300) * deltaTime);
+        Position += new Vector2(100 * deltaTime, 0);
 
         // Check horizontal wrapping
         if (Position.X + radius * 2 < 0) // Past the left side
@@ -48,5 +50,11 @@ internal class Circle
         {
             Position = new Vector2(Position.X, -radius * 2);
         }
+    }
+
+    public bool IsInVicinity(Circle otherCircle)
+    {
+        float distance = Vector2.Distance(Position, otherCircle.Position);
+        return distance <= detectionRadious;
     }
 }

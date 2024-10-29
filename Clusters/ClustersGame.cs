@@ -42,7 +42,7 @@ public class ClustersGame : Game
             Exit();
 
         float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-     //   circleFactory.Move(deltaTime);
+        circleFactory.Move(deltaTime);
 
         base.Update(gameTime);
     }

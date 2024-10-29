@@ -29,9 +29,15 @@ internal class CircleFactory
 
     public void Move(float deltaTime)
     {
-        foreach (var circle in circles)
+        for (int i = 0; i < circles.Count; i++)
         {
-            circle.Move(deltaTime);
+           for(int j = 0; j < circles.Count; j++)
+           {
+                if(j != i && circles[i].IsInVicinity(circles[j]))
+                {
+                    circles[i].Move(deltaTime);
+                }
+           }
         }
     }
 }
