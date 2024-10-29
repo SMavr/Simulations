@@ -15,7 +15,7 @@ internal class Circle
     private Random random = new ();
     private int radius = 2;
     private float detectionRadious = 200;
-    private float attractionStrength = 400;
+    private float attractionStrength = 800;
 
     public Circle(Vector2 position, Color color)
     {
@@ -63,7 +63,7 @@ internal class Circle
     public bool IsOverlapping(Circle otherCircle)
     {
         float distance = Vector2.Distance(Position, otherCircle.Position);
-        return distance < 2 * radius;
+        return distance < 2 * (radius + 1);
     }
 
     public Vector2 CalculateAttractiveForce(Circle circle)
@@ -87,7 +87,7 @@ internal class Circle
 
         // Calculate repulsive force proportional to the overlap
         float overlap = (radius + radius) - distance;
-        float forceMagnitude = 400 * overlap;
+        float forceMagnitude = attractionStrength * overlap;
         return direction * overlap;
     }
 }
