@@ -23,7 +23,7 @@ public class ClustersGame : Game
     protected override void Initialize()
     {
         graphics.SetDimensions(WindowConstants.Width, WindowConstants.Height);
-        circleFactory.AddTestCircles();
+        //circleFactory.AddTestCircles();
 
         circleFactory.AddCircles(10, Color.Red);
         circleFactory.AddCircles(10, Color.Blue);

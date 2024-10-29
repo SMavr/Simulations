@@ -23,7 +23,9 @@ internal class CircleFactory
     {
         Circle circle = new Circle(new Vector2(150, 150), Color.Red);
         Circle circle2 = new Circle(new Vector2(200, 150), Color.Red);
-        circles.AddRange([circle, circle2]);
+        Circle circle3 = new Circle(new Vector2(150, 200), Color.Red);
+        Circle circle4 = new Circle(new Vector2(200, 200), Color.Red);
+        circles.AddRange([circle, circle2, circle3, circle4]);
     }
 
     public void DrawCircles(SpriteBatch spriteBatch)
