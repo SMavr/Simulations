@@ -14,8 +14,8 @@ internal class Circle
 
     private Random random = new ();
     private int radius = 2;
-    private float detectionRadious = 200;
-    private float attractionStrength = 800;
+    private float detectionRadious = 400;
+    private float attractionStrength = 200;
 
     public Circle(Vector2 position, Color color)
     {
@@ -71,8 +71,8 @@ internal class Circle
         Vector2 direction = circle.Position - Position; // Direction from A to B
         float distance = direction.Length();
 
-        if (distance < 1f) distance = 1f; // Prevent excessive force for very close distances
-        direction.Normalize();
+        //if (distance < 1f) distance = 1f; // Prevent excessive force for very close distances
+        //direction.Normalize();
 
         // Calculate force magnitude using inverse-square law
         float forceMagnitude = attractionStrength / (distance * distance);

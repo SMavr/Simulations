@@ -27,6 +27,8 @@ public class ClustersGame : Game
 
         circleFactory.AddCircles(10, Color.Red);
         circleFactory.AddCircles(10, Color.Blue);
+        circleFactory.AddCircles(10, Color.Yellow);
+        circleFactory.AddCircles(10, Color.Green);
 
         base.Initialize();
     }
