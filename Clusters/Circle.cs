@@ -33,6 +33,8 @@ internal class Circle
 
     public void Move(float deltaTime)
     {
+        RestrictVelocity();
+
         Position += Velocity * deltaTime;
 
         // Check horizontal wrapping
@@ -54,6 +56,23 @@ internal class Circle
         {
             Position = new Vector2(Position.X, -radius * 2);
         }
+    }
+
+    private void RestrictVelocity()
+    {
+        int velocityLimit = 50;
+
+        if (Velocity.X > velocityLimit)
+            Velocity = new Vector2(velocityLimit, Velocity.Y);
+
+        if (Velocity.X < -velocityLimit)
+            Velocity = new Vector2(-velocityLimit, Velocity.Y);
+
+        if (Velocity.Y > velocityLimit)
+            Velocity = new Vector2(Velocity.X, velocityLimit);
+
+        if (Velocity.Y < -velocityLimit)
+            Velocity = new Vector2(Velocity.X, -velocityLimit);
     }
 
     public bool IsInVicinity(Circle otherCircle)
