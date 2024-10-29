@@ -63,7 +63,7 @@ internal class Circle
     public bool IsOverlapping(Circle otherCircle)
     {
         float distance = Vector2.Distance(Position, otherCircle.Position);
-        return distance < 2 * (radius + 1);
+        return distance < 2 * radius + 4;
     }
 
     public Vector2 CalculateAttractiveForce(Circle circle)
@@ -71,7 +71,8 @@ internal class Circle
         Vector2 direction = circle.Position - Position; // Direction from A to B
         float distance = direction.Length();
 
-        //if (distance < 1f) distance = 1f; // Prevent excessive force for very close distances
+        if (distance < 2 * radius + 4) // Prevent excessive force for very close distances
+            return Vector2.Zero;
         //direction.Normalize();
 
         // Calculate force magnitude using inverse-square law

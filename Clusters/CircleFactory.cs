@@ -19,6 +19,13 @@ internal class CircleFactory
         }
     }
 
+    public void AddTestCircles()
+    {
+        Circle circle = new Circle(new Vector2(150, 150), Color.Red);
+        Circle circle2 = new Circle(new Vector2(200, 150), Color.Red);
+        circles.AddRange([circle, circle2]);
+    }
+
     public void DrawCircles(SpriteBatch spriteBatch)
     {
         foreach (var circle in circles) 
@@ -38,10 +45,12 @@ internal class CircleFactory
                 {
                     force = circles[i].CalculateAttractiveForce(circles[j]);
 
-                    //if (circles[i].IsOverlapping(circles[j]))
-                    //{
-                    //    force += circles[i].CalculateRepulsiveForce(circles[j]);
-                    //}
+                    if (circles[i].IsOverlapping(circles[j]))
+                    {
+                        //force += circles[i].CalculateRepulsiveForce(circles[j]);
+                        circles[i].Velocity = Vector2.Zero;
+                        circles[j].Velocity = Vector2.Zero;
+                    }
                 }
 
                 // Apply equal and opposite force to each circle
