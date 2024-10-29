@@ -14,8 +14,8 @@ internal class Circle
 
     private Random random = new ();
     private int radius = 2;
-    private float detectionRadious = 100;
-    private float attractionStrength = 100f;
+    private float detectionRadious = 200;
+    private float attractionStrength = 400;
 
     public Circle(Vector2 position, Color color)
     {
@@ -29,10 +29,9 @@ internal class Circle
         spriteBatch.DrawCircle(Position, radius, 100, Color, 5); // 100 segments for smoothness, 2f thickness
     }
 
-    public void Move(float deltaTime, Circle circle)
+    public void Move(float deltaTime)
     {
-       // Position += new Vector2(random.Next(-300, 300) * deltaTime, random.Next(-300, 300) * deltaTime);
-        Position += new Vector2(100 * deltaTime, 0);
+        Position += Velocity * deltaTime;
 
         // Check horizontal wrapping
         if (Position.X + radius * 2 < 0) // Past the left side

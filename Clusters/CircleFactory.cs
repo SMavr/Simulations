@@ -33,21 +33,18 @@ internal class CircleFactory
         {
            for(int j = i + 1; j < circles.Count; j++)
            {
-                //if(j != i + 1 && circles[i].IsInVicinity(circles[j]))
-                //{
-                    Vector2 force = circles[i].CalculateAttractiveForce(circles[j]);
+                Vector2 force = circles[i].CalculateAttractiveForce(circles[j]);
 
-                    // Apply equal and opposite force to each circle
-                    circles[i].Velocity += force * deltaTime;
-                    circles[j].Velocity -= force * deltaTime;
-                //}
+                // Apply equal and opposite force to each circle
+                circles[i].Velocity += force * deltaTime;
+                circles[j].Velocity -= force * deltaTime;
            }
         }
 
         // Update each circle's position based on velocity
         foreach (var circle in circles)
         {
-            circle.Position += circle.Velocity * deltaTime;
+            circle.Move(deltaTime);
         }
     }
 }
