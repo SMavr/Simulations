@@ -11,11 +11,11 @@ internal class CircleFactory
     Random random = new();
     List<Circle> circles = new List<Circle>();
 
-    public void AddCircles(int circleNumber, Color color)
+    public void AddCircles(int circleNumber, Color color, int team)
     {
         for (int i = 0; i < circleNumber; i++)
         {
-            Circle circle = new Circle(new Vector2(random.Next(0, WindowConstants.Width), random.Next(0, WindowConstants.Width)), color);
+            Circle circle = new Circle(new Vector2(random.Next(0, WindowConstants.Width), random.Next(0, WindowConstants.Width)), color, team);
             circles.Add(circle);
         }
     }
@@ -71,13 +71,13 @@ internal class CircleFactory
                 circles[j].Velocity -= force * deltaTime;
             }
 
-            circles[i].Move(deltaTime);
+            //circles[i].Move(deltaTime);
         }
 
         //// Update each circle's position based on velocity
-        //foreach (var circle in circles)
-        //{
-           
-        //}
+        foreach (var circle in circles)
+        {
+            circle.Move(deltaTime);
+        }
     }
 }

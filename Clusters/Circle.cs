@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Graphics;
 using System;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Clusters;
 
@@ -11,19 +12,19 @@ internal class Circle
 {
     public Vector2 Position { get; set; }
     public Vector2 Velocity { get; set; }
-    public Color Color { get; set; }
+    public Color Color { get; }
+    public int Team { get; }
 
     private Random random = new ();
     private int radius = 2;
     private float detectionRadious = 400;
     private float attractionStrength = 200;
-    Texture2D circleTexture;
-
-    public Circle(Vector2 position, Color color)
+    public Circle(Vector2 position, Color color, int team = 0)
     {
         Position = position;
         Color = color;
         Velocity = Vector2.Zero;
+        Team = team;
     }
 
     public void Draw(SpriteBatch spriteBatch)
@@ -98,7 +99,13 @@ internal class Circle
 
         // Calculate force magnitude using inverse-square law
         float forceMagnitude = attractionStrength / (distance * distance);
-        return direction * forceMagnitude; // Return force vector
+
+        var forceVector = direction * forceMagnitude;
+
+        if (Team == circle.Team)
+            return 8 * forceVector;
+        else
+            return -forceVector;
     }
 
     public Vector2 CalculateRepulsiveForce(Circle circle)
