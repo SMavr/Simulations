@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
+using MonoGame.Extended.Graphics;
 using System;
 
 namespace Clusters;
@@ -16,6 +17,7 @@ internal class Circle
     private int radius = 2;
     private float detectionRadious = 400;
     private float attractionStrength = 200;
+    Texture2D circleTexture;
 
     public Circle(Vector2 position, Color color)
     {
@@ -63,7 +65,7 @@ internal class Circle
     public bool IsOverlapping(Circle otherCircle)
     {
         float distance = Vector2.Distance(Position, otherCircle.Position);
-        return distance < 2 * radius + 4;
+        return distance < 2 * radius + 8;
     }
 
     public Vector2 CalculateAttractiveForce(Circle circle)
@@ -72,7 +74,7 @@ internal class Circle
         float distance = direction.Length();
 
         if (distance < 2 * radius + 4) // Prevent excessive force for very close distances
-            return Vector2.Zero;
+            return -direction;
         //direction.Normalize();
 
         // Calculate force magnitude using inverse-square law
@@ -90,5 +92,27 @@ internal class Circle
         float overlap = (radius + radius) - distance;
         float forceMagnitude = attractionStrength * overlap;
         return direction * overlap;
+    }
+
+    public void ResolveOverlap(Circle circleB)
+    {
+        Vector2 direction = circleB.Position - Position;
+        float distance = direction.Length();
+        float minDistance = 2 * radius;
+
+        if (distance < minDistance)
+        {
+            // Calculate overlap amount
+            float overlap = minDistance - distance;
+
+            // Normalize direction and push circles apart by half the overlap distance
+            direction.Normalize();
+            Position -= direction * (overlap / 2);
+            circleB.Position += direction * (overlap / 2);
+
+            // Adjust velocities to separate them slightly (optional)
+            //circleA.Velocity -= direction * 0.1f;
+            //circleB.Velocity += direction * 0.1f;
+        }
     }
 }
