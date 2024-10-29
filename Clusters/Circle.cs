@@ -11,7 +11,7 @@ internal class Circle
     public Vector2 Position { get; set; }
     public Color Color { get; set; }
 
-    private Random random = new Random(22);
+    private Random random = new ();
     private int radius = 2;
 
     public Circle(Vector2 position, Color color)
@@ -27,7 +27,7 @@ internal class Circle
 
     public void Move(float deltaTime)
     {
-        Position += new Vector2(100 * deltaTime, 3 * deltaTime);
+        Position += new Vector2(random.Next(-300, 300) * deltaTime, random.Next(-300, 300) * deltaTime);
 
         // Check horizontal wrapping
         if (Position.X + radius * 2 < 0) // Past the left side
