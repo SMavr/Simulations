@@ -33,7 +33,16 @@ internal class CircleFactory
         {
            for(int j = i + 1; j < circles.Count; j++)
            {
-                Vector2 force = circles[i].CalculateAttractiveForce(circles[j]);
+                Vector2 force = Vector2.Zero;
+                if (circles[i].IsInVicinity(circles[j]))
+                {
+                    force = circles[i].CalculateAttractiveForce(circles[j]);
+                }
+
+                //if (circles[i].IsOverlapping(circles[j]))
+                //{
+                //    force += CalculateRepulsiveForce(circles[i], circles[j]);
+                //}
 
                 // Apply equal and opposite force to each circle
                 circles[i].Velocity += force * deltaTime;

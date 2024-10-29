@@ -60,6 +60,12 @@ internal class Circle
         return distance <= detectionRadious;
     }
 
+    public bool IsOverlapping(Circle otherCircle)
+    {
+        float distance = Vector2.Distance(Position, otherCircle.Position);
+        return distance < 2 * radius;
+    }
+
     public Vector2 CalculateAttractiveForce(Circle circle)
     {
         Vector2 direction = circle.Position - Position; // Direction from A to B
@@ -71,5 +77,17 @@ internal class Circle
         // Calculate force magnitude using inverse-square law
         float forceMagnitude = attractionStrength / (distance * distance);
         return direction * forceMagnitude; // Return force vector
+    }
+
+    private Vector2 CalculateRepulsiveForce(Circle circleB)
+    {
+        Vector2 direction = Position - circleB.Position; // Direction from B to A
+        float distance = direction.Length();
+        direction.Normalize();
+
+        // Calculate repulsive force proportional to the overlap
+        float overlap = (radius + radius) - distance;
+      //  float forceMagnitude = repulsionStrength * overlap;
+        return direction * overlap;
     }
 }
