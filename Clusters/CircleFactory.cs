@@ -1,6 +1,7 @@
 ﻿using Clusters.Constants;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using System;
 using System.Collections.Generic;
 
@@ -68,13 +69,15 @@ internal class CircleFactory
                 // Apply equal and opposite force to each circle
                 circles[i].Velocity += force * deltaTime;
                 circles[j].Velocity -= force * deltaTime;
-           }
+            }
+
+            circles[i].Move(deltaTime);
         }
 
-        // Update each circle's position based on velocity
-        foreach (var circle in circles)
-        {
-            circle.Move(deltaTime);
-        }
+        //// Update each circle's position based on velocity
+        //foreach (var circle in circles)
+        //{
+           
+        //}
     }
 }
