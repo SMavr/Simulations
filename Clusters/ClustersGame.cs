@@ -22,6 +22,7 @@ public class ClustersGame : Game
 
     protected override void Initialize()
     {
+        graphics.IsFullScreen = true;
         graphics.SetDimensions(WindowConstants.Width, WindowConstants.Height);
         //circleFactory.AddTestCircles();
 
