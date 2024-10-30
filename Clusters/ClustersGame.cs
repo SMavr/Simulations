@@ -29,7 +29,7 @@ public class ClustersGame : Game
         circleFactory.AddCircles(40, Color.Blue, 2, [new (1, -6), new (4, -2)]);
         circleFactory.AddCircles(40, Color.Yellow, 3, [new(1, -4)]);
         circleFactory.AddCircles(40, Color.Green, 4, [new (2, 3)]);
-        circleFactory.AddCircles(40, Color.BurlyWood, 5);
+        circleFactory.AddCircles(40, Color.BurlyWood, 5, [new ( 3, 2)]);
 
         base.Initialize();
     }
