@@ -115,7 +115,7 @@ internal class Circle
         var forceParagon = ForceParagons.FirstOrDefault(it => it.OtherTeam == circle.Team);
         if (forceParagon != null)
         {
-            return forceParagon.Constant * forceVector;
+            return -forceParagon.Constant * forceVector;
         }
         else if (Team == circle.Team)
             return 8 * forceVector;
