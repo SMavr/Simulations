@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Graphics;
 using System;
+using System.Collections.Generic;
 using static System.Collections.Specialized.BitVector32;
 
 namespace Clusters;
@@ -15,6 +16,8 @@ internal class Circle
     public Color Color { get; }
     public int Team { get; }
 
+    List<ForceParagon> ForceParagons { get; } = new List<ForceParagon>();
+
     private Random random = new ();
     private int radius = 2;
     private float detectionRadious = 400;
@@ -25,6 +28,12 @@ internal class Circle
         Color = color;
         Velocity = Vector2.Zero;
         Team = team;
+    }
+
+    public void AddForceParagons(List<ForceParagon> forceParagons)
+    {
+        if (forceParagons == null) return;
+        ForceParagons.AddRange(forceParagons);
     }
 
     public void Draw(SpriteBatch spriteBatch)
