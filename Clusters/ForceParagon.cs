@@ -6,4 +6,4 @@ using System.Threading.Tasks;
 
 namespace Clusters;
 
-internal record ForceParagon(int TeamA, int TeamB, int Constant);
+internal record ForceParagon(int OtherTeam, int Constant);

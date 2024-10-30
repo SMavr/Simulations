@@ -10,8 +10,9 @@ internal class CircleFactory
 {
     Random random = new();
     List<Circle> circles = new List<Circle>();
+    List<ForceParagon> forceParagons = new List<ForceParagon>();
 
-    public void AddCircles(int circleNumber, Color color, int team)
+    public void AddCircles(int circleNumber, Color color, int team, List<ForceParagon> forceParagons = null)
     {
         for (int i = 0; i < circleNumber; i++)
         {
