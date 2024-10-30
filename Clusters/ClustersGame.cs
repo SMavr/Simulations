@@ -12,14 +12,12 @@ public class ClustersGame : Game
     private readonly GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
     private CircleFactory circleFactory = new CircleFactory();
-
     public ClustersGame()
     {
         graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
-
     protected override void Initialize()
     {
         graphics.IsFullScreen = true;
@@ -54,7 +52,6 @@ public class ClustersGame : Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
-
 
         spriteBatch.Begin();
         circleFactory.DrawCircles(spriteBatch);
