@@ -5,6 +5,7 @@ using MonoGame.Extended;
 using MonoGame.Extended.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using static System.Collections.Specialized.BitVector32;
 
 namespace Clusters;
@@ -111,7 +112,12 @@ internal class Circle
 
         var forceVector = direction * forceMagnitude;
 
-        if (Team == circle.Team)
+        var forceParagon = ForceParagons.FirstOrDefault(it => it.OtherTeam == circle.Team);
+        if (forceParagon != null)
+        {
+            return forceParagon.Constant * forceVector;
+        }
+        else if (Team == circle.Team)
             return 8 * forceVector;
         else
             return -forceVector;

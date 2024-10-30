@@ -25,9 +25,9 @@ public class ClustersGame : Game
         graphics.SetDimensions(WindowConstants.Width, WindowConstants.Height);
         //circleFactory.AddTestCircles();
 
-        circleFactory.AddCircles(20, Color.Red, 1, [new(2, 4)]);
-        circleFactory.AddCircles(20, Color.Blue, 2);
-        circleFactory.AddCircles(20, Color.Yellow, 3);
+        circleFactory.AddCircles(20, Color.Red, 1, [new(3, 4)]);
+        circleFactory.AddCircles(20, Color.Blue, 2, [new (1, -6)]);
+        circleFactory.AddCircles(20, Color.Yellow, 3, [new(1, -4)]);
         circleFactory.AddCircles(20, Color.Green, 4);
         circleFactory.AddCircles(20, Color.BurlyWood, 5);
 
