@@ -108,18 +108,6 @@ internal class Circle
             return -forceVector;
     }
 
-    public Vector2 CalculateRepulsiveForce(Circle circle)
-    {
-        Vector2 direction = Position - circle.Position; // Direction from B to A
-        float distance = direction.Length();
-        direction.Normalize();
-
-        // Calculate repulsive force proportional to the overlap
-        float overlap = (radius + radius) - distance;
-        float forceMagnitude = attractionStrength * overlap;
-        return direction * overlap;
-    }
-
     public void ResolveOverlap(Circle circleB)
     {
         Vector2 direction = circleB.Position - Position;
