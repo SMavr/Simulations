@@ -71,13 +71,7 @@ internal class CircleFactory
                 circles[j].Velocity -= force * deltaTime;
             }
 
-            //circles[i].Move(deltaTime);
-        }
-
-        //// Update each circle's position based on velocity
-        foreach (var circle in circles)
-        {
-            circle.Move(deltaTime);
+            circles[i].Move(deltaTime);
         }
     }
 }
