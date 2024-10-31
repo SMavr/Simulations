@@ -7,7 +7,8 @@ namespace RomeVsOrcs;
 
 public class MainGame : Game
 {
-    Texture2D romanSoldierTexture;
+    private Texture2D romanSoldierTexture;
+    private Vector2 romanSoldierPosition;
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
@@ -30,6 +31,8 @@ public class MainGame : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         romanSoldierTexture = Content.Load<Texture2D>("soldier2");
+        romanSoldierPosition = Vector2.Zero;
+
     }
 
     protected override void Update(GameTime gameTime)
@@ -37,17 +40,34 @@ public class MainGame : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // TODO: Add your update logic here
+        KeyboardState state = Keyboard.GetState();
+        if (state.IsKeyDown(Keys.Right))
+        {
+            romanSoldierPosition.X += 2;
+        }
+        if (state.IsKeyDown(Keys.Left))
+        {
+            romanSoldierPosition.X -= 2;
+        }
+        if (state.IsKeyDown(Keys.Up))
+        {
+            romanSoldierPosition.Y -= 2;
+        }
+        if (state.IsKeyDown(Keys.Down))
+        {
+            romanSoldierPosition.Y += 2;
+        }
+
 
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
+        GraphicsDevice.Clear(Color.Green);
 
         _spriteBatch.Begin();
-        _spriteBatch.Draw(romanSoldierTexture, new Vector2(0, 0), Color.White);
+        _spriteBatch.Draw(romanSoldierTexture, romanSoldierPosition, Color.White);
         _spriteBatch.End();
 
         base.Draw(gameTime);
