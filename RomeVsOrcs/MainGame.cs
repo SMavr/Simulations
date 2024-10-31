@@ -24,7 +24,7 @@ public class MainGame : Game
     public MainGame()
     {
         graphics = new GraphicsDeviceManager(this);
-        graphics.IsFullScreen = true;
+        //graphics.IsFullScreen = true;
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
         spriteTexture = new AnimatedTexture(Vector2.Zero, rotation, scale, depth);
@@ -79,15 +79,16 @@ public class MainGame : Game
             characterPos.X -= 2;
             spriteTexture.Load(Content, "SoldierAnimation_Left", frames, framesPerSec);
         }
+
         if (state.IsKeyDown(Keys.Up))
         {
             characterPos.Y -= 2;
-            spriteTexture.Load(Content, "SoldierAnimation_Back", frames, framesPerSec);
+            spriteTexture.Load(Content, "SoldierAnimation_Up", frames, framesPerSec);
         }
         if (state.IsKeyDown(Keys.Down))
         {
             characterPos.Y += 2;
-            spriteTexture.Load(Content, "SoldierAnimation_Front", frames, framesPerSec);
+            spriteTexture.Load(Content, "SoldierAnimation_Down", frames, framesPerSec);
         }
 
 
