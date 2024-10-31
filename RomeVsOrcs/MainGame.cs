@@ -72,18 +72,22 @@ public class MainGame : Game
         if (state.IsKeyDown(Keys.Right))
         {
             characterPos.X += 2;
+            spriteTexture.Load(Content, "SoldierAnimation_Right", frames, framesPerSec);
         }
         if (state.IsKeyDown(Keys.Left))
         {
             characterPos.X -= 2;
+            spriteTexture.Load(Content, "SoldierAnimation_Left", frames, framesPerSec);
         }
         if (state.IsKeyDown(Keys.Up))
         {
             characterPos.Y -= 2;
+            spriteTexture.Load(Content, "SoldierAnimation_Back", frames, framesPerSec);
         }
         if (state.IsKeyDown(Keys.Down))
         {
             characterPos.Y += 2;
+            spriteTexture.Load(Content, "SoldierAnimation_Front", frames, framesPerSec);
         }
 
 
