@@ -9,8 +9,8 @@ public class MainGame : Game
 {
     //private Texture2D romanSoldierTexture;
     //private Vector2 romanSoldierPosition;
-    private GraphicsDeviceManager _graphics;
-    private SpriteBatch _spriteBatch;
+    private GraphicsDeviceManager graphics;
+    private SpriteBatch spriteBatch;
 
     // The reference to the AnimatedTexture for the character
     private AnimatedTexture spriteTexture;
@@ -23,8 +23,8 @@ public class MainGame : Game
 
     public MainGame()
     {
-        _graphics = new GraphicsDeviceManager(this);
-        _graphics.IsFullScreen = true;
+        graphics = new GraphicsDeviceManager(this);
+        graphics.IsFullScreen = true;
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
         spriteTexture = new AnimatedTexture(Vector2.Zero, rotation, scale, depth);
@@ -49,12 +49,12 @@ public class MainGame : Game
 
     protected override void LoadContent()
     {
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
+        spriteBatch = new SpriteBatch(GraphicsDevice);
 
 
         // "AnimatedCharacter" is the name of the sprite asset in the project.
-        spriteTexture.Load(Content, "SoldierAnimation", frames, framesPerSec);
-        viewport = _graphics.GraphicsDevice.Viewport;
+        spriteTexture.Load(Content, "SoldierAnimation_Right", frames, framesPerSec);
+        viewport = graphics.GraphicsDevice.Viewport;
         characterPos = new Vector2(viewport.Width / 2, viewport.Height / 2);
 
 
@@ -94,11 +94,9 @@ public class MainGame : Game
     {
         GraphicsDevice.Clear(Color.Green);
 
-        _spriteBatch.Begin();
-        // Replacing the normal SpriteBatch.Draw call to use the version from the "AnimatedTexture" class instead
-        spriteTexture.DrawFrame(_spriteBatch, characterPos);
-        //_spriteBatch.Draw(romanSoldierTexture, romanSoldierPosition, Color.White);
-        _spriteBatch.End();
+        spriteBatch.Begin();
+        spriteTexture.DrawFrame(spriteBatch, characterPos);
+        spriteBatch.End();
 
         base.Draw(gameTime);
     }
