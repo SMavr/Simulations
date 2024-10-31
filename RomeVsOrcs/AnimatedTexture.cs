@@ -71,15 +71,15 @@ public class AnimatedTexture
         }
     }
 
-    public void DrawFrame(SpriteBatch batch, Vector2 screenPos)
+    public void DrawFrame(SpriteBatch batch, Vector2 screenPos, int row)
     {
-        DrawFrame(batch, frame, screenPos);
+        DrawFrame(batch, frame, screenPos, row);
     }
 
-    public void DrawFrame(SpriteBatch batch, int frame, Vector2 screenPos)
+    public void DrawFrame(SpriteBatch batch, int frame, Vector2 screenPos, int row)
     {
         int frameWidth = myTexture.Width / frameCount;
-        Rectangle sourcerect = new Rectangle(64 * frame, 10 * 64 ,
+        Rectangle sourcerect = new Rectangle(64 * frame, row * 64 ,
             64, 64);
         batch.Draw(myTexture, screenPos, sourcerect, Color.White,
             Rotation, Origin, Scale, SpriteEffects.None, Depth);

@@ -100,7 +100,7 @@ public class MainGame : Game
         GraphicsDevice.Clear(Color.Green);
 
         spriteBatch.Begin();
-        spriteTexture.DrawFrame(spriteBatch, characterPos);
+        spriteTexture.DrawFrame(spriteBatch, characterPos, 10);
         spriteBatch.End();
 
         base.Draw(gameTime);
