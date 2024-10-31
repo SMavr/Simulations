@@ -17,13 +17,14 @@ public class MainGame : Game
     // The rotation of the character on screen
     private const float rotation = 0;
     // The scale of the character, how big it is drawn
-    private const float scale = 0.5f;
+    private const float scale = 1f;
     // The draw order of the sprite
     private const float depth = 0.5f;
 
     public MainGame()
     {
         _graphics = new GraphicsDeviceManager(this);
+        _graphics.IsFullScreen = true;
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
         spriteTexture = new AnimatedTexture(Vector2.Zero, rotation, scale, depth);
@@ -41,7 +42,7 @@ public class MainGame : Game
     // The position to draw the character
     private Vector2 characterPos;
     // How many frames/images are included in the animation
-    private const int frames = 8;
+    private const int frames = 9;
     // How many frames should be drawn each second, how fast does the animation run?
     private const int framesPerSec = 10;
 
@@ -52,12 +53,10 @@ public class MainGame : Game
 
 
         // "AnimatedCharacter" is the name of the sprite asset in the project.
-        spriteTexture.Load(Content, "AnimatedCharacter", frames, framesPerSec);
+        spriteTexture.Load(Content, "SoldierAnimation", frames, framesPerSec);
         viewport = _graphics.GraphicsDevice.Viewport;
         characterPos = new Vector2(viewport.Width / 2, viewport.Height / 2);
 
-        //romanSoldierTexture = Content.Load<Texture2D>("soldier2");
-        //romanSoldierPosition = Vector2.Zero;
 
     }
 
