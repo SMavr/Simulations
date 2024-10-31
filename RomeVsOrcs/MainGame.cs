@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using SharpDX.Direct3D9;
 
 namespace RomeVsOrcs;
 
@@ -24,6 +23,7 @@ public class MainGame : Game
     public MainGame()
     {
         graphics = new GraphicsDeviceManager(this);
+        graphics.GraphicsProfile = GraphicsProfile.HiDef;
         //graphics.IsFullScreen = true;
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
@@ -51,9 +51,9 @@ public class MainGame : Game
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
+        //Texture2D spriteSheet = Content.Load<Texture2D>("soldier"); // Load the PNG file
         // "AnimatedCharacter" is the name of the sprite asset in the project.
-        spriteTexture.Load(Content, "SoldierAnimation_Right", frames, framesPerSec);
+        spriteTexture.Load(Content, "soldier", frames, framesPerSec);
         viewport = graphics.GraphicsDevice.Viewport;
         characterPos = new Vector2(viewport.Width / 2, viewport.Height / 2);
 

@@ -78,9 +78,9 @@ public class AnimatedTexture
 
     public void DrawFrame(SpriteBatch batch, int frame, Vector2 screenPos)
     {
-        int FrameWidth = myTexture.Width / frameCount;
-        Rectangle sourcerect = new Rectangle(FrameWidth * frame, 0,
-            FrameWidth, myTexture.Height);
+        int frameWidth = myTexture.Width / frameCount;
+        Rectangle sourcerect = new Rectangle(64 * frame, 10 * 64 ,
+            64, 64);
         batch.Draw(myTexture, screenPos, sourcerect, Color.White,
             Rotation, Origin, Scale, SpriteEffects.None, Depth);
     }
