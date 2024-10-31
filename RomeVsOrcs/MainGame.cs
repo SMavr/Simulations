@@ -68,23 +68,23 @@ public class MainGame : Game
         float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
         spriteTexture.UpdateFrame(elapsed);
 
-        //KeyboardState state = Keyboard.GetState();
-        //if (state.IsKeyDown(Keys.Right))
-        //{
-        //    romanSoldierPosition.X += 2;
-        //}
-        //if (state.IsKeyDown(Keys.Left))
-        //{
-        //    romanSoldierPosition.X -= 2;
-        //}
-        //if (state.IsKeyDown(Keys.Up))
-        //{
-        //    romanSoldierPosition.Y -= 2;
-        //}
-        //if (state.IsKeyDown(Keys.Down))
-        //{
-        //    romanSoldierPosition.Y += 2;
-        //}
+        KeyboardState state = Keyboard.GetState();
+        if (state.IsKeyDown(Keys.Right))
+        {
+            characterPos.X += 2;
+        }
+        if (state.IsKeyDown(Keys.Left))
+        {
+            characterPos.X -= 2;
+        }
+        if (state.IsKeyDown(Keys.Up))
+        {
+            characterPos.Y -= 2;
+        }
+        if (state.IsKeyDown(Keys.Down))
+        {
+            characterPos.Y += 2;
+        }
 
 
         base.Update(gameTime);
