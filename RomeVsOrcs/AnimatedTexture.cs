@@ -13,7 +13,7 @@ public class AnimatedTexture
     private int frameCount;
 
     // The animation spritesheet.
-    private Texture2D myTexture;
+    private Texture2D texture;
 
     // The number of frames to draw per second.
     private float timePerFrame;
@@ -49,7 +49,7 @@ public class AnimatedTexture
             return;
 
         this.frameCount = frameCount;
-        myTexture = content.Load<Texture2D>(asset);
+        texture = content.Load<Texture2D>(asset);
         timePerFrame = (float)1 / framesPerSec;
         frame = 0;
         totalElapsed = 0;
@@ -79,10 +79,10 @@ public class AnimatedTexture
 
     public void DrawFrame(SpriteBatch batch, int frame, Vector2 screenPos, int row)
     {
-        int frameWidth = myTexture.Width / frameCount;
+        int frameWidth = texture.Width / frameCount;
         Rectangle sourcerect = new Rectangle(64 * frame, row * 64 ,
             64, 64);
-        batch.Draw(myTexture, screenPos, sourcerect, Color.White,
+        batch.Draw(texture, screenPos, sourcerect, Color.White,
             Rotation, Origin, Scale, SpriteEffects.None, Depth);
     }
 

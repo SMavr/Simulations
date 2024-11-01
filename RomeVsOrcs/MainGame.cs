@@ -65,16 +65,19 @@ public class MainGame : Game
 
         float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
         spriteTexture.UpdateFrame(elapsed);
+        spriteTexture.Pause();
 
         KeyboardState state = Keyboard.GetState();
         if (state.IsKeyDown(Keys.Right))
         {
+            spriteTexture.Play();
             characterPos.X += 2;
             currentRow = 11;
             frames = 9;
         }
         if (state.IsKeyDown(Keys.Left))
         {
+            spriteTexture.Play();
             characterPos.X -= 2;
             currentRow = 9;
             frames = 9;
@@ -82,17 +85,20 @@ public class MainGame : Game
 
         if (state.IsKeyDown(Keys.Up))
         {
+            spriteTexture.Play();
             characterPos.Y -= 2;
-            currentRow = 0;
-            frames = 7;
+            currentRow = 8;
+            frames = 9;
         }
         if (state.IsKeyDown(Keys.Down))
         {
+            spriteTexture.Play();
             characterPos.Y += 2;
             currentRow = 10;
             frames = 9;
         }
 
+       
 
         base.Update(gameTime);
     }
