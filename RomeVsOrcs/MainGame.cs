@@ -6,21 +6,9 @@ namespace RomeVsOrcs;
 
 public class MainGame : Game
 {
-    //private Texture2D romanSoldierTexture;
-    //private Vector2 romanSoldierPosition;
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
-
-    // The reference to the AnimatedTexture for the character
-    private AnimatedTexture spriteTexture;
-    // The rotation of the character on screen
-    private const float rotation = 0;
-    // The scale of the character, how big it is drawn
-    private const float scale = 1f;
-    // The draw order of the sprite
-    private const float depth = 0.5f;
-
-    private int currentRow = 10;
+    private SoldierTexture soldierTexture = new ();
 
     public MainGame()
     {
@@ -29,13 +17,11 @@ public class MainGame : Game
         //graphics.IsFullScreen = true;
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
-        spriteTexture = new AnimatedTexture(Vector2.Zero, rotation, scale, depth);
+        
     }
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
-
         base.Initialize();
     }
 
@@ -43,19 +29,13 @@ public class MainGame : Game
     private Viewport viewport;
     // The position to draw the character
     private Vector2 characterPos;
-    // How many frames/images are included in the animation
-    private int frames = 9;
-    // How many frames should be drawn each second, how fast does the animation run?
-    private const int framesPerSec = 10;
-
 
     protected override void LoadContent()
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
-
-        spriteTexture.Load(Content, "soldier", frames, framesPerSec);
         viewport = graphics.GraphicsDevice.Viewport;
         characterPos = new Vector2(viewport.Width / 2, viewport.Height / 2);
+        soldierTexture.Load(Content, characterPos);
     }
 
     protected override void Update(GameTime gameTime)
@@ -64,42 +44,8 @@ public class MainGame : Game
             Exit();
 
         float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-        spriteTexture.UpdateFrame(elapsed);
-        spriteTexture.Pause();
-
-        KeyboardState state = Keyboard.GetState();
-        if (state.IsKeyDown(Keys.Right))
-        {
-            spriteTexture.Play();
-            characterPos.X += 2;
-            currentRow = 11;
-            frames = 9;
-        }
-        if (state.IsKeyDown(Keys.Left))
-        {
-            spriteTexture.Play();
-            characterPos.X -= 2;
-            currentRow = 9;
-            frames = 9;
-        }
-
-        if (state.IsKeyDown(Keys.Up))
-        {
-            spriteTexture.Play();
-            characterPos.Y -= 2;
-            currentRow = 8;
-            frames = 9;
-        }
-        if (state.IsKeyDown(Keys.Down))
-        {
-            spriteTexture.Play();
-            characterPos.Y += 2;
-            currentRow = 10;
-            frames = 9;
-        }
-
+        soldierTexture.Update(elapsed);
        
-
         base.Update(gameTime);
     }
 
@@ -108,7 +54,7 @@ public class MainGame : Game
         GraphicsDevice.Clear(Color.Green);
 
         spriteBatch.Begin();
-        spriteTexture.DrawFrame(spriteBatch, characterPos, currentRow, frames);
+        soldierTexture.DrawFrame(spriteBatch);
         spriteBatch.End();
 
         base.Draw(gameTime);
