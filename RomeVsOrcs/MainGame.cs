@@ -20,6 +20,8 @@ public class MainGame : Game
     // The draw order of the sprite
     private const float depth = 0.5f;
 
+    private int currentRow = 10;
+
     public MainGame()
     {
         graphics = new GraphicsDeviceManager(this);
@@ -51,13 +53,9 @@ public class MainGame : Game
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        //Texture2D spriteSheet = Content.Load<Texture2D>("soldier"); // Load the PNG file
-        // "AnimatedCharacter" is the name of the sprite asset in the project.
         spriteTexture.Load(Content, "soldier", frames, framesPerSec);
         viewport = graphics.GraphicsDevice.Viewport;
         characterPos = new Vector2(viewport.Width / 2, viewport.Height / 2);
-
-
     }
 
     protected override void Update(GameTime gameTime)
@@ -72,23 +70,23 @@ public class MainGame : Game
         if (state.IsKeyDown(Keys.Right))
         {
             characterPos.X += 2;
-            spriteTexture.Load(Content, "SoldierAnimation_Right", frames, framesPerSec);
+            currentRow = 11;
         }
         if (state.IsKeyDown(Keys.Left))
         {
             characterPos.X -= 2;
-            spriteTexture.Load(Content, "SoldierAnimation_Left", frames, framesPerSec);
+            currentRow = 9;
         }
 
         if (state.IsKeyDown(Keys.Up))
         {
             characterPos.Y -= 2;
-            spriteTexture.Load(Content, "SoldierAnimation_Up", frames, framesPerSec);
+            currentRow = 8;
         }
         if (state.IsKeyDown(Keys.Down))
         {
             characterPos.Y += 2;
-            spriteTexture.Load(Content, "SoldierAnimation_Down", frames, framesPerSec);
+            currentRow = 10;
         }
 
 
@@ -100,7 +98,7 @@ public class MainGame : Game
         GraphicsDevice.Clear(Color.Green);
 
         spriteBatch.Begin();
-        spriteTexture.DrawFrame(spriteBatch, characterPos, 10);
+        spriteTexture.DrawFrame(spriteBatch, characterPos, currentRow);
         spriteBatch.End();
 
         base.Draw(gameTime);
