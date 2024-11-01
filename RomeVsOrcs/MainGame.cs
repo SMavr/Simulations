@@ -44,7 +44,7 @@ public class MainGame : Game
     // The position to draw the character
     private Vector2 characterPos;
     // How many frames/images are included in the animation
-    private const int frames = 9;
+    private int frames = 9;
     // How many frames should be drawn each second, how fast does the animation run?
     private const int framesPerSec = 10;
 
@@ -71,22 +71,26 @@ public class MainGame : Game
         {
             characterPos.X += 2;
             currentRow = 11;
+            frames = 9;
         }
         if (state.IsKeyDown(Keys.Left))
         {
             characterPos.X -= 2;
             currentRow = 9;
+            frames = 9;
         }
 
         if (state.IsKeyDown(Keys.Up))
         {
             characterPos.Y -= 2;
-            currentRow = 8;
+            currentRow = 0;
+            frames = 7;
         }
         if (state.IsKeyDown(Keys.Down))
         {
             characterPos.Y += 2;
             currentRow = 10;
+            frames = 9;
         }
 
 
@@ -98,7 +102,7 @@ public class MainGame : Game
         GraphicsDevice.Clear(Color.Green);
 
         spriteBatch.Begin();
-        spriteTexture.DrawFrame(spriteBatch, characterPos, currentRow);
+        spriteTexture.DrawFrame(spriteBatch, characterPos, currentRow, frames);
         spriteBatch.End();
 
         base.Draw(gameTime);

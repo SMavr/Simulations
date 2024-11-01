@@ -71,8 +71,9 @@ public class AnimatedTexture
         }
     }
 
-    public void DrawFrame(SpriteBatch batch, Vector2 screenPos, int row)
+    public void DrawFrame(SpriteBatch batch, Vector2 screenPos, int row, int frameCount)
     {
+        this.frameCount = frameCount;
         DrawFrame(batch, frame, screenPos, row);
     }
 
