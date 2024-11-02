@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Drawing.Imaging;
 using System.Security.Cryptography;
 
 
@@ -74,7 +75,6 @@ public class AnimatedTexture
         DrawFrame(batch, frame, screenPos, row);
     }
 
-    protected int frameWidth = 64;
 
     public void DrawFrame(SpriteBatch batch, int frame, Vector2 screenPos, int row)
     {
@@ -86,8 +86,10 @@ public class AnimatedTexture
 
         void DrawStartFromDown()
         {
+            int frameDimension = 128;
             var oppositeRow = 64 - row;
-            Rectangle sourcerect = new Rectangle(128 * frame, texture.Height - (oppositeRow * 128), 128, 128);
+            Rectangle sourcerect = new Rectangle(frameDimension * frame, 
+                texture.Height - (oppositeRow * frameDimension), frameDimension, frameDimension);
             var origin = new Vector2(32, 32);
 
             batch.Draw(texture, screenPos, sourcerect, Color.White,
@@ -96,7 +98,8 @@ public class AnimatedTexture
 
         void DrawStartFromUp()
         {
-            Rectangle sourcerect = new Rectangle(frameWidth * frame, row * 64, frameWidth, 64);
+            int frameDimension = 64;
+            Rectangle sourcerect = new Rectangle(frameDimension * frame, row * frameDimension, frameDimension, frameDimension);
             var origin = Vector2.Zero;
             batch.Draw(texture, screenPos, sourcerect, Color.White,
                Rotation, origin, Scale, SpriteEffects.None, Depth);
