@@ -39,14 +39,14 @@ internal class SoldierTexture : AnimatedTexture
         this.Pause();
 
         KeyboardState state = Keyboard.GetState();
-        if (state.IsKeyDown(Keys.Right))
+        if (state.IsKeyDown(Keys.D))
         {
             Play();
             position.X += 2;
             currentRow = 11;
             frames = 9;
         }
-        if (state.IsKeyDown(Keys.Left))
+        if (state.IsKeyDown(Keys.A))
         {
             Play();
             position.X -= 2;
@@ -54,19 +54,25 @@ internal class SoldierTexture : AnimatedTexture
             frames = 9;
         }
 
-        if (state.IsKeyDown(Keys.Up))
+        if (state.IsKeyDown(Keys.W))
         {
             Play();
             position.Y -= 2;
             currentRow = 8;
             frames = 9;
         }
-        if (state.IsKeyDown(Keys.Down))
+        if (state.IsKeyDown(Keys.S))
         {
             Play();
             position.Y += 2;
             currentRow = 10;
             frames = 9;
+        }
+        if (state.IsKeyDown(Keys.Space))
+        {
+            Play();
+            currentRow = 52;
+            frames = 6;
         }
     }
 

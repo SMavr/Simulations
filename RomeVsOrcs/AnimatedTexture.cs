@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System.Security.Cryptography;
 
 
 namespace RomeVsOrcs;
@@ -77,11 +78,17 @@ public class AnimatedTexture
         DrawFrame(batch, frame, screenPos, row);
     }
 
+    protected int frameWidth = 64;
+
     public void DrawFrame(SpriteBatch batch, int frame, Vector2 screenPos, int row)
     {
-        int frameWidth = texture.Width / frameCount;
-        Rectangle sourcerect = new Rectangle(64 * frame, row * 64 ,
-            64, 64);
+        Rectangle sourcerect =
+            row <= 51 ?
+            new Rectangle(frameWidth * frame, row * 64, frameWidth, 64) :
+            new Rectangle(128 * frame, texture.Height - 128, 128, 128);
+       
+
+
         batch.Draw(texture, screenPos, sourcerect, Color.White,
             Rotation, Origin, Scale, SpriteEffects.None, Depth);
     }
