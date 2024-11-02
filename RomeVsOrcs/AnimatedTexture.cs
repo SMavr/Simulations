@@ -87,10 +87,10 @@ public class AnimatedTexture
             new Rectangle(frameWidth * frame, row * 64, frameWidth, 64) :
             new Rectangle(128 * frame, texture.Height - 128, 128, 128);
        
-
+        var prob = row <= 51 ? Origin : new Vector2(32, 32);
 
         batch.Draw(texture, screenPos, sourcerect, Color.White,
-            Rotation, Origin, Scale, SpriteEffects.None, Depth);
+            Rotation, prob, Scale, SpriteEffects.None, Depth);
     }
 
     public bool IsPaused
