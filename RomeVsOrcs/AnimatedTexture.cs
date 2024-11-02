@@ -33,12 +33,8 @@ public class AnimatedTexture
     // The current rotation, scale and draw depth for the animation.
     public float Rotation, Scale, Depth;
 
-    // The origin point of the animated texture.
-    public Vector2 Origin;
-
-    public AnimatedTexture(Vector2 origin, float rotation, float scale, float depth)
+    public AnimatedTexture(float rotation, float scale, float depth)
     {
-        this.Origin = origin;
         this.Rotation = rotation;
         this.Scale = scale;
         this.Depth = depth;
@@ -89,7 +85,7 @@ public class AnimatedTexture
             new Rectangle(frameWidth * frame, row * 64, frameWidth, 64) :
             new Rectangle(128 * frame, texture.Height - (oppositeRow * 128), 128, 128);
        
-        var prob = row <= 51 ? Origin : new Vector2(32, 32);
+        var prob = row <= 51 ? Vector2.Zero : new Vector2(32, 32);
 
         batch.Draw(texture, screenPos, sourcerect, Color.White,
             Rotation, prob, Scale, SpriteEffects.None, Depth);

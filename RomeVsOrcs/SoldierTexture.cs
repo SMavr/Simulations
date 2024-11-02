@@ -27,7 +27,7 @@ internal class SoldierTexture : AnimatedTexture
     private Direction direction = Direction.South;
 
 
-    public SoldierTexture() : base(Vector2.Zero, 0, 1f, 0.5f)
+    public SoldierTexture() : base( 0, 1f, 0.5f)
     {
     }
 
@@ -76,7 +76,7 @@ internal class SoldierTexture : AnimatedTexture
             frames = 9;
             direction = Direction.South;
         }
-        if (state.IsKeyDown(Keys.Space))
+        if (state.IsKeyDown(Keys.Space))    
         {
             Play();
             currentRow = ToRow();
