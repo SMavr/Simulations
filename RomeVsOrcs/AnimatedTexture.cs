@@ -82,10 +82,12 @@ public class AnimatedTexture
 
     public void DrawFrame(SpriteBatch batch, int frame, Vector2 screenPos, int row)
     {
+        var oppositeRow = 62 - row;
+
         Rectangle sourcerect =
             row <= 51 ?
             new Rectangle(frameWidth * frame, row * 64, frameWidth, 64) :
-            new Rectangle(128 * frame, texture.Height - 128, 128, 128);
+            new Rectangle(128 * frame, texture.Height - (oppositeRow * 128), 128, 128);
        
         var prob = row <= 51 ? Origin : new Vector2(32, 32);
 
