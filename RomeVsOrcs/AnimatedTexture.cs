@@ -26,8 +26,7 @@ public class AnimatedTexture
     // Total amount of time the animation has been running.
     private float totalElapsed;
 
-    // Is the animation currently running?
-    private bool isPaused;
+
 
     // The current rotation, scale and draw depth for the animation.
     public float Rotation, Scale, Depth;
@@ -39,6 +38,9 @@ public class AnimatedTexture
         this.Depth = depth;
     }
 
+    // Is the animation currently running?
+    public bool IsPaused { get; private set; }
+
     public void Load(ContentManager content, string asset, int frameCount, int framesPerSec)
     {
         this.frameCount = frameCount;
@@ -46,12 +48,12 @@ public class AnimatedTexture
         timePerFrame = (float)1 / framesPerSec;
         frame = 0;
         totalElapsed = 0;
-        isPaused = false;
+        IsPaused = false;
     }
 
     public void UpdateFrame(float elapsed)
     {
-        if (isPaused)
+        if (IsPaused)
             return;
         totalElapsed += elapsed;
         if (totalElapsed > timePerFrame)
@@ -98,12 +100,8 @@ public class AnimatedTexture
         }
     }
 
-   
 
-    public bool IsPaused
-    {
-        get { return isPaused; }
-    }
+
 
     public void Reset()
     {
@@ -119,11 +117,11 @@ public class AnimatedTexture
 
     public void Play()
     {
-        isPaused = false;
+        IsPaused = false;
     }
 
     public void Pause()
     {
-        isPaused = true;
+        IsPaused = true;
     }
 }
