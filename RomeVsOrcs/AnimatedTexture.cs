@@ -78,18 +78,32 @@ public class AnimatedTexture
 
     public void DrawFrame(SpriteBatch batch, int frame, Vector2 screenPos, int row)
     {
-        var oppositeRow = 64 - row;
 
-        Rectangle sourcerect =
-            row <= 51 ?
-            new Rectangle(frameWidth * frame, row * 64, frameWidth, 64) :
-            new Rectangle(128 * frame, texture.Height - (oppositeRow * 128), 128, 128);
-       
-        var prob = row <= 51 ? Vector2.Zero : new Vector2(32, 32);
+        if (row <= 51)
+            DrawStartFromUp();
+        else
+            DrawStartFromDown();
 
-        batch.Draw(texture, screenPos, sourcerect, Color.White,
-            Rotation, prob, Scale, SpriteEffects.None, Depth);
+        void DrawStartFromDown()
+        {
+            var oppositeRow = 64 - row;
+            Rectangle sourcerect = new Rectangle(128 * frame, texture.Height - (oppositeRow * 128), 128, 128);
+            var origin = new Vector2(32, 32);
+
+            batch.Draw(texture, screenPos, sourcerect, Color.White,
+                Rotation, origin, Scale, SpriteEffects.None, Depth);
+        }
+
+        void DrawStartFromUp()
+        {
+            Rectangle sourcerect = new Rectangle(frameWidth * frame, row * 64, frameWidth, 64);
+            var origin = Vector2.Zero;
+            batch.Draw(texture, screenPos, sourcerect, Color.White,
+               Rotation, origin, Scale, SpriteEffects.None, Depth);
+        }
     }
+
+   
 
     public bool IsPaused
     {
