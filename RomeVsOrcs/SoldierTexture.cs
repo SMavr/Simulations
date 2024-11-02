@@ -43,7 +43,7 @@ internal class SoldierTexture : AnimatedTexture
         this.Pause();
 
         KeyboardState state = Keyboard.GetState();
-        if (state.IsKeyDown(Keys.D))
+        if (state.IsKeyDown(Keys.Right))
         {
             Play();
             position.X += 2;
@@ -51,7 +51,7 @@ internal class SoldierTexture : AnimatedTexture
             frames = 9;
             direction = Direction.East;
         }
-        if (state.IsKeyDown(Keys.A))
+        if (state.IsKeyDown(Keys.Left))
         {
             Play();
             position.X -= 2;
@@ -60,7 +60,7 @@ internal class SoldierTexture : AnimatedTexture
             direction = Direction.West;
         }
 
-        if (state.IsKeyDown(Keys.W))
+        if (state.IsKeyDown(Keys.Up))
         {
             Play();
             position.Y -= 2;
@@ -68,7 +68,7 @@ internal class SoldierTexture : AnimatedTexture
             frames = 9;
             direction = Direction.North;
         }
-        if (state.IsKeyDown(Keys.S))
+        if (state.IsKeyDown(Keys.Down))
         {
             Play();
             position.Y += 2;
