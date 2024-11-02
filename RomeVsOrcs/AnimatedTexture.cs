@@ -82,7 +82,7 @@ public class AnimatedTexture
 
     public void DrawFrame(SpriteBatch batch, int frame, Vector2 screenPos, int row)
     {
-        var oppositeRow = 62 - row;
+        var oppositeRow = 64 - row;
 
         Rectangle sourcerect =
             row <= 51 ?

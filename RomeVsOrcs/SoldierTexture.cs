@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using RomeVsOrcs.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,9 @@ internal class SoldierTexture : AnimatedTexture
     private Vector2 position;
 
     private int currentRow = 10;
+
+    private Direction direction = Direction.South;
+
 
     public SoldierTexture() : base(Vector2.Zero, 0, 1f, 0.5f)
     {
@@ -45,6 +49,7 @@ internal class SoldierTexture : AnimatedTexture
             position.X += 2;
             currentRow = 11;
             frames = 9;
+            direction = Direction.East;
         }
         if (state.IsKeyDown(Keys.A))
         {
@@ -52,6 +57,7 @@ internal class SoldierTexture : AnimatedTexture
             position.X -= 2;
             currentRow = 9;
             frames = 9;
+            direction = Direction.West;
         }
 
         if (state.IsKeyDown(Keys.W))
@@ -60,6 +66,7 @@ internal class SoldierTexture : AnimatedTexture
             position.Y -= 2;
             currentRow = 8;
             frames = 9;
+            direction = Direction.North;
         }
         if (state.IsKeyDown(Keys.S))
         {
@@ -67,14 +74,24 @@ internal class SoldierTexture : AnimatedTexture
             position.Y += 2;
             currentRow = 10;
             frames = 9;
+            direction = Direction.South;
         }
         if (state.IsKeyDown(Keys.Space))
         {
             Play();
-            currentRow = 52;
+            currentRow = ToRow();
             frames = 6;
         }
     }
+
+    private int ToRow() => direction switch
+    {
+        Direction.East => 55,
+        Direction.North => 52,
+        Direction.South => 54,
+        Direction.West => 53,
+        _ => 54
+    };
 
     public void DrawFrame(SpriteBatch spriteBatch)
     {
