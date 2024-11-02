@@ -26,6 +26,8 @@ internal class SoldierTexture : AnimatedTexture
 
     private Direction direction = Direction.South;
 
+    private bool spacePressed = false;
+
 
     public SoldierTexture() : base( 0, 1f, 0.5f)
     {
@@ -81,6 +83,12 @@ internal class SoldierTexture : AnimatedTexture
             Play();
             currentRow = ToRow();
             frames = 6;
+            spacePressed = true;
+        }
+        if (spacePressed && state.IsKeyUp(Keys.Space))
+        {
+            Reset();
+            spacePressed = false;
         }
 
         this.UpdateFrame(elapsed);
