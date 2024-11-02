@@ -29,8 +29,6 @@ public class AnimatedTexture
     // Is the animation currently running?
     private bool isPaused;
 
-    private string asset;
-
     // The current rotation, scale and draw depth for the animation.
     public float Rotation, Scale, Depth;
 
@@ -43,16 +41,12 @@ public class AnimatedTexture
 
     public void Load(ContentManager content, string asset, int frameCount, int framesPerSec)
     {
-        if (this.asset == asset)
-            return;
-
         this.frameCount = frameCount;
         texture = content.Load<Texture2D>(asset);
         timePerFrame = (float)1 / framesPerSec;
         frame = 0;
         totalElapsed = 0;
         isPaused = false;
-        this.asset = asset;
     }
 
     public void UpdateFrame(float elapsed)
@@ -75,10 +69,8 @@ public class AnimatedTexture
         DrawFrame(batch, frame, screenPos, row);
     }
 
-
     public void DrawFrame(SpriteBatch batch, int frame, Vector2 screenPos, int row)
     {
-
         if (row <= 51)
             DrawStartFromUp();
         else
