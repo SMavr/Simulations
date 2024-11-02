@@ -39,11 +39,11 @@ internal class SoldierTexture : AnimatedTexture
 
     public void Update(float elapsed)
     {
-        this.UpdateFrame(elapsed);
+     
         this.Pause();
 
         KeyboardState state = Keyboard.GetState();
-        if (state.IsKeyDown(Keys.Right))
+        if (state.IsKeyDown(Keys.Right) || state.IsKeyDown(Keys.D))
         {
             Play();
             position.X += 2;
@@ -51,7 +51,7 @@ internal class SoldierTexture : AnimatedTexture
             frames = 9;
             direction = Direction.East;
         }
-        if (state.IsKeyDown(Keys.Left))
+        if (state.IsKeyDown(Keys.Left) || state.IsKeyDown(Keys.A))
         {
             Play();
             position.X -= 2;
@@ -60,7 +60,7 @@ internal class SoldierTexture : AnimatedTexture
             direction = Direction.West;
         }
 
-        if (state.IsKeyDown(Keys.Up))
+        if (state.IsKeyDown(Keys.Up) || state.IsKeyDown(Keys.W))
         {
             Play();
             position.Y -= 2;
@@ -68,7 +68,7 @@ internal class SoldierTexture : AnimatedTexture
             frames = 9;
             direction = Direction.North;
         }
-        if (state.IsKeyDown(Keys.Down))
+        if (state.IsKeyDown(Keys.Down) || state.IsKeyDown(Keys.S))
         {
             Play();
             position.Y += 2;
@@ -82,6 +82,8 @@ internal class SoldierTexture : AnimatedTexture
             currentRow = ToRow();
             frames = 6;
         }
+
+        this.UpdateFrame(elapsed);
     }
 
     private int ToRow() => direction switch
