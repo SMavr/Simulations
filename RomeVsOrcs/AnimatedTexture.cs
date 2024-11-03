@@ -1,18 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System.Drawing.Imaging;
-using System.Security.Cryptography;
-
 
 namespace RomeVsOrcs;
-// <summary>
-/// A helper class for handling animated textures.
-/// </summary>
+
 public class AnimatedTexture
 {
-
-
     // The animation spritesheet.
     private Texture2D texture;
 
@@ -33,13 +26,11 @@ public class AnimatedTexture
     // Number of frames in the animation.
     protected int frameCount;
 
-
     // The current rotation, scale and draw depth for the animation.
-    public float Rotation, Scale, Depth;
+    public float Scale, Depth;
 
-    public AnimatedTexture(float rotation, float scale, float depth)
+    public AnimatedTexture(float scale, float depth)
     {
-        this.Rotation = rotation;
         this.Scale = scale;
         this.Depth = depth;
     }
@@ -92,7 +83,7 @@ public class AnimatedTexture
             var origin = new Vector2(32, 32);
 
             batch.Draw(texture, screenPos, sourcerect, Color.White,
-                Rotation, origin, Scale, SpriteEffects.None, Depth);
+                0, origin, Scale, SpriteEffects.None, Depth);
         }
 
         void DrawStartFromUp()
@@ -101,7 +92,7 @@ public class AnimatedTexture
             Rectangle sourcerect = new Rectangle(frameDimension * frame, row * frameDimension, frameDimension, frameDimension);
             var origin = Vector2.Zero;
             batch.Draw(texture, screenPos, sourcerect, Color.White,
-               Rotation, origin, Scale, SpriteEffects.None, Depth);
+               0, origin, Scale, SpriteEffects.None, Depth);
         }
     }
 

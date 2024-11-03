@@ -23,7 +23,7 @@ internal class SoldierTexture : AnimatedTexture
     private bool spacePressed = false;
 
 
-    public SoldierTexture() : base( 0, 1f, 0.5f)
+    public SoldierTexture() : base(  1f, 0.5f)
     {
     }
 
