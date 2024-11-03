@@ -49,6 +49,10 @@ public class MainGame : Game
 
         float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
         soldierTexture.Update(elapsed);
+        if(soldierTexture.Rectangle.Intersects(orcTexture.Rectangle))
+        {
+
+        }
        
         base.Update(gameTime);
     }

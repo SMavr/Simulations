@@ -33,6 +33,8 @@ public abstract class AnimatedTexture
     // Is the animation currently running?
     public bool IsPaused { get; private set; }
 
+    public Rectangle Rectangle => new Rectangle((int)position.X, (int)position.Y, 64, 64);
+
     public abstract void Load(ContentManager content, Vector2 initialPosition);
 
     public void Load(ContentManager content, string asset, Vector2 initialPosition)
