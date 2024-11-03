@@ -10,6 +10,7 @@ public class MainGame : Game
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
     private SoldierTexture soldierTexture = new ();
+    private OrcTexture orcTexture = new();
 
     public MainGame()
     {
@@ -37,6 +38,8 @@ public class MainGame : Game
         viewport = graphics.GraphicsDevice.Viewport;
         characterPos = new Vector2(viewport.Width / 2, viewport.Height / 2);
         soldierTexture.Load(Content, characterPos);
+        orcTexture.Load(Content, new Vector2(150, 150));
+
     }
 
     protected override void Update(GameTime gameTime)
@@ -56,6 +59,7 @@ public class MainGame : Game
 
         spriteBatch.Begin();
         soldierTexture.DrawFrame(spriteBatch);
+        orcTexture.DrawFrame(spriteBatch);
         spriteBatch.End();
 
         base.Draw(gameTime);
