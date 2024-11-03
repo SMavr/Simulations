@@ -94,22 +94,32 @@ internal class SoldierTexture : AnimatedTexture
         float overlapX = Math.Min(Rectangle.Right, otherBounds.Right) - Math.Max(Rectangle.Left, otherBounds.Left);
         float overlapY = Math.Min(Rectangle.Bottom, otherBounds.Bottom) - Math.Max(Rectangle.Top, otherBounds.Top);
 
-        if (overlapX < 50 && overlapY < 50)
-            return;
-
-        //position.X += overlapX;
-        //position.Y += overlapY;
-
-        //// Correct the position based on the minimum overlap
-        if (Math.Abs(overlapX) < Math.Abs(overlapY))
-        {
-            // Resolve collision on X axis
-            position.X += overlapX;
-        }
+        List<int> collisionX = [Rectangle.Right, Rectangle.Left, otherBounds.Right, otherBounds.Left];
+        collisionX.Sort();
+        if (Rectangle.Right > otherBounds.Right)
+            position.X += otherBounds.Right - Rectangle.Left;
         else
-        {
-            // Resolve collision on Y axis
-            position.Y += overlapY;
-        }
+            position.X += otherBounds.Left - Rectangle.Right;
+
+        //100 150 149 200
+        //101 151 150 200
+
+        //if (overlapX < 50 && overlapY < 50)
+        //    return;
+
+        ////position.X += overlapX;
+        ////position.Y += overlapY;
+
+        ////// Correct the position based on the minimum overlap
+        //if (Math.Abs(overlapX) < Math.Abs(overlapY))
+        //{
+        //    // Resolve collision on X axis
+        //    position.X += overlapX;
+        //}
+        //else
+        //{
+        //    // Resolve collision on Y axis
+        //    position.Y += overlapY;
+        //}
     }
 }
