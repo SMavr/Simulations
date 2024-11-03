@@ -44,9 +44,8 @@ public class AnimatedTexture
     // Is the animation currently running?
     public bool IsPaused { get; private set; }
 
-    public void Load(ContentManager content, string asset, int frameCount)
+    public void Load(ContentManager content, string asset)
     {
-        this.frameCount = frameCount;
         texture = content.Load<Texture2D>(asset);
         timePerFrame = (float)1 / framesPerSec;
         frame = 0;

@@ -31,7 +31,7 @@ internal class SoldierTexture : AnimatedTexture
     public void Load(ContentManager content, Vector2 initialPosition)
     {
         position = initialPosition;
-        base.Load(content, "soldier", frameCount);
+        base.Load(content, "soldier");
     }
 
     public void Update(float elapsed)
