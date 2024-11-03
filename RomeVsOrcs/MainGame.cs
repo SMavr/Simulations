@@ -49,6 +49,7 @@ public class MainGame : Game
 
         float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
         soldierTexture.Update(elapsed, [orcTexture.Rectangle]);
+        orcTexture.Update(elapsed);
        
         base.Update(gameTime);
     }
