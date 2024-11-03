@@ -26,6 +26,10 @@ public class AnimatedTexture
     // Number of frames in the animation.
     protected int frameCount;
 
+
+    protected int currentRow = 10;
+
+
     // The current rotation, scale and draw depth for the animation.
     public float Scale, Depth;
 
@@ -62,9 +66,9 @@ public class AnimatedTexture
         }
     }
 
-    public void DrawFrame(SpriteBatch batch, Vector2 screenPos, int row)
+    public void DrawFrame(SpriteBatch spriteBatch)
     {
-        DrawFrame(batch, frame, screenPos, row);
+        DrawFrame(spriteBatch, frame, position, currentRow);
     }
 
     public void DrawFrame(SpriteBatch batch, int frame, Vector2 screenPos, int row)
@@ -95,9 +99,6 @@ public class AnimatedTexture
                0, origin, Scale, SpriteEffects.None, Depth);
         }
     }
-
-
-
 
     public void Reset()
     {
