@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace RomeVsOrcs;
+namespace RomeVsOrcs.Textures;
 
 public class AnimatedTexture
 {
@@ -73,8 +73,8 @@ public class AnimatedTexture
         {
             int frameDimension = 128;
             var oppositeRow = 64 - row;
-            Rectangle sourcerect = new Rectangle(frameDimension * frame, 
-                texture.Height - (oppositeRow * frameDimension), frameDimension, frameDimension);
+            Rectangle sourcerect = new Rectangle(frameDimension * frame,
+                texture.Height - oppositeRow * frameDimension, frameDimension, frameDimension);
             var origin = new Vector2(32, 32);
 
             batch.Draw(texture, screenPos, sourcerect, Color.White,

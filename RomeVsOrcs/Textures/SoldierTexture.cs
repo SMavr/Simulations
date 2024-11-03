@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 using RomeVsOrcs.Enums;
 
-namespace RomeVsOrcs;
+namespace RomeVsOrcs.Textures;
 internal class SoldierTexture : AnimatedTexture
 {
     private Direction direction = Direction.South;
@@ -12,12 +12,12 @@ internal class SoldierTexture : AnimatedTexture
 
     public void Load(ContentManager content, Vector2 initialPosition)
     {
-        base.Load(content, "soldier", initialPosition);
+        Load(content, "soldier", initialPosition);
     }
 
     public void Update(float elapsed)
     {
-        this.Pause();
+        Pause();
 
         KeyboardState state = Keyboard.GetState();
         if (state.IsKeyDown(Keys.Right) || state.IsKeyDown(Keys.D))
@@ -53,7 +53,7 @@ internal class SoldierTexture : AnimatedTexture
             frameCount = 9;
             direction = Direction.South;
         }
-        if (state.IsKeyDown(Keys.Space))    
+        if (state.IsKeyDown(Keys.Space))
         {
             Play();
             currentRow = ToRow();
@@ -66,7 +66,7 @@ internal class SoldierTexture : AnimatedTexture
             spacePressed = false;
         }
 
-        base.UpdateFrame(elapsed);
+        UpdateFrame(elapsed);
     }
 
     private int ToRow() => direction switch
