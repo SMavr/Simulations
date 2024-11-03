@@ -70,7 +70,7 @@ internal class SoldierTexture : AnimatedTexture
             spacePressed = false;
         }
 
-        this.UpdateFrame(elapsed);
+        base.UpdateFrame(elapsed);
     }
 
     private int ToRow() => direction switch

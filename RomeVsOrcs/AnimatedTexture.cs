@@ -23,12 +23,12 @@ public class AnimatedTexture
 
     // The position to draw the character
     protected Vector2 position;
+
     // Number of frames in the animation.
     protected int frameCount;
 
-
+    // Current row in animation sprite sheet.
     protected int currentRow = 10;
-
 
     // The current rotation, scale and draw depth for the animation.
     public float Scale, Depth;
@@ -71,7 +71,7 @@ public class AnimatedTexture
         DrawFrame(spriteBatch, frame, position, currentRow);
     }
 
-    public void DrawFrame(SpriteBatch batch, int frame, Vector2 screenPos, int row)
+    private void DrawFrame(SpriteBatch batch, int frame, Vector2 screenPos, int row)
     {
         if (row <= 51)
             DrawStartFromUp();
