@@ -12,7 +12,7 @@ namespace RomeVsOrcs;
 public class AnimatedTexture
 {
     // Number of frames in the animation.
-    private int frameCount;
+    protected int frameCount;
 
     // The animation spritesheet.
     private Texture2D texture;
@@ -65,9 +65,8 @@ public class AnimatedTexture
         }
     }
 
-    public void DrawFrame(SpriteBatch batch, Vector2 screenPos, int row, int frameCount)
+    public void DrawFrame(SpriteBatch batch, Vector2 screenPos, int row)
     {
-        this.frameCount = frameCount;
         DrawFrame(batch, frame, screenPos, row);
     }
 

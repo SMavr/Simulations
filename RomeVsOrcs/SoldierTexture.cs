@@ -14,8 +14,6 @@ namespace RomeVsOrcs;
 internal class SoldierTexture : AnimatedTexture
 {
 
-    // How many frames/images are included in the animation
-    private int frames = 9;
     // How many frames should be drawn each second, how fast does the animation run?
     private const int framesPerSec = 10;
 
@@ -36,7 +34,7 @@ internal class SoldierTexture : AnimatedTexture
     public void Load(ContentManager content, Vector2 initialPosition)
     {
         position = initialPosition;
-        base.Load(content, "soldier", frames, framesPerSec);
+        base.Load(content, "soldier", frameCount, framesPerSec);
     }
 
     public void Update(float elapsed)
@@ -50,7 +48,7 @@ internal class SoldierTexture : AnimatedTexture
             Play();
             position.X += 2;
             currentRow = 11;
-            frames = 9;
+            frameCount = 9;
             direction = Direction.East;
         }
         if (state.IsKeyDown(Keys.Left) || state.IsKeyDown(Keys.A))
@@ -58,7 +56,7 @@ internal class SoldierTexture : AnimatedTexture
             Play();
             position.X -= 2;
             currentRow = 9;
-            frames = 9;
+            frameCount = 9;
             direction = Direction.West;
         }
 
@@ -67,7 +65,7 @@ internal class SoldierTexture : AnimatedTexture
             Play();
             position.Y -= 2;
             currentRow = 8;
-            frames = 9;
+            frameCount = 9;
             direction = Direction.North;
         }
         if (state.IsKeyDown(Keys.Down) || state.IsKeyDown(Keys.S))
@@ -75,14 +73,14 @@ internal class SoldierTexture : AnimatedTexture
             Play();
             position.Y += 2;
             currentRow = 10;
-            frames = 9;
+            frameCount = 9;
             direction = Direction.South;
         }
         if (state.IsKeyDown(Keys.Space))    
         {
             Play();
             currentRow = ToRow();
-            frames = 6;
+            frameCount = 6;
             spacePressed = true;
         }
         if (spacePressed && state.IsKeyUp(Keys.Space))
@@ -105,6 +103,6 @@ internal class SoldierTexture : AnimatedTexture
 
     public void DrawFrame(SpriteBatch spriteBatch)
     {
-        base.DrawFrame(spriteBatch, position, currentRow, frames);
+        base.DrawFrame(spriteBatch, position, currentRow);
     }
 }
