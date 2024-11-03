@@ -20,7 +20,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore RomeVsOrcs
 
-      # dotnet publish RomeVsOrcs\RomeVsOrcs.csproj --self-contained --output Test --runtime win-x64
+      #  publish RomeVsOrcs\RomeVsOrcs.csproj  --output Test --configuration Release
 
 
 
