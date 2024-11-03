@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RomeVsOrcs.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace RomeVsOrcs.Textures;
@@ -71,8 +72,7 @@ internal class SoldierTexture : AnimatedTexture
         {
             if(this.Rectangle.Intersects(item))
             {
-                position.X = 0;
-                position.Y = 0;
+                ResolveCollision(item);
             }
         }
 
@@ -87,4 +87,29 @@ internal class SoldierTexture : AnimatedTexture
         Direction.West => 53,
         _ => 54
     };
+
+    private void ResolveCollision(Rectangle otherBounds)
+    {
+        // Calculate overlap amounts in each direction
+        float overlapX = Math.Min(Rectangle.Right, otherBounds.Right) - Math.Max(Rectangle.Left, otherBounds.Left);
+        float overlapY = Math.Min(Rectangle.Bottom, otherBounds.Bottom) - Math.Max(Rectangle.Top, otherBounds.Top);
+
+        if (overlapX < 50 && overlapY < 50)
+            return;
+
+        //position.X += overlapX;
+        //position.Y += overlapY;
+
+        //// Correct the position based on the minimum overlap
+        if (Math.Abs(overlapX) < Math.Abs(overlapY))
+        {
+            // Resolve collision on X axis
+            position.X += overlapX;
+        }
+        else
+        {
+            // Resolve collision on Y axis
+            position.Y += overlapY;
+        }
+    }
 }
