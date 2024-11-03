@@ -10,10 +10,6 @@ internal class SoldierTexture : AnimatedTexture
 
     private bool spacePressed = false;
 
-    public SoldierTexture() : base(  1f, 0.5f)
-    {
-    }
-
     public void Load(ContentManager content, Vector2 initialPosition)
     {
         base.Load(content, "soldier", initialPosition);

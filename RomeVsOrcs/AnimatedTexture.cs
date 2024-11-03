@@ -30,15 +30,6 @@ public class AnimatedTexture
     // Current row in animation sprite sheet.
     protected int currentRow = 10;
 
-    // The current rotation, scale and draw depth for the animation.
-    public float Scale, Depth;
-
-    public AnimatedTexture(float scale, float depth)
-    {
-        this.Scale = scale;
-        this.Depth = depth;
-    }
-
     // Is the animation currently running?
     public bool IsPaused { get; private set; }
 
@@ -87,7 +78,7 @@ public class AnimatedTexture
             var origin = new Vector2(32, 32);
 
             batch.Draw(texture, screenPos, sourcerect, Color.White,
-                0, origin, Scale, SpriteEffects.None, Depth);
+                0, origin, 1f, SpriteEffects.None, 0.5f);
         }
 
         void DrawStartFromUp()
@@ -96,7 +87,7 @@ public class AnimatedTexture
             Rectangle sourcerect = new Rectangle(frameDimension * frame, row * frameDimension, frameDimension, frameDimension);
             var origin = Vector2.Zero;
             batch.Draw(texture, screenPos, sourcerect, Color.White,
-               0, origin, Scale, SpriteEffects.None, Depth);
+               0, origin, 1f, SpriteEffects.None, 0.5f);
         }
     }
 
