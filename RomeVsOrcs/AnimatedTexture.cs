@@ -26,6 +26,9 @@ public class AnimatedTexture
     // Total amount of time the animation has been running.
     private float totalElapsed;
 
+    // How many frames should be drawn each second, how fast does the animation run?
+    private const int framesPerSec = 10;
+
 
 
     // The current rotation, scale and draw depth for the animation.
@@ -41,7 +44,7 @@ public class AnimatedTexture
     // Is the animation currently running?
     public bool IsPaused { get; private set; }
 
-    public void Load(ContentManager content, string asset, int frameCount, int framesPerSec)
+    public void Load(ContentManager content, string asset, int frameCount)
     {
         this.frameCount = frameCount;
         texture = content.Load<Texture2D>(asset);

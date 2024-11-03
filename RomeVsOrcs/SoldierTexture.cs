@@ -14,9 +14,6 @@ namespace RomeVsOrcs;
 internal class SoldierTexture : AnimatedTexture
 {
 
-    // How many frames should be drawn each second, how fast does the animation run?
-    private const int framesPerSec = 10;
-
     // The position to draw the character
     private Vector2 position;
 
@@ -34,7 +31,7 @@ internal class SoldierTexture : AnimatedTexture
     public void Load(ContentManager content, Vector2 initialPosition)
     {
         position = initialPosition;
-        base.Load(content, "soldier", frameCount, framesPerSec);
+        base.Load(content, "soldier", frameCount);
     }
 
     public void Update(float elapsed)
