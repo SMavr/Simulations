@@ -48,11 +48,7 @@ public class MainGame : Game
             Exit();
 
         float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-        soldierTexture.Update(elapsed);
-        if(soldierTexture.Rectangle.Intersects(orcTexture.Rectangle))
-        {
-
-        }
+        soldierTexture.Update(elapsed, [orcTexture.Rectangle]);
        
         base.Update(gameTime);
     }

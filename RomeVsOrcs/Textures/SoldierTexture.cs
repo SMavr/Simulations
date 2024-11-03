@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RomeVsOrcs.Enums;
+using System.Collections.Generic;
 
 namespace RomeVsOrcs.Textures;
 internal class SoldierTexture : AnimatedTexture
@@ -15,7 +17,7 @@ internal class SoldierTexture : AnimatedTexture
         Load(content, "soldier", initialPosition);
     }
 
-    public void Update(float elapsed)
+    public void Update(float elapsed, List<Rectangle> objects)
     {
         Pause();
 
@@ -64,6 +66,14 @@ internal class SoldierTexture : AnimatedTexture
         {
             Reset();
             spacePressed = false;
+        }
+        foreach (var item in objects)
+        {
+            if(this.Rectangle.Intersects(item))
+            {
+                position.X = 0;
+                position.Y = 0;
+            }
         }
 
         UpdateFrame(elapsed);
