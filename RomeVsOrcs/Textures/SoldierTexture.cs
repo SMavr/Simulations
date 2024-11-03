@@ -10,7 +10,7 @@ internal class SoldierTexture : AnimatedTexture
 
     private bool spacePressed = false;
 
-    public void Load(ContentManager content, Vector2 initialPosition)
+    public override void Load(ContentManager content, Vector2 initialPosition)
     {
         Load(content, "soldier", initialPosition);
     }

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace RomeVsOrcs.Textures;
 
-public class AnimatedTexture
+public abstract class AnimatedTexture
 {
     // The animation spritesheet.
     private Texture2D texture;
@@ -32,6 +32,8 @@ public class AnimatedTexture
 
     // Is the animation currently running?
     public bool IsPaused { get; private set; }
+
+    public abstract void Load(ContentManager content, Vector2 initialPosition);
 
     public void Load(ContentManager content, string asset, Vector2 initialPosition)
     {
