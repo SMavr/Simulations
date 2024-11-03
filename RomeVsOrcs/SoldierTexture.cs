@@ -14,8 +14,7 @@ namespace RomeVsOrcs;
 internal class SoldierTexture : AnimatedTexture
 {
 
-    // The position to draw the character
-    private Vector2 position;
+ 
 
     private int currentRow = 10;
 
@@ -30,13 +29,11 @@ internal class SoldierTexture : AnimatedTexture
 
     public void Load(ContentManager content, Vector2 initialPosition)
     {
-        position = initialPosition;
-        base.Load(content, "soldier");
+        base.Load(content, "soldier", initialPosition);
     }
 
     public void Update(float elapsed)
     {
-     
         this.Pause();
 
         KeyboardState state = Keyboard.GetState();

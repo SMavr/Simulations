@@ -11,8 +11,7 @@ namespace RomeVsOrcs;
 /// </summary>
 public class AnimatedTexture
 {
-    // Number of frames in the animation.
-    protected int frameCount;
+
 
     // The animation spritesheet.
     private Texture2D texture;
@@ -29,6 +28,10 @@ public class AnimatedTexture
     // How many frames should be drawn each second, how fast does the animation run?
     private const int framesPerSec = 10;
 
+    // The position to draw the character
+    protected Vector2 position;
+    // Number of frames in the animation.
+    protected int frameCount;
 
 
     // The current rotation, scale and draw depth for the animation.
@@ -44,8 +47,9 @@ public class AnimatedTexture
     // Is the animation currently running?
     public bool IsPaused { get; private set; }
 
-    public void Load(ContentManager content, string asset)
+    public void Load(ContentManager content, string asset, Vector2 initialPosition)
     {
+        position = initialPosition;
         texture = content.Load<Texture2D>(asset);
         timePerFrame = (float)1 / framesPerSec;
         frame = 0;
