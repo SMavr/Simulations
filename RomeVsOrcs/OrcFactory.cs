@@ -2,28 +2,35 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using RomeVsOrcs.Textures;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RomeVsOrcs;
 internal class OrcFactory
 {
-    private OrcTexture orcTexture = new();
+    private List<OrcTexture> orcTextures = new();
 
-    public Rectangle OrcShapes => orcTexture.Rectangle;
+    public List<Rectangle> OrcShapes => orcTextures.Select(it => it.Rectangle).ToList();
 
-
-    public void Load(ContentManager content)
+    public void Load(ContentManager content, int count)
     {
-        orcTexture.Load(content, new Vector2(150, 150));
+
+        for (int i = 0; i < count; i++)
+        {
+            OrcTexture orcTexture = new OrcTexture();
+            orcTexture.Load(content, new Vector2(100 + (i * 200), 150));
+            orcTextures.Add(orcTexture);
+        }
     }
 
 
     public void Update(float elapsedTime)
     {
-        orcTexture.Update(elapsedTime);
+        orcTextures.ForEach(it => it.Update(elapsedTime));
     }
 
     public void Draw(SpriteBatch spriteBatch) 
     {
-        orcTexture.DrawFrame(spriteBatch);
+        orcTextures.ForEach(it => it.DrawFrame(spriteBatch));
     }
 }
