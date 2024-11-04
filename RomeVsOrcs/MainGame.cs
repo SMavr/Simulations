@@ -10,7 +10,7 @@ public class MainGame : Game
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
     private SoldierTexture soldierTexture = new ();
-    private OrcTexture orcTexture = new();
+    private OrcFactory orcFactory = new();
 
     public MainGame()
     {
@@ -19,7 +19,6 @@ public class MainGame : Game
         //graphics.IsFullScreen = true;
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
-        
     }
 
     protected override void Initialize()
@@ -38,8 +37,7 @@ public class MainGame : Game
         viewport = graphics.GraphicsDevice.Viewport;
         characterPos = new Vector2(viewport.Width / 2, viewport.Height / 2);
         soldierTexture.Load(Content, characterPos);
-        orcTexture.Load(Content, new Vector2(150, 150));
-
+        orcFactory.Load(Content);
     }
 
     protected override void Update(GameTime gameTime)
@@ -48,8 +46,8 @@ public class MainGame : Game
             Exit();
 
         float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-        soldierTexture.Update(elapsed, [orcTexture.Rectangle]);
-        orcTexture.Update(elapsed);
+        soldierTexture.Update(elapsed, [orcFactory.OrcShapes]);
+        orcFactory.Update(elapsed);
        
         base.Update(gameTime);
     }
@@ -60,7 +58,7 @@ public class MainGame : Game
 
         spriteBatch.Begin();
         soldierTexture.DrawFrame(spriteBatch);
-        orcTexture.DrawFrame(spriteBatch);
+        orcFactory.Draw(spriteBatch);
         spriteBatch.End();
 
         base.Draw(gameTime);
