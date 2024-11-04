@@ -16,7 +16,6 @@ internal class OrcTexture : AnimatedTexture
         Load(content, "orc", initialPosition);
     }
 
-
     public void Update(float elapsed)
     {
         duration += elapsed;

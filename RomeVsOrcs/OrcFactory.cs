@@ -14,7 +14,6 @@ internal class OrcFactory
 
     public void Load(ContentManager content, int count)
     {
-
         for (int i = 0; i < count; i++)
         {
             OrcTexture orcTexture = new OrcTexture();
@@ -22,7 +21,6 @@ internal class OrcFactory
             orcTextures.Add(orcTexture);
         }
     }
-
 
     public void Update(float elapsedTime)
     {
