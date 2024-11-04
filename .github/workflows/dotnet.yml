@@ -21,3 +21,7 @@ jobs:
       run: dotnet build --no-restore RomeVsOrcs
     - name: Publish
       run: dotnet publish RomeVsOrcs\RomeVsOrcs.csproj  --output Releasable --configuration Release
+    - uses: actions/upload-artifact@v4
+      with:
+        name: artifact
+        path: Releasable
