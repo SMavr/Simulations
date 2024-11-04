@@ -19,10 +19,5 @@ jobs:
       run: dotnet restore RomeVsOrcs
     - name: Build
       run: dotnet build --no-restore RomeVsOrcs
-
-      #  publish RomeVsOrcs\RomeVsOrcs.csproj  --output Test --configuration Release
-
-
-
-
-
+    - name: Publish
+      run: dotnet publish RomeVsOrcs\RomeVsOrcs.csproj  --output Releasable --configuration Release
