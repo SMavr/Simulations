@@ -88,6 +88,17 @@ internal class SoldierTexture : AnimatedTexture
             }
         }
 
+        if (showBubble)
+        {
+            overlayTimer += elapsed;
+
+            // Hide overlay after the specified duration
+            if (overlayTimer >= 5f)
+            {
+                showBubble = false;
+            }
+        }
+
         UpdateFrame(elapsed);
     }
 
@@ -123,10 +134,17 @@ internal class SoldierTexture : AnimatedTexture
         }
     }
 
+    private float overlayTimer = 0f;
+    bool showBubble = true;
+
     public override void DrawFrame(SpriteBatch spriteBatch)
     {
         base.DrawFrame(spriteBatch);
 
-        spriteBatch.Draw(bubble, position + new Vector2(-32, -32), null, Color.White, 0, Vector2.Zero,0.3f, SpriteEffects.None,1);
+        if(showBubble)
+        {
+            spriteBatch.Draw(bubble, position + new Vector2(-32, -32), null,
+                Color.White, 0, Vector2.Zero, 0.3f, SpriteEffects.None, 1);
+        }
     }
 }
