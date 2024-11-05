@@ -145,4 +145,6 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
                 Color.White, 0, Vector2.Zero, 0.3f, SpriteEffects.None, 1);
         }
     }
+
+ 
 }

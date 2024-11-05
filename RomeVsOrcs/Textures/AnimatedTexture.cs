@@ -5,7 +5,7 @@ using System;
 
 namespace RomeVsOrcs.Textures;
 
-public abstract class AnimatedTexture
+public abstract class AnimatedTexture : Playable
 {
     // The animation spritesheet.
     private Texture2D texture;
@@ -32,9 +32,6 @@ public abstract class AnimatedTexture
 
     // Current row in animation sprite sheet.
     protected int currentRow = 10;
-
-    // Is the animation currently running?
-    public bool IsPaused { get; private set; }
 
     public Rectangle Rectangle => new Rectangle((int)position.X, (int)position.Y, 32, 32);
 
@@ -112,26 +109,10 @@ public abstract class AnimatedTexture
         }
     }
 
-    public void Reset()
+    protected override void Reset()
     {
         frame = 0;
         totalElapsed = 0f;
-    }
-
-    public void Stop()
-    {
-        Pause();
-        Reset();
-    }
-
-    public void Play()
-    {
-        IsPaused = false;
-    }
-
-    public void Pause()
-    {
-        IsPaused = true;
     }
 
     public int Life { get; private set; } = 3;
