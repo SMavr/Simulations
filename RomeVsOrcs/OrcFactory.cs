@@ -10,11 +10,11 @@ internal class OrcFactory
 {
     public List<OrcTexture> OrcTextures { get; private set; } = [];
 
-    public void Load(ContentManager content, int count)
+    public void Load(ContentManager content, Viewport viewport, int count)
     {
         for (int i = 0; i < count; i++)
         {
-            OrcTexture orcTexture = new OrcTexture();
+            OrcTexture orcTexture = new OrcTexture(viewport);
             orcTexture.Load(content, new Vector2(100 + (i * 200), 150));
             OrcTextures.Add(orcTexture);
         }

@@ -9,8 +9,8 @@ public class MainGame : Game
 {
     private GraphicsDeviceManager graphics;
     private SpriteBatch spriteBatch;
-    private SoldierTexture soldierTexture = new ();
-    private OrcFactory orcFactory = new();
+    private SoldierTexture soldierTexture;
+    private OrcFactory orcFactory;
 
     public MainGame()
     {
@@ -24,6 +24,8 @@ public class MainGame : Game
     protected override void Initialize()
     {
         base.Initialize();
+
+        
     }
 
     // The game visible area
@@ -36,8 +38,10 @@ public class MainGame : Game
         spriteBatch = new SpriteBatch(GraphicsDevice);
         viewport = graphics.GraphicsDevice.Viewport;
         characterPos = new Vector2(viewport.Width / 2, viewport.Height / 2);
+        soldierTexture = new SoldierTexture(graphics.GraphicsDevice.Viewport);
         soldierTexture.Load(Content, characterPos);
-        orcFactory.Load(Content, 4);
+        orcFactory = new OrcFactory();
+        orcFactory.Load(Content, viewport, 4);
     }
 
     protected override void Update(GameTime gameTime)

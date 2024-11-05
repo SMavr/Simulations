@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using RomeVsOrcs.Enums;
 using System;
 
@@ -11,6 +12,10 @@ internal class OrcTexture : AnimatedTexture
     int randomNumber = 1;
     float duration;
     int life = 3;
+
+    public OrcTexture(Viewport viewport) : base(viewport)
+    {
+    }
 
     public override void Load(ContentManager content, Vector2 initialPosition)
     {
