@@ -122,20 +122,17 @@ public abstract class AnimatedTexture
     public bool IsDead { get; private set; } = false;
     public void Hit()
     {
-       
-           
-            if(Life != 0)
+        if(Life != 0)
+        {
+            Life--;
+        }
+        else
+        {
+            IsDead = true;
+            if (texture != null)
             {
-                Life--;
+                texture = null;
             }
-            else
-            {
-                IsDead = true;
-                if (texture != null)
-                {
-                    texture = null;
-                }
-            }
-        
+        }
     }
 }

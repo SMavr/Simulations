@@ -30,5 +30,7 @@ internal class OrcFactory
         OrcTextures.Where(it => !it.IsDead)
             .ToList()
             .ForEach(it => it.DrawFrame(spriteBatch));
+
+        OrcTextures.RemoveAll(it => it.IsDead);
     }
 }
