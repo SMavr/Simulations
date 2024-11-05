@@ -1,10 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace RomeVsOrcs.Textures;
 
-public abstract class AnimatedTexture
+public abstract class AnimatedTexture : IDisposable
 {
     // The animation spritesheet.
     private Texture2D texture;
@@ -115,5 +116,14 @@ public abstract class AnimatedTexture
     public void Pause()
     {
         IsPaused = true;
+    }
+
+    public void Dispose()
+    {
+        if (texture != null)
+        {
+            texture.Dispose();
+            texture = null;
+        }
     }
 }

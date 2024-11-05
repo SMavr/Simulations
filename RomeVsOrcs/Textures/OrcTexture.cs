@@ -10,6 +10,7 @@ internal class OrcTexture : AnimatedTexture
     Random random = new Random();
     int randomNumber = 1;
     float duration;
+    int life = 3;
 
     public override void Load(ContentManager content, Vector2 initialPosition)
     {

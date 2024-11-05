@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using RomeVsOrcs.Enums;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace RomeVsOrcs.Textures;
 internal class SoldierTexture : AnimatedTexture
@@ -62,6 +63,13 @@ internal class SoldierTexture : AnimatedTexture
             currentRow = ToRow();
             frameCount = 6;
             spacePressed = true;
+            foreach (var item in objects)
+            {
+                if (this.Rectangle.Intersects(item))
+                {
+                    Debug.WriteLine("Intersected");
+                }
+            }
         }
         if (spacePressed && state.IsKeyUp(Keys.Space))
         {
