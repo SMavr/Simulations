@@ -62,7 +62,7 @@ public abstract class AnimatedTexture
         }
     }
 
-    public void DrawFrame(SpriteBatch spriteBatch)
+    public virtual void DrawFrame(SpriteBatch spriteBatch)
     {
         DrawFrame(spriteBatch, frame, position, currentRow);
     }

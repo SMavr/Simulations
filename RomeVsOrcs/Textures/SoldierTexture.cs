@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RomeVsOrcs.Enums;
+using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,9 +15,12 @@ internal class SoldierTexture : AnimatedTexture
 
     private bool spacePressed = false;
 
+    private Texture2D bubble;
+
     public override void Load(ContentManager content, Vector2 initialPosition)
     {
         Load(content, "soldier", initialPosition);
+        bubble = content.Load<Texture2D>("speech-bubble");
     }
 
     public void Update(float elapsed, List<OrcTexture> objects)
@@ -117,5 +121,12 @@ internal class SoldierTexture : AnimatedTexture
             else
                 position.Y -= overlapY;
         }
+    }
+
+    public override void DrawFrame(SpriteBatch spriteBatch)
+    {
+        base.DrawFrame(spriteBatch);
+
+        spriteBatch.Draw(bubble, position + new Vector2(-32, -32), null, Color.White, 0, Vector2.Zero,0.3f, SpriteEffects.None,1);
     }
 }
