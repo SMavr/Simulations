@@ -6,16 +6,16 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace RomeVsOrcs;
-internal class OrcFactory
+internal class OrcFactory(ContentManager content, Viewport viewport)
 {
     public List<OrcTexture> OrcTextures { get; private set; } = [];
 
-    public void Load(ContentManager content, Viewport viewport, int count)
+    public void Load(int count)
     {
         for (int i = 0; i < count; i++)
         {
-            OrcTexture orcTexture = new OrcTexture(viewport);
-            orcTexture.Load(content, new Vector2(100 + (i * 200), 150));
+            OrcTexture orcTexture = new OrcTexture(content, viewport);
+            orcTexture.Load(new Vector2(100 + (i * 200), 150));
             OrcTextures.Add(orcTexture);
         }
     }

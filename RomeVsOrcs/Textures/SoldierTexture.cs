@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace RomeVsOrcs.Textures;
-internal class SoldierTexture : AnimatedTexture
+internal class SoldierTexture(ContentManager content, Viewport viewport) : AnimatedTexture(content, viewport)
 {
     private Direction direction = Direction.South;
 
@@ -17,13 +17,9 @@ internal class SoldierTexture : AnimatedTexture
 
     private Texture2D bubble;
 
-    public SoldierTexture(Viewport viewport): base(viewport)
+    public override void Load(Vector2 initialPosition)
     {
-    }
-
-    public override void Load(ContentManager content, Vector2 initialPosition)
-    {
-        Load(content, "soldier", initialPosition);
+        Load( "soldier", initialPosition);
         bubble = content.Load<Texture2D>("speech-bubble");
     }
 

@@ -5,7 +5,7 @@ using RomeVsOrcs.Enums;
 using System;
 
 namespace RomeVsOrcs.Textures;
-internal class OrcTexture : AnimatedTexture
+internal class OrcTexture(ContentManager content, Viewport viewport) : AnimatedTexture(content, viewport)
 {
 
     Random random = new Random();
@@ -13,13 +13,9 @@ internal class OrcTexture : AnimatedTexture
     float duration;
     int life = 3;
 
-    public OrcTexture(Viewport viewport) : base(viewport)
+    public override void Load(Vector2 initialPosition)
     {
-    }
-
-    public override void Load(ContentManager content, Vector2 initialPosition)
-    {
-        Load(content, "orc", initialPosition);
+        Load("orc", initialPosition);
     }
 
     public void Update(float elapsed)

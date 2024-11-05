@@ -21,6 +21,7 @@ public abstract class AnimatedTexture
 
     // How many frames should be drawn each second, how fast does the animation run?
     private const int framesPerSec = 10;
+    protected readonly ContentManager content;
     private readonly Viewport viewport;
 
     // The position to draw the character
@@ -37,14 +38,15 @@ public abstract class AnimatedTexture
 
     public Rectangle Rectangle => new Rectangle((int)position.X, (int)position.Y, 32, 32);
 
-    protected AnimatedTexture(Viewport viewport)
+    protected AnimatedTexture(ContentManager content, Viewport viewport)
     {
+        this.content = content;
         this.viewport = viewport;
     }
 
-    public abstract void Load(ContentManager content, Vector2 initialPosition);
+    public abstract void Load(Vector2 initialPosition);
 
-    public void Load(ContentManager content, string asset, Vector2 initialPosition)
+    public void Load(string asset, Vector2 initialPosition)
     {
         position = initialPosition;
         texture = content.Load<Texture2D>(asset);
@@ -66,7 +68,6 @@ public abstract class AnimatedTexture
             frame %= frameCount;
             totalElapsed -= timePerFrame;
         }
-
 
         position.X = MathHelper.Clamp(position.X, 0, viewport.Width - 64);
         position.Y = MathHelper.Clamp(position.Y, 0, viewport.Height - 64);

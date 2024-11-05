@@ -38,10 +38,10 @@ public class MainGame : Game
         spriteBatch = new SpriteBatch(GraphicsDevice);
         viewport = graphics.GraphicsDevice.Viewport;
         characterPos = new Vector2(viewport.Width / 2, viewport.Height / 2);
-        soldierTexture = new SoldierTexture(graphics.GraphicsDevice.Viewport);
-        soldierTexture.Load(Content, characterPos);
-        orcFactory = new OrcFactory();
-        orcFactory.Load(Content, viewport, 4);
+        soldierTexture = new SoldierTexture(Content, graphics.GraphicsDevice.Viewport);
+        soldierTexture.Load(characterPos);
+        orcFactory = new OrcFactory(Content, viewport);
+        orcFactory.Load(4);
     }
 
     protected override void Update(GameTime gameTime)
