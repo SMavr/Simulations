@@ -3,10 +3,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RomeVsOrcs.Enums;
-using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace RomeVsOrcs.Textures;
 internal class SoldierTexture(ContentManager content, Viewport viewport) : AnimatedTexture(content, viewport)

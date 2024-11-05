@@ -69,6 +69,11 @@ public abstract class AnimatedTexture
             totalElapsed -= timePerFrame;
         }
 
+        PreventMoveOutsideWIndow();
+    }
+
+    private void PreventMoveOutsideWIndow()
+    {
         position.X = MathHelper.Clamp(position.X, 0, viewport.Width - 64);
         position.Y = MathHelper.Clamp(position.Y, 0, viewport.Height - 64);
     }
