@@ -5,7 +5,7 @@ using System;
 
 namespace RomeVsOrcs.Textures;
 
-public abstract class AnimatedTexture : IDisposable
+public abstract class AnimatedTexture
 {
     // The animation spritesheet.
     private Texture2D texture;
@@ -118,12 +118,24 @@ public abstract class AnimatedTexture : IDisposable
         IsPaused = true;
     }
 
-    public void Dispose()
+    public int Life { get; private set; } = 3;
+    public bool IsDead { get; private set; } = false;
+    public void Hit()
     {
-        if (texture != null)
-        {
-            texture.Dispose();
-            texture = null;
-        }
+       
+           
+            if(Life != 0)
+            {
+                Life--;
+            }
+            else
+            {
+                IsDead = true;
+                if (texture != null)
+                {
+                    texture = null;
+                }
+            }
+        
     }
 }

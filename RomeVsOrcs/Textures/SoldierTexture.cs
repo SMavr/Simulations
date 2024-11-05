@@ -19,7 +19,7 @@ internal class SoldierTexture : AnimatedTexture
         Load(content, "soldier", initialPosition);
     }
 
-    public void Update(float elapsed, List<Rectangle> objects)
+    public void Update(float elapsed, List<OrcTexture> objects)
     {
         Pause();
 
@@ -65,9 +65,9 @@ internal class SoldierTexture : AnimatedTexture
             spacePressed = true;
             foreach (var item in objects)
             {
-                if (this.Rectangle.Intersects(item))
+                if (this.Rectangle.Intersects(item.Rectangle))
                 {
-                    Debug.WriteLine("Intersected");
+                    item.Hit();
                 }
             }
         }
@@ -78,9 +78,9 @@ internal class SoldierTexture : AnimatedTexture
         }
         foreach (var item in objects)
         {
-            if(this.Rectangle.Intersects(item))
+            if(this.Rectangle.Intersects(item.Rectangle))
             {
-                ResolveCollision(item);
+                ResolveCollision(item.Rectangle);
             }
         }
 

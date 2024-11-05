@@ -8,9 +8,7 @@ using System.Linq;
 namespace RomeVsOrcs;
 internal class OrcFactory
 {
-    private List<OrcTexture> orcTextures = new();
-
-    public List<Rectangle> OrcShapes => orcTextures.Select(it => it.Rectangle).ToList();
+    public List<OrcTexture> OrcTextures { get; private set; } = [];
 
     public void Load(ContentManager content, int count)
     {
@@ -18,17 +16,19 @@ internal class OrcFactory
         {
             OrcTexture orcTexture = new OrcTexture();
             orcTexture.Load(content, new Vector2(100 + (i * 200), 150));
-            orcTextures.Add(orcTexture);
+            OrcTextures.Add(orcTexture);
         }
     }
 
     public void Update(float elapsedTime)
     {
-        orcTextures.ForEach(it => it.Update(elapsedTime));
+        OrcTextures.ForEach(it => it.Update(elapsedTime));
     }
 
     public void Draw(SpriteBatch spriteBatch) 
     {
-        orcTextures.ForEach(it => it.DrawFrame(spriteBatch));
+        OrcTextures.Where(it => !it.IsDead)
+            .ToList()
+            .ForEach(it => it.DrawFrame(spriteBatch));
     }
 }

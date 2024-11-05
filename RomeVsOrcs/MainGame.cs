@@ -46,7 +46,7 @@ public class MainGame : Game
             Exit();
 
         float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-        soldierTexture.Update(elapsed, orcFactory.OrcShapes);
+        soldierTexture.Update(elapsed, orcFactory.OrcTextures);
         orcFactory.Update(elapsed);
        
         base.Update(gameTime);
