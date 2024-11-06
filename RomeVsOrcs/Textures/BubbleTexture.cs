@@ -1,13 +1,32 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace RomeVsOrcs.Textures;
-internal class BubbleTexture(ContentManager content)
+internal class BubbleTexture
 {
     private Texture2D bubble;
     private float overlayTimer = 0f;
     private bool showBubble = true;
+    private readonly ContentManager content;
+    private readonly bool enableLoop;
+
+    public BubbleTexture(ContentManager content, bool enableLoop = false)
+    {
+        this.content = content;
+        this.enableLoop = enableLoop;
+        if (enableLoop)
+        {
+            Random random = new Random();
+            overlayTimer = random.Next(0, 32);
+            showBubble = false;
+        }
+        else
+        {
+            showBubble = true;
+        }
+    }
 
     public void Load(string asset)
     {
@@ -24,6 +43,17 @@ internal class BubbleTexture(ContentManager content)
             if (overlayTimer >= 5f)
             {
                 showBubble = false;
+                overlayTimer = 0f;
+            }
+        }
+        else if(enableLoop)
+        {
+            overlayTimer += elapsed;
+
+            if (overlayTimer >= 10f)
+            {
+                showBubble = true;
+                overlayTimer = 0f;
             }
         }
     }

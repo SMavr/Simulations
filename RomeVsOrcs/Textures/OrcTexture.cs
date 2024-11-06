@@ -12,7 +12,7 @@ internal class OrcTexture(ContentManager content, Viewport viewport) : AnimatedT
     int randomNumber = 1;
     float duration;
     int life = 3;
-    private BubbleTexture bubble = new BubbleTexture(content);
+    private BubbleTexture bubble = new BubbleTexture(content, true);
 
     public override void Load(Vector2 initialPosition)
     {
