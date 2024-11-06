@@ -11,7 +11,7 @@ public abstract class Playable
 {
 
     // Is the animation currently running?
-    public bool IsPaused { get; protected set; }
+    public bool IsPaused { get; private set; }
 
     protected abstract void Reset();
 

@@ -50,7 +50,7 @@ public abstract class AnimatedTexture : Playable
         timePerFrame = (float)1 / framesPerSec;
         frame = 0;
         totalElapsed = 0;
-        IsPaused = false;
+        base.Pause();
     }
 
     public void UpdateFrame(float elapsed)
