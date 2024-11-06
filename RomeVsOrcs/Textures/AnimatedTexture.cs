@@ -5,7 +5,7 @@ using System;
 
 namespace RomeVsOrcs.Textures;
 
-public abstract class AnimatedTexture : Playable
+public abstract class AnimatedTexture(ContentManager content, Viewport viewport) : Playable
 {
     // The animation spritesheet.
     private Texture2D texture;
@@ -21,8 +21,6 @@ public abstract class AnimatedTexture : Playable
 
     // How many frames should be drawn each second, how fast does the animation run?
     private const int framesPerSec = 10;
-    protected readonly ContentManager content;
-    private readonly Viewport viewport;
 
     // The position to draw the character
     protected Vector2 position;
@@ -34,12 +32,6 @@ public abstract class AnimatedTexture : Playable
     protected int currentRow = 10;
 
     public Rectangle Rectangle => new Rectangle((int)position.X, (int)position.Y, 32, 32);
-
-    protected AnimatedTexture(ContentManager content, Viewport viewport)
-    {
-        this.content = content;
-        this.viewport = viewport;
-    }
 
     public abstract void Load(Vector2 initialPosition);
 
