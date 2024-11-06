@@ -123,9 +123,6 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
         }
     }
 
-    private float overlayTimer = 0f;
-    bool showBubble = true;
-
     public override void DrawFrame(SpriteBatch spriteBatch)
     {
         base.DrawFrame(spriteBatch);
