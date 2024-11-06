@@ -14,6 +14,7 @@
   </PropertyGroup>
   <PropertyGroup>
 		<PublishSingleFile>true</PublishSingleFile>
+		<AssemblyVersion>0.0.2</AssemblyVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
