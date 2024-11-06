@@ -13,12 +13,12 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
 
     private bool spacePressed = false;
 
-    private Texture2D bubble;
+    private BubbleTexture bubble = new BubbleTexture(content);
 
     public override void Load(Vector2 initialPosition)
     {
         Load( "soldier", initialPosition);
-        bubble = content.Load<Texture2D>("speech-bubble");
+        bubble.Load("speech-bubble");
     }
 
     public void Update(float elapsed, List<OrcTexture> objects)
@@ -86,16 +86,7 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
             }
         }
 
-        if (showBubble)
-        {
-            overlayTimer += elapsed;
-
-            // Hide overlay after the specified duration
-            if (overlayTimer >= 5f)
-            {
-                showBubble = false;
-            }
-        }
+        bubble.Update(elapsed);
 
         UpdateFrame(elapsed);
     }
@@ -139,12 +130,6 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
     {
         base.DrawFrame(spriteBatch);
 
-        if(showBubble)
-        {
-            spriteBatch.Draw(bubble, position + new Vector2(-32, -32), null,
-                Color.White, 0, Vector2.Zero, 0.3f, SpriteEffects.None, 1);
-        }
+        bubble.DrawFrame(spriteBatch, position);
     }
-
- 
 }
