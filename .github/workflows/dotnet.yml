@@ -19,31 +19,19 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - uses: ncipollo/release-action@v1
-     
+    - name: Restore dependencies
+      run: dotnet restore RomeVsOrcs
+    - name: Build
+      run: dotnet build --no-restore RomeVsOrcs
+    - name: Publish
+      run: dotnet publish RomeVsOrcs\RomeVsOrcs.csproj  --output Releasable --configuration Release
+    - uses: actions/upload-artifact@v4
       with:
+        name: RomeVsOrcs
+        path: Releasable
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "Releasable/RomeVsOrcs.zip"
         tag: "${{ github.event.inputs.tag }}"
-      # env:
-      #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    # - name: Restore dependencies
-    #   run: dotnet restore RomeVsOrcs
-    # - name: Build
-    #   run: dotnet build --no-restore RomeVsOrcs
-    # - name: Publish
-    #   run: dotnet publish RomeVsOrcs\RomeVsOrcs.csproj  --output Releasable --configuration Release
-    # - uses: actions/upload-artifact@v4
-    #   with:
-    #     name: RomeVsOrcs
-    #     path: Releasable
 
 
-# - name: Create Release
-#       id: create_release
-#       uses: actions/create-release@v1
-#       env:
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       with:
-#           tag_name: "test"
-#           release_name: "test"
-#           draft: false
-#           prerelease: false
