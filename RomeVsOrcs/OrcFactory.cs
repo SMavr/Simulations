@@ -23,6 +23,8 @@ internal class OrcFactory(ContentManager content, Viewport viewport)
     public void Update(float elapsedTime)
     {
         OrcTextures.ForEach(it => it.Update(elapsedTime));
+        if (OrcTextures.Count == 0)
+            this.Load(4);
     }
 
     public void Draw(SpriteBatch spriteBatch) 
