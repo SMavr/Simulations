@@ -40,7 +40,7 @@ internal class BubbleTexture
             overlayTimer += elapsed;
 
             // Hide overlay after the specified duration
-            if (overlayTimer >= 5f)
+            if (overlayTimer >= 4f)
             {
                 showBubble = false;
                 overlayTimer = 0f;
