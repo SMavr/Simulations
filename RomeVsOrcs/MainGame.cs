@@ -11,6 +11,7 @@ public class MainGame : Game
     private SpriteBatch spriteBatch;
     private SoldierTexture soldierTexture;
     private OrcFactory orcFactory;
+    private SpriteFont counterFont;
 
     public MainGame()
     {
@@ -42,6 +43,7 @@ public class MainGame : Game
         soldierTexture.Load(characterPos);
         orcFactory = new OrcFactory(Content, viewport);
         orcFactory.Load(4);
+        counterFont = Content.Load<SpriteFont>("Stats");
     }
 
     protected override void Update(GameTime gameTime)
@@ -63,6 +65,7 @@ public class MainGame : Game
         spriteBatch.Begin();
         soldierTexture.DrawFrame(spriteBatch);
         orcFactory.Draw(spriteBatch);
+        spriteBatch.DrawString(counterFont, $"Kills: 4", new Vector2(10, 10), Color.White);
         spriteBatch.End();
 
         base.Draw(gameTime);

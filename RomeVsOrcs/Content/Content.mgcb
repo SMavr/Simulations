@@ -61,3 +61,10 @@
 /processorParam:TextureFormat=Color
 /build:speech-bubble.png
 
+#begin Stats.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Stats.spritefont
+
