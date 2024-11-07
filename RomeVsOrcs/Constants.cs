@@ -1,11 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RomeVsOrcs;
+﻿namespace RomeVsOrcs;
 public static class Constants
 {
-    public static int NumberOfKills { get; set; } = 0;
+    private static int numberOfKills = 0;
+
+    public static int NumberOfKills
+    {
+        get => numberOfKills;
+        set
+        {
+            numberOfKills = value;
+            Rank = GetRank();
+        }
+    }
+
+    public static string Rank { get; private set; }
+
+    private static string GetRank()
+    {
+        return numberOfKills switch
+        {
+            0 => "Novice",
+            1 => "Fresh Boy",
+            > 1 => "Master Slayer",
+            _ => "Novice",
+        };
+    }
 }
