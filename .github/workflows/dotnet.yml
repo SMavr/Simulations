@@ -15,13 +15,23 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore RomeVsOrcs
-    - name: Build
-      run: dotnet build --no-restore RomeVsOrcs
-    - name: Publish
-      run: dotnet publish RomeVsOrcs\RomeVsOrcs.csproj  --output Releasable --configuration Release
-    - uses: actions/upload-artifact@v4
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: RomeVsOrcs
-        path: Releasable
+          tag_name: test
+          release_name: test
+          draft: false
+          prerelease: false
+    # - name: Restore dependencies
+    #   run: dotnet restore RomeVsOrcs
+    # - name: Build
+    #   run: dotnet build --no-restore RomeVsOrcs
+    # - name: Publish
+    #   run: dotnet publish RomeVsOrcs\RomeVsOrcs.csproj  --output Releasable --configuration Release
+    # - uses: actions/upload-artifact@v4
+    #   with:
+    #     name: RomeVsOrcs
+    #     path: Releasable
