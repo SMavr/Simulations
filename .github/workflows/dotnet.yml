@@ -5,8 +5,9 @@ name: Publish Rome vs Orcs
 on:  workflow_dispatch 
 
 jobs:
+ 
   build:
-
+    permissions: write-all
     runs-on: windows-latest
 
     steps:
@@ -16,10 +17,11 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - uses: ncipollo/release-action@v1
+     
       with:
         tag: "test1"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # env:
+      #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     # - name: Restore dependencies
     #   run: dotnet restore RomeVsOrcs
     # - name: Build
