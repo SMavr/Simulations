@@ -65,7 +65,7 @@ public class MainGame : Game
         spriteBatch.Begin();
         soldierTexture.DrawFrame(spriteBatch);
         orcFactory.Draw(spriteBatch);
-        spriteBatch.DrawString(counterFont, $"Kills: 4", new Vector2(10, 10), Color.White);
+        spriteBatch.DrawString(counterFont, $"Kills: {Constants.NumberOfKills}", new Vector2(10, 10), Color.White);
         spriteBatch.End();
 
         base.Draw(gameTime);

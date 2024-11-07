@@ -14,7 +14,7 @@ internal class OrcFactory(ContentManager content, Viewport viewport)
     {
         for (int i = 0; i < count; i++)
         {
-            OrcTexture orcTexture = new OrcTexture(content, viewport);
+            OrcTexture orcTexture = new (content, viewport);
             orcTexture.Load(new Vector2(100 + (i * 200), 150));
             OrcTextures.Add(orcTexture);
         }

@@ -118,6 +118,7 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
         else
         {
             IsDead = true;
+            Constants.NumberOfKills++;
             if (texture != null)
             {
                 texture = null;
