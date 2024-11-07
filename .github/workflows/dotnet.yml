@@ -17,8 +17,6 @@ jobs:
         dotnet-version: 8.0.x
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "release.tar.gz,foo/*.txt"
-        bodyFile: "body.md"
         tag: "test1"
     # - name: Restore dependencies
     #   run: dotnet restore RomeVsOrcs
