@@ -22,7 +22,7 @@ jobs:
     - uses: ncipollo/release-action@v1
      
       with:
-        tag: "test1"
+        tag: "${{ github.event.inputs.tag }}"
       # env:
       #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     # - name: Restore dependencies
