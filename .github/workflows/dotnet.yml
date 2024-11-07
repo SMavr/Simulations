@@ -18,6 +18,8 @@ jobs:
     - uses: ncipollo/release-action@v1
       with:
         tag: "test1"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     # - name: Restore dependencies
     #   run: dotnet restore RomeVsOrcs
     # - name: Build
