@@ -12,6 +12,7 @@ public class MainGame : Game
     private SoldierTexture soldierTexture;
     private OrcFactory orcFactory;
     private StatsTexture statsTexture;
+    private Texture2D grassTexture;
 
     public MainGame()
     {
@@ -45,6 +46,7 @@ public class MainGame : Game
         orcFactory.Load(4);
         statsTexture = new StatsTexture(Content);
         statsTexture.Load();
+        grassTexture = Content.Load<Texture2D>("grass");
     }
 
     protected override void Update(GameTime gameTime)
@@ -64,6 +66,19 @@ public class MainGame : Game
         GraphicsDevice.Clear(Color.Green);
 
         spriteBatch.Begin();
+
+
+        int windowWidth = GraphicsDevice.Viewport.Width;
+        int windowHeight = GraphicsDevice.Viewport.Height;
+        for (int x = 0; x < windowWidth; x += grassTexture.Width)
+        {
+            for (int y = 0; y < windowHeight; y += grassTexture.Height)
+            {
+                spriteBatch.Draw(grassTexture, new Vector2(x, y), Color.White);
+            }
+        }
+
+
         soldierTexture.DrawFrame(spriteBatch);
         orcFactory.Draw(spriteBatch);
         statsTexture.Draw(spriteBatch);
