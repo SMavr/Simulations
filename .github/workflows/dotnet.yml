@@ -31,7 +31,7 @@ jobs:
         path: Releasable
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "Releasable/RomeVsOrcs.zip"
+        artifacts: "Releasable/*"
         tag: "${{ github.event.inputs.tag }}"
 
 
