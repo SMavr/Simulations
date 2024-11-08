@@ -31,7 +31,7 @@ internal class OrcFactory(ContentManager content, Viewport viewport)
     {
         foreach(var texture in OrcTextures.Where(it => !it.IsDead))
         {
-            texture.DrawFrame(spriteBatch);
+            texture.Draw(spriteBatch);
         }
 
         OrcTextures.RemoveAll(it => it.IsDead);

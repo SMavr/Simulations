@@ -123,9 +123,9 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
         }
     }
 
-    public override void DrawFrame(SpriteBatch spriteBatch)
+    public override void Draw(SpriteBatch spriteBatch)
     {
-        base.DrawFrame(spriteBatch);
+        base.Draw(spriteBatch);
 
         bubble.DrawFrame(spriteBatch, position);
     }

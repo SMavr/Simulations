@@ -64,9 +64,9 @@ internal class OrcTexture(ContentManager content, Viewport viewport) : AnimatedT
 
         UpdateFrame(elapsed);
     }
-    public override void DrawFrame(SpriteBatch spriteBatch)
+    public override void Draw(SpriteBatch spriteBatch)
     {
-        base.DrawFrame(spriteBatch);
+        base.Draw(spriteBatch);
 
         bubble.DrawFrame(spriteBatch, position, new Vector2(48, 0));
     }

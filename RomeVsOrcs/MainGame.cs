@@ -69,7 +69,7 @@ public class MainGame : Game
         spriteBatch.Begin();
 
         grassTexture.Draw(spriteBatch);
-        soldierTexture.DrawFrame(spriteBatch);
+        soldierTexture.Draw(spriteBatch);
         orcFactory.Draw(spriteBatch);
         statsTexture.Draw(spriteBatch);
 

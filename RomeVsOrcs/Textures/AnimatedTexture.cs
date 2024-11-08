@@ -67,7 +67,7 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
         position.Y = MathHelper.Clamp(position.Y, 0, viewport.Height - 64);
     }
 
-    public virtual void DrawFrame(SpriteBatch spriteBatch)
+    public virtual void Draw(SpriteBatch spriteBatch)
     {
         DrawFrame(spriteBatch, frame, position, currentRow);
     }
