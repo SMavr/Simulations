@@ -39,15 +39,18 @@ public class MainGame : Game
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
         viewport = graphics.GraphicsDevice.Viewport;
+
+        statsTexture = new StatsTexture(Content);
+        statsTexture.Load();
+        grassTexture = new GrassTexture(Content, viewport);
+        grassTexture.Load();
+      
         characterPos = new Vector2(viewport.Width / 2, viewport.Height / 2);
         soldierTexture = new SoldierTexture(Content, graphics.GraphicsDevice.Viewport);
         soldierTexture.Load(characterPos);
         orcFactory = new OrcFactory(Content, viewport);
         orcFactory.Load(4);
-        statsTexture = new StatsTexture(Content);
-        statsTexture.Load();
-        grassTexture = new GrassTexture(Content, viewport);
-        grassTexture.Load();
+    
     }
 
     protected override void Update(GameTime gameTime)
@@ -69,9 +72,10 @@ public class MainGame : Game
         spriteBatch.Begin();
 
         grassTexture.Draw(spriteBatch);
+        statsTexture.Draw(spriteBatch);
+
         soldierTexture.Draw(spriteBatch);
         orcFactory.Draw(spriteBatch);
-        statsTexture.Draw(spriteBatch);
 
         spriteBatch.End();
 

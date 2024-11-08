@@ -13,7 +13,7 @@ public static class Constants
         }
     }
 
-    public static string Rank { get; private set; }
+    public static string Rank { get; private set; } = GetRank();
 
     private static string GetRank()
     {
