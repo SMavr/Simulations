@@ -8,6 +8,7 @@ on:
       tag:
         description: 'Insert tag'     
         required: true
+        type: string
 jobs:
   build:
     permissions: write-all
