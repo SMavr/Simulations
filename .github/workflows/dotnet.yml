@@ -25,13 +25,15 @@ jobs:
       run: dotnet build --no-restore RomeVsOrcs
     - name: Publish
       run: dotnet publish RomeVsOrcs\RomeVsOrcs.csproj  --output Releasable --configuration Release
-    - uses: actions/upload-artifact@v4
-      with:
-        name: RomeVsOrcs
-        path: Releasable
+    # - uses: actions/upload-artifact@v4
+    #   with:
+    #     name: RomeVsOrcs
+    #     path: Releasable
+    - name: Zip
+      run: Compress-Archive -Path Releasable\* -DestinationPath RomeVsOrcs.zip
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "Releasable/*"
+        artifacts: "RomeVsOrcs.zip*"
         tag: "${{ github.event.inputs.tag }}"
 
 
