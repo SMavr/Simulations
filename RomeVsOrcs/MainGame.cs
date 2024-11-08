@@ -23,34 +23,22 @@ public class MainGame : Game
         IsMouseVisible = true;
     }
 
-    protected override void Initialize()
-    {
-        base.Initialize();
-
-        
-    }
-
-    // The game visible area
-    private Viewport viewport;
-    // The position to draw the character
-    private Vector2 characterPos;
-
     protected override void LoadContent()
     {
         spriteBatch = new SpriteBatch(GraphicsDevice);
-        viewport = graphics.GraphicsDevice.Viewport;
+        Viewport viewport = graphics.GraphicsDevice.Viewport;
 
         statsTexture = new StatsTexture(Content);
         statsTexture.Load();
         grassTexture = new GrassTexture(Content, viewport);
         grassTexture.Load();
-      
-        characterPos = new Vector2(viewport.Width / 2, viewport.Height / 2);
+
         soldierTexture = new SoldierTexture(Content, graphics.GraphicsDevice.Viewport);
+        Vector2 characterPos = new Vector2(viewport.Width / 2, viewport.Height / 2);
         soldierTexture.Load(characterPos);
+
         orcFactory = new OrcFactory(Content, viewport);
         orcFactory.Load(4);
-    
     }
 
     protected override void Update(GameTime gameTime)
