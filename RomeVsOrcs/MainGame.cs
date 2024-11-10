@@ -58,13 +58,10 @@ public class MainGame : Game
         GraphicsDevice.Clear(Color.Green);
 
         spriteBatch.Begin();
-
         grassTexture.Draw(spriteBatch);
-        statsTexture.Draw(spriteBatch);
-
-        soldierTexture.Draw(spriteBatch);
         orcFactory.Draw(spriteBatch);
-
+        soldierTexture.Draw(spriteBatch);
+        statsTexture.Draw(spriteBatch);
         spriteBatch.End();
 
         base.Draw(gameTime);
