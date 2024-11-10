@@ -31,34 +31,26 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
         {
             Play();
             position.X += CalculateSpeed(state);
-            currentRow = 11;
-            frameCount = 9;
-            direction = Direction.East;
+            SetAnimation(Direction.East);
         }
         if (state.IsKeyDown(Keys.Left) || state.IsKeyDown(Keys.A))
         {
             Play();
-            position.X -= CalculateSpeed(state); ;
-            currentRow = 9;
-            frameCount = 9;
-            direction = Direction.West;
+            position.X -= CalculateSpeed(state);
+            SetAnimation(Direction.West);
         }
 
         if (state.IsKeyDown(Keys.Up) || state.IsKeyDown(Keys.W))
         {
             Play();
             position.Y -= CalculateSpeed(state); ;
-            currentRow = 8;
-            frameCount = 9;
-            direction = Direction.North;
+            SetAnimation(Direction.North);
         }
         if (state.IsKeyDown(Keys.Down) || state.IsKeyDown(Keys.S))
         {
             Play();
             position.Y += CalculateSpeed(state); ;
-            currentRow = 10;
-            frameCount = 9;
-            direction = Direction.South;
+            SetAnimation(Direction.South);
         }
         if (state.IsKeyDown(Keys.Space))
         {
@@ -113,6 +105,20 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
         Direction.West => 53,
         _ => 54
     };
+
+    private void SetAnimation(Direction direction)
+    {
+        frameCount = 9;
+        this.direction = direction;
+        currentRow = direction switch
+        {
+            Direction.East => 11,
+            Direction.North => 8,
+            Direction.South => 10,
+            Direction.West => 9,
+            _ => 10
+        };
+    }
 
     private void ResolveCollision(Rectangle otherBounds)
     {
