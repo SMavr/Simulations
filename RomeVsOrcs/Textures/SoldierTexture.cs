@@ -13,7 +13,7 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
 
     private bool spacePressed = false;
 
-    private BubbleTexture bubble = new BubbleTexture(content);
+    private BubbleTexture bubble = new (content);
 
     public override void Load(Vector2 initialPosition)
     {
@@ -27,18 +27,10 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
 
         KeyboardState state = Keyboard.GetState();
 
-        // Determine if the Shift key is held down
-        bool isSprinting = state.IsKeyDown(Keys.LeftShift);
-
-        // Set the current speed based on whether the Shift key is held
-        int normalSpeed = 2;
-        int sprintSpeed = 4;
-        int currentSpeed = isSprinting ? sprintSpeed : normalSpeed;
-
         if (state.IsKeyDown(Keys.Right) || state.IsKeyDown(Keys.D))
         {
             Play();
-            position.X += currentSpeed;
+            position.X += CalculateSpeed(state);
             currentRow = 11;
             frameCount = 9;
             direction = Direction.East;
@@ -46,7 +38,7 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
         if (state.IsKeyDown(Keys.Left) || state.IsKeyDown(Keys.A))
         {
             Play();
-            position.X -= currentSpeed;
+            position.X -= CalculateSpeed(state); ;
             currentRow = 9;
             frameCount = 9;
             direction = Direction.West;
@@ -55,7 +47,7 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
         if (state.IsKeyDown(Keys.Up) || state.IsKeyDown(Keys.W))
         {
             Play();
-            position.Y -= currentSpeed;
+            position.Y -= CalculateSpeed(state); ;
             currentRow = 8;
             frameCount = 9;
             direction = Direction.North;
@@ -63,7 +55,7 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
         if (state.IsKeyDown(Keys.Down) || state.IsKeyDown(Keys.S))
         {
             Play();
-            position.Y += currentSpeed;
+            position.Y += CalculateSpeed(state); ;
             currentRow = 10;
             frameCount = 9;
             direction = Direction.South;
@@ -98,6 +90,19 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
         bubble.Update(elapsed);
 
         UpdateFrame(elapsed);
+    }
+
+    private int CalculateSpeed(KeyboardState state)
+    {
+        // Determine if the Shift key is held down
+        bool isSprinting = state.IsKeyDown(Keys.LeftShift);
+
+        // Set the current speed based on whether the Shift key is held
+        int normalSpeed = 2;
+        int sprintSpeed = 4;
+        int currentSpeed = isSprinting ? sprintSpeed : normalSpeed;
+
+        return currentSpeed;
     }
 
     private int ToRow() => direction switch
