@@ -41,7 +41,7 @@ public static class Constants
             >= 16 => "Signifer",
             >= 8 => "Praetorian Guard",
             >= 4 => "Equites",
-            1 => "Miles",
+            >= 1 => "Miles",
             0 => "Velites",
             _ => "Velites",
         };
