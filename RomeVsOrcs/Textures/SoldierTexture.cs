@@ -26,10 +26,19 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
         Pause();
 
         KeyboardState state = Keyboard.GetState();
+
+        // Determine if the Shift key is held down
+        bool isSprinting = state.IsKeyDown(Keys.LeftShift);
+
+        // Set the current speed based on whether the Shift key is held
+        int normalSpeed = 2;
+        int sprintSpeed = 4;
+        int currentSpeed = isSprinting ? sprintSpeed : normalSpeed;
+
         if (state.IsKeyDown(Keys.Right) || state.IsKeyDown(Keys.D))
         {
             Play();
-            position.X += 2;
+            position.X += currentSpeed;
             currentRow = 11;
             frameCount = 9;
             direction = Direction.East;
@@ -37,7 +46,7 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
         if (state.IsKeyDown(Keys.Left) || state.IsKeyDown(Keys.A))
         {
             Play();
-            position.X -= 2;
+            position.X -= currentSpeed;
             currentRow = 9;
             frameCount = 9;
             direction = Direction.West;
@@ -46,7 +55,7 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
         if (state.IsKeyDown(Keys.Up) || state.IsKeyDown(Keys.W))
         {
             Play();
-            position.Y -= 2;
+            position.Y -= currentSpeed;
             currentRow = 8;
             frameCount = 9;
             direction = Direction.North;
@@ -54,7 +63,7 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
         if (state.IsKeyDown(Keys.Down) || state.IsKeyDown(Keys.S))
         {
             Play();
-            position.Y += 2;
+            position.Y += currentSpeed;
             currentRow = 10;
             frameCount = 9;
             direction = Direction.South;
