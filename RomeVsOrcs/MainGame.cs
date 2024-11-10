@@ -45,6 +45,8 @@ public class MainGame : Game
     {
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
+        if (Keyboard.GetState().IsKeyDown(Keys.F11))
+            ToggleFullScreen();
 
         float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
         soldierTexture.Update(elapsed, orcFactory.OrcTextures);
@@ -65,5 +67,11 @@ public class MainGame : Game
         spriteBatch.End();
 
         base.Draw(gameTime);
+    }
+
+    private void ToggleFullScreen()
+    {
+        graphics.IsFullScreen = !graphics.IsFullScreen;
+        graphics.ApplyChanges();
     }
 }
