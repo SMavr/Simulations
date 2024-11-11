@@ -117,8 +117,18 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
 
     public int Life { get; private set; } = 3;
     public bool IsDead { get; private set; } = false;
-    public void Hit()
+
+
+    public float overlayTimer = 0f;
+    public void Hit(float elapsed)
     {
+        overlayTimer += elapsed;
+        if (overlayTimer < 0.1f)
+        {
+            return;
+        }
+
+        overlayTimer = 0f;
         blood.SpawnBlood(position, 5);
 
         if (Life != 0)
