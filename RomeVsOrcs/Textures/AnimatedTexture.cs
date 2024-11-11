@@ -115,8 +115,7 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
         totalElapsed = 0f;
     }
 
-    public void Hit(float elapsed)
-    {
-        Target.Hit(elapsed, position);
-    }
+    public void Hit(float elapsed) => Target.Hit(elapsed, position);
+
+    public bool IsDead() => Target.IsDead;
 }
