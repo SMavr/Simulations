@@ -14,13 +14,13 @@ internal class Blood(ContentManager content)
 
     private Texture2D bloodTexture;
 
-    protected void LoadContent()
+    public void Load()
     {
         bloodTexture = content.Load<Texture2D>("blood"); // Load your blood texture here
         particles = new List<BloodParticle>();
     }
 
-    protected void Update(float elapsed)
+    public void Update(float elapsed)
     {
         for (int i = particles.Count - 1; i >= 0; i--)
         {
@@ -32,7 +32,7 @@ internal class Blood(ContentManager content)
         }
     }
 
-    private void SpawnBlood(Vector2 position, int count)
+    public void SpawnBlood(Vector2 position, int count)
     {
         for (int i = 0; i < count; i++)
         {

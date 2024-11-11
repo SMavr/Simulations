@@ -13,6 +13,7 @@ public class MainGame : Game
     private OrcFactory orcFactory;
     private StatsTexture statsTexture;
     private GrassTexture grassTexture;
+    private Blood blood;
 
     public MainGame()
     {
@@ -39,6 +40,10 @@ public class MainGame : Game
 
         orcFactory = new OrcFactory(Content, viewport);
         orcFactory.Load(4);
+
+        blood = new Blood(Content);
+        blood.Load();
+        blood.SpawnBlood(new Vector2(viewport.Width / 2, viewport.Height / 2), 20);
     }
 
     protected override void Update(GameTime gameTime)
@@ -52,6 +57,8 @@ public class MainGame : Game
         soldierTexture.Update(elapsed, orcFactory.OrcTextures);
         orcFactory.Update(elapsed);
        
+        blood.Update(elapsed);
+       
         base.Update(gameTime);
     }
 
@@ -64,6 +71,7 @@ public class MainGame : Game
         orcFactory.Draw(spriteBatch);
         soldierTexture.Draw(spriteBatch);
         statsTexture.Draw(spriteBatch);
+        blood.Draw(spriteBatch);
         spriteBatch.End();
 
         base.Draw(gameTime);
