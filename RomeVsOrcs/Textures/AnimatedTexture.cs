@@ -32,7 +32,7 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
 
     public Rectangle Rectangle => new Rectangle((int)position.X, (int)position.Y, 32, 32);
 
-    private Blood blood;
+    internal Target Target { get; private set; }
 
     public abstract void Load(Vector2 initialPosition);
 
@@ -44,8 +44,8 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
         frame = 0;
         totalElapsed = 0;
 
-        blood = new Blood(content);
-        blood.Load();
+        Target = new Target(content, texture);
+        Target.Load();
         base.Pause();
     }
 
@@ -62,7 +62,7 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
             totalElapsed -= timePerFrame;
         }
 
-        blood.Update(elapsed);
+        Target.Update(elapsed);
 
         PreventMoveOutsideWindow();
     }
@@ -85,7 +85,7 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
         else
             DrawStartFromDown();
 
-        blood.Draw(batch);
+        Target.Draw(batch);
 
         void DrawStartFromDown()
         {
@@ -115,34 +115,40 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
         totalElapsed = 0f;
     }
 
-    public int Life { get; private set; } = 3;
-    public bool IsDead { get; private set; } = false;
-
-
-    public float overlayTimer = 0f;
     public void Hit(float elapsed)
+
     {
-        overlayTimer += elapsed;
-        if (overlayTimer < 0.1f)
-        {
-            return;
-        }
-
-        overlayTimer = 0f;
-        blood.SpawnBlood(position, 5);
-
-        if (Life != 0)
-        {
-            Life--;
-        }
-        else
-        {
-            IsDead = true;
-            Constants.NumberOfKills++;
-            if (texture != null)
-            {
-                texture = null;
-            }
-        }
+        Target.Hit(elapsed, position);
     }
-}
+
+        //public int Life { get; private set; } = 3;
+        //public bool IsDead { get; private set; } = false;
+
+
+        //public float overlayTimer = 0f;
+        //public void Hit(float elapsed)
+        //{
+        //    overlayTimer += elapsed;
+        //    if (overlayTimer < 0.1f)
+        //    {
+        //        return;
+        //    }
+
+        //    overlayTimer = 0f;
+        //    blood.SpawnBlood(position, 5);
+
+        //    if (Life != 0)
+        //    {
+        //        Life--;
+        //    }
+        //    else
+        //    {
+        //        IsDead = true;
+        //        Constants.NumberOfKills++;
+        //        if (texture != null)
+        //        {
+        //            texture = null;
+        //        }
+        //    }
+        //}
+    }

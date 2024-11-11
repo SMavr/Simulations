@@ -29,11 +29,11 @@ internal class OrcFactory(ContentManager content, Viewport viewport)
 
     public void Draw(SpriteBatch spriteBatch) 
     {
-        foreach(var texture in OrcTextures.Where(it => !it.IsDead))
+        foreach(var texture in OrcTextures.Where(it => !it.Target.IsDead))
         {
             texture.Draw(spriteBatch);
         }
 
-        OrcTextures.RemoveAll(it => it.IsDead);
+        OrcTextures.RemoveAll(it => it.Target.IsDead);
     }
 }
