@@ -116,39 +116,7 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
     }
 
     public void Hit(float elapsed)
-
     {
         Target.Hit(elapsed, position);
     }
-
-        //public int Life { get; private set; } = 3;
-        //public bool IsDead { get; private set; } = false;
-
-
-        //public float overlayTimer = 0f;
-        //public void Hit(float elapsed)
-        //{
-        //    overlayTimer += elapsed;
-        //    if (overlayTimer < 0.1f)
-        //    {
-        //        return;
-        //    }
-
-        //    overlayTimer = 0f;
-        //    blood.SpawnBlood(position, 5);
-
-        //    if (Life != 0)
-        //    {
-        //        Life--;
-        //    }
-        //    else
-        //    {
-        //        IsDead = true;
-        //        Constants.NumberOfKills++;
-        //        if (texture != null)
-        //        {
-        //            texture = null;
-        //        }
-        //    }
-        //}
-    }
+}
