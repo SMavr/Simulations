@@ -11,12 +11,12 @@ internal class OrcTexture(ContentManager content, Viewport viewport) : AnimatedT
     Random random = new Random();
     int randomNumber = 1;
     float duration;
-    private BubbleTexture bubble = new BubbleTexture(content, true);
+    //private BubbleTexture bubble = new BubbleTexture(content, true);
 
     public override void Load(Vector2 initialPosition)
     {
         Load("orc", initialPosition);
-        bubble.Load("arghhh-bubble");
+        //bubble.Load("arghhh-bubble");
     }
 
     public void Update(float elapsed)
@@ -59,7 +59,7 @@ internal class OrcTexture(ContentManager content, Viewport viewport) : AnimatedT
             frameCount = 9;
         }
 
-        bubble.Update(elapsed);
+        //bubble.Update(elapsed);
 
         UpdateFrame(elapsed);
     }
@@ -67,6 +67,6 @@ internal class OrcTexture(ContentManager content, Viewport viewport) : AnimatedT
     {
         base.Draw(spriteBatch);
 
-        bubble.DrawFrame(spriteBatch, position, new Vector2(48, 0));
+        //bubble.DrawFrame(spriteBatch, position, new Vector2(48, 0));
     }
 }

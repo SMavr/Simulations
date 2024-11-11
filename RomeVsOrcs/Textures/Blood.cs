@@ -56,7 +56,7 @@ internal class Blood(ContentManager content)
         {
             spriteBatch.Draw(
                 bloodTexture,
-                particle.Position,
+                particle.Position + new Vector2(32, 32),
                 null,
                 particle.Color,
                 0f,

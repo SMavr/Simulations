@@ -65,7 +65,7 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
                 if (this.Rectangle.Intersects(item.Rectangle))
                 {
                     overlayTimer += elapsed;
-                    if(overlayTimer > 1f)
+                    if(overlayTimer > 0.1f)
                     {
                         item.Hit();
                         overlayTimer = 0f;
