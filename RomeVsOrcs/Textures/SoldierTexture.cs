@@ -15,6 +15,8 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
 
     private BubbleTexture bubble = new (content);
 
+    public float overlayTimer = 0f;
+
     public override void Load(Vector2 initialPosition)
     {
         Load( "soldier", initialPosition);
@@ -62,7 +64,12 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
             {
                 if (this.Rectangle.Intersects(item.Rectangle))
                 {
-                    item.Hit();
+                    overlayTimer += elapsed;
+                    if(overlayTimer > 1f)
+                    {
+                        item.Hit();
+                        overlayTimer = 0f;
+                    }
                 }
             }
         }

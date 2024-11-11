@@ -115,11 +115,11 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
         totalElapsed = 0f;
     }
 
-    public int Life { get; private set; } = 50;
+    public int Life { get; private set; } = 3;
     public bool IsDead { get; private set; } = false;
     public void Hit()
     {
-        blood.SpawnBlood(position, 2);
+        blood.SpawnBlood(position, 5);
 
         if (Life != 0)
         {
