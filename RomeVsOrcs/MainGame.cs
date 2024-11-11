@@ -52,7 +52,6 @@ public class MainGame : Game
         soldierTexture.Update(elapsed, orcFactory.OrcTextures);
         orcFactory.Update(elapsed);
        
-       
         base.Update(gameTime);
     }
 

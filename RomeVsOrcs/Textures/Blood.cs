@@ -40,16 +40,13 @@ internal class Blood(ContentManager content)
             Vector2 velocity = new Vector2(
             (float)(random.NextDouble() * 2 - 1), // Random X velocity
                 (float)(random.NextDouble() * 2 - 1)  // Random Y velocity
-            ) * 5f;
-
-            // Random lifespan between 0.5 to 1.5 seconds
-            float lifespan = (float)(random.NextDouble() * 1.0 + 0.5);
+            ) * 3f;
 
             // Random size for the circle particles
             float size = (float)(random.NextDouble() * 0.3 + 0.2);
 
             // Create the particle and add it to the list
-            particles.Add(new BloodParticle(position, velocity, lifespan, size, Color.Red));
+            particles.Add(new BloodParticle(position, velocity, 1f, size, Color.Red));
         }
     }
 
