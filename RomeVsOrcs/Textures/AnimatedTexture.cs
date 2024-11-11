@@ -30,9 +30,9 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
     // Current row in animation sprite sheet.
     protected int currentRow = 10;
 
-    public Rectangle Rectangle => new Rectangle((int)position.X, (int)position.Y, 32, 32);
+    public Rectangle Rectangle => new((int)position.X, (int)position.Y, 32, 32);
 
-    internal Target Target { get; private set; }
+    private Target target;
 
     public abstract void Load(Vector2 initialPosition);
 
@@ -44,8 +44,8 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
         frame = 0;
         totalElapsed = 0;
 
-        Target = new Target(content, texture);
-        Target.Load();
+        target = new Target(content, texture);
+        target.Load();
         base.Pause();
     }
 
@@ -62,7 +62,7 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
             totalElapsed -= timePerFrame;
         }
 
-        Target.Update(elapsed);
+        target.Update(elapsed);
 
         PreventMoveOutsideWindow();
     }
@@ -85,7 +85,7 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
         else
             DrawStartFromDown();
 
-        Target.Draw(batch);
+        target.Draw(batch);
 
         void DrawStartFromDown()
         {
@@ -115,7 +115,7 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
         totalElapsed = 0f;
     }
 
-    public void Hit(float elapsed) => Target.Hit(elapsed, position);
+    public void Hit(float elapsed) => target.Hit(elapsed, position);
 
-    public bool IsDead() => Target.IsDead;
+    public bool IsDead() => target.IsDead;
 }
