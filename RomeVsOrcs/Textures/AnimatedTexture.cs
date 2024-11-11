@@ -107,7 +107,7 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
         totalElapsed = 0f;
     }
 
-    public int Life { get; private set; } = 3;
+    public int Life { get; private set; } = 100;
     public bool IsDead { get; private set; } = false;
     public void Hit()
     {
