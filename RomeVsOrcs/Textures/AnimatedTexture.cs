@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace RomeVsOrcs.Textures;
 
@@ -33,6 +32,8 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
 
     public Rectangle Rectangle => new Rectangle((int)position.X, (int)position.Y, 32, 32);
 
+    private Blood blood;
+
     public abstract void Load(Vector2 initialPosition);
 
     public void Load(string asset, Vector2 initialPosition)
@@ -42,6 +43,9 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
         timePerFrame = (float)1 / framesPerSec;
         frame = 0;
         totalElapsed = 0;
+
+        blood = new Blood(content);
+        blood.Load();
         base.Pause();
     }
 
@@ -58,10 +62,12 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
             totalElapsed -= timePerFrame;
         }
 
-        PreventMoveOutsideWIndow();
+        blood.Update(elapsed);
+
+        PreventMoveOutsideWindow();
     }
 
-    private void PreventMoveOutsideWIndow()
+    private void PreventMoveOutsideWindow()
     {
         position.X = MathHelper.Clamp(position.X, 0, viewport.Width - 64);
         position.Y = MathHelper.Clamp(position.Y, 0, viewport.Height - 64);
@@ -78,6 +84,8 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
             DrawStartFromUp();
         else
             DrawStartFromDown();
+
+        blood.Draw(batch);
 
         void DrawStartFromDown()
         {
@@ -111,7 +119,9 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
     public bool IsDead { get; private set; } = false;
     public void Hit()
     {
-        if(Life != 0)
+        blood.SpawnBlood(position, 10);
+
+        if (Life != 0)
         {
             Life--;
         }
