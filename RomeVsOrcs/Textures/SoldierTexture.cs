@@ -22,7 +22,7 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
         bubble.Load("speech-bubble");
     }
 
-    public void Update(float elapsed, List<OrcTexture> objects)
+    public void Update(float elapsed, OrcList objects)
     {
         Pause();
 
@@ -59,26 +59,16 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
             currentRow = ToRow();
             frameCount = 6;
             spacePressed = true;
-            foreach (var item in objects)
-            {
-                if (this.Rectangle.Intersects(item.Rectangle))
-                {
-                    item.Hit(elapsed);
-                }
-            }
+            if(objects.Intersects(this.Rectangle, out OrcTexture orcToHit))
+                orcToHit.Hit(elapsed);
         }
         if (spacePressed && state.IsKeyUp(Keys.Space))
         {
             Reset();
             spacePressed = false;
         }
-        foreach (var item in objects)
-        {
-            if(this.Rectangle.Intersects(item.Rectangle))
-            {
-                ResolveCollision(item.Rectangle);
-            }
-        }
+        if (objects.Intersects(this.Rectangle, out OrcTexture orcToAvoid))
+            ResolveCollision(orcToAvoid.Rectangle);
 
         bubble.Update(elapsed);
 

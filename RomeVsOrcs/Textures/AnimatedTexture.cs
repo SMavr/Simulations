@@ -80,12 +80,12 @@ public abstract class AnimatedTexture(ContentManager content, Viewport viewport)
 
     private void DrawFrame(SpriteBatch batch, int frame, Vector2 screenPos, int row)
     {
+        target.Draw(batch);
         if (row <= 51)
             DrawStartFromUp();
         else
             DrawStartFromDown();
 
-        target.Draw(batch);
 
         void DrawStartFromDown()
         {

@@ -2,13 +2,14 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using RomeVsOrcs.Textures;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace RomeVsOrcs;
 internal class OrcFactory(ContentManager content, Viewport viewport)
 {
-    public List<OrcTexture> OrcTextures { get; private set; } = [];
+    public OrcList OrcTextures { get; private set; } = [];
 
     public void Load(int count)
     {
@@ -35,5 +36,24 @@ internal class OrcFactory(ContentManager content, Viewport viewport)
         }
 
         OrcTextures.RemoveAll(it => it.IsDead());
+    }
+}
+
+internal class OrcList : List<OrcTexture>
+{
+    public bool Intersects(Rectangle rectangle, out OrcTexture orcTexture)
+    {
+        foreach (var item in this)
+        {
+            if (rectangle.Intersects(item.Rectangle))
+            {
+                orcTexture = item;
+                return true;
+            }
+
+        }
+
+        orcTexture = null;
+        return false;
     }
 }
