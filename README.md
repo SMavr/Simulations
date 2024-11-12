@@ -10,7 +10,7 @@ This is an effort to simulate this model.
 ### Rules
 
 1. Particles of the same color attract each other with a specific factor.
-2. Particles of different coloer either attract or repel each other with a specific factor.
+2. Particles of different color either attract or repel each other with a specific factor.
 
 Inspired by Jeffrey Ventrella's "Clusters":
 
