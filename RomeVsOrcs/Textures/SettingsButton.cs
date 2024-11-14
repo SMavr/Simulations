@@ -20,8 +20,8 @@ internal class SettingsButton(ContentManager content, Viewport viewport)
         texture = content.Load<Texture2D>("cog");
 
         // Set button size and position
-        int buttonWidth = 100;
-        int buttonHeight = 50;
+        int buttonWidth = 25;
+        int buttonHeight = 25;
         int screenWidth = viewport.Width;
 
         // Place the button in the upper right corner
