@@ -2,10 +2,6 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended.BitmapFonts;
-
-//using MonoGame.Extended.BitmapFonts;
-using MonoGame.Extended.Content;
 
 namespace RomeVsOrcs.UIComponents;
 public class SettingsDialog(ContentManager content, GraphicsDevice graphicsDevice)
@@ -23,17 +19,16 @@ public class SettingsDialog(ContentManager content, GraphicsDevice graphicsDevic
     {
         // Load the background texture (a simple solid color texture can be used)
         backgroundTexture = new Texture2D(graphicsDevice, 1, 1);
-        backgroundTexture.SetData(new[] { Color.Gray });
+        backgroundTexture.SetData(new[] { Color.LightGray });
 
         // Create the dialog instance
-        backgroundRectangle = new Rectangle(100, 100, 400, 200);
+        backgroundRectangle = new Rectangle(150, 50, 600, 400);
 
         this.font = content.Load<SpriteFont>("Stats");
         this.text = "Test";
         isVisible = false;
 
         // Center the text within the dialog box
-        var textSize = this.font.MeasureString(this.text);
         textPosition = new Vector2(
             backgroundRectangle.X + (backgroundRectangle.Width - 10) / 2,
             backgroundRectangle.Y + (backgroundRectangle.Height - 10) / 2
