@@ -13,6 +13,7 @@ public class MainGame : Game
     private OrcFactory orcFactory;
     private StatsTexture statsTexture;
     private GrassTexture grassTexture;
+    private SettingsButton settingsButton;
 
     public MainGame()
     {
@@ -30,6 +31,9 @@ public class MainGame : Game
 
         statsTexture = new StatsTexture(Content);
         statsTexture.Load();
+        settingsButton = new SettingsButton(Content, viewport);
+        settingsButton.Load();
+
         grassTexture = new GrassTexture(Content, viewport);
         grassTexture.Load();
 
@@ -64,6 +68,7 @@ public class MainGame : Game
         orcFactory.Draw(spriteBatch);
         soldierTexture.Draw(spriteBatch);
         statsTexture.Draw(spriteBatch);
+        settingsButton.Draw(spriteBatch);
      
         spriteBatch.End();
 
