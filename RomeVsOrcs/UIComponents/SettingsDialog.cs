@@ -25,13 +25,13 @@ public class SettingsDialog(ContentManager content, GraphicsDevice graphicsDevic
         backgroundRectangle = new Rectangle(150, 50, 600, 400);
 
         this.font = content.Load<SpriteFont>("Stats");
-        this.text = "Test";
+        this.text = "Hotkeys";
         isVisible = false;
 
         // Center the text within the dialog box
         textPosition = new Vector2(
-            backgroundRectangle.X + (backgroundRectangle.Width - 10) / 2,
-            backgroundRectangle.Y + (backgroundRectangle.Height - 10) / 2
+            backgroundRectangle.X + 10,
+            backgroundRectangle.Y + 10
         );
     }
 
