@@ -3,39 +3,40 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.BitmapFonts;
+
+//using MonoGame.Extended.BitmapFonts;
 using MonoGame.Extended.Content;
 
 namespace RomeVsOrcs.UIComponents;
-public class Dialog
+public class SettingsDialog(ContentManager content, GraphicsDevice graphicsDevice)
 {
     private Texture2D backgroundTexture;
     private Rectangle backgroundRectangle;
-    private BitmapFont font;
+    private SpriteFont font;
     private string text;
     private bool isVisible;
     private Vector2 textPosition;
 
     public bool IsVisible => isVisible;
 
-    public Dialog(ContentManager content)
+    public void Load()
     {
-
         // Load the background texture (a simple solid color texture can be used)
-        backgroundTexture = new Texture2D(content.GetGraphicsDevice(), 1, 1);
+        backgroundTexture = new Texture2D(graphicsDevice, 1, 1);
         backgroundTexture.SetData(new[] { Color.Gray });
 
         // Create the dialog instance
-        var dialogRectangle = new Rectangle(100, 100, 400, 200);
+        backgroundRectangle = new Rectangle(100, 100, 400, 200);
 
-        this.font = content.Load<BitmapFont>("Fonts/arial-16");
+        this.font = content.Load<SpriteFont>("Stats");
         this.text = "Test";
         isVisible = false;
 
         // Center the text within the dialog box
         var textSize = this.font.MeasureString(this.text);
         textPosition = new Vector2(
-            this.backgroundRectangle.X + (this.backgroundRectangle.Width - textSize.Width) / 2,
-            this.backgroundRectangle.Y + (this.backgroundRectangle.Height - textSize.Height) / 2
+            backgroundRectangle.X + (backgroundRectangle.Width - 10) / 2,
+            backgroundRectangle.Y + (backgroundRectangle.Height - 10) / 2
         );
     }
 
