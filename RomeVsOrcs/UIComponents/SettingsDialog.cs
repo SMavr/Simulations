@@ -28,7 +28,6 @@ public class SettingsDialog(ContentManager content, GraphicsDevice graphicsDevic
         this.text = "Hotkeys";
         isVisible = false;
 
-        // Center the text within the dialog box
         textPosition = new Vector2(
             backgroundRectangle.X + 10,
             backgroundRectangle.Y + 10

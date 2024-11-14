@@ -16,7 +16,7 @@ public class MainGame : Game
     private StatsTexture statsTexture;
     private GrassTexture grassTexture;
     private SettingsButton settingsButton;
-    private SettingsDialog dialog;
+
 
     public MainGame()
     {
@@ -34,10 +34,9 @@ public class MainGame : Game
 
         statsTexture = new StatsTexture(Content);
         statsTexture.Load();
-        settingsButton = new SettingsButton(Content, viewport);
+        settingsButton = new SettingsButton(Content, GraphicsDevice);
         settingsButton.Load();
-        dialog = new SettingsDialog(Content, GraphicsDevice);
-        dialog.Load();
+
 
         grassTexture = new GrassTexture(Content, viewport);
         grassTexture.Load();
@@ -60,12 +59,7 @@ public class MainGame : Game
         float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
         soldierTexture.Update(elapsed, orcFactory.OrcTextures);
         orcFactory.Update(elapsed);
-
-        if (Keyboard.GetState().IsKeyDown(Keys.T))
-        {
-            if (!dialog.IsVisible)
-                dialog.Show();
-        }
+        settingsButton.Update(elapsed);
 
         base.Update(gameTime);
     }
@@ -80,7 +74,6 @@ public class MainGame : Game
         soldierTexture.Draw(spriteBatch);
         statsTexture.Draw(spriteBatch);
         settingsButton.Draw(spriteBatch);
-        dialog.Draw(spriteBatch);
      
         spriteBatch.End();
 
