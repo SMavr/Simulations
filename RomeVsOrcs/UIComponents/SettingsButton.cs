@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using RomeVsOrcs.Textures;
 
 namespace RomeVsOrcs.UIComponents;
 internal class SettingsButton(ContentManager content, GraphicsDevice graphics)
@@ -31,11 +30,24 @@ internal class SettingsButton(ContentManager content, GraphicsDevice graphics)
 
     public void Update(float elapsedTime)
     {
-        KeyboardState state = Keyboard.GetState();
-        if (state.IsKeyDown(Keys.T))
+        if (dialog.IsVisible && Mouse.GetState().LeftButton == ButtonState.Pressed)
         {
-            if (!dialog.IsVisible)
+            var mousePos = Mouse.GetState().Position;
+
+            if (!buttonRectangle.Contains(mousePos))
+            {
+                dialog.Hide();
+            }
+        }
+
+        else if (!dialog.IsVisible && Mouse.GetState().LeftButton == ButtonState.Pressed)
+        {
+            var mousePos = Mouse.GetState().Position;
+
+            if (buttonRectangle.Contains(mousePos))
+            {
                 dialog.Show();
+            }
         }
     }
 
