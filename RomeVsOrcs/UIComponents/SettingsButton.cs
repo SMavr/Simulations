@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RomeVsOrcs.Textures;
+namespace RomeVsOrcs.UIComponents;
 internal class SettingsButton(ContentManager content, Viewport viewport)
 {
 
