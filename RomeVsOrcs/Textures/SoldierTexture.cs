@@ -56,8 +56,7 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
         if (state.IsKeyDown(Keys.Space))
         {
             Play();
-            currentRow = ToRow();
-            frameCount = 6;
+            SetFightAnimation();
             spacePressed = true;
             if(objects.Intersects(this.Rectangle, out OrcTexture orcToHit))
                 orcToHit.Hit(elapsed);
@@ -88,14 +87,18 @@ internal class SoldierTexture(ContentManager content, Viewport viewport) : Anima
         return currentSpeed;
     }
 
-    private int ToRow() => direction switch
+    private void SetFightAnimation()
     {
-        Direction.East => 55,
-        Direction.North => 52,
-        Direction.South => 54,
-        Direction.West => 53,
-        _ => 54
-    };
+        frameCount = 6;
+        currentRow = direction switch
+        {
+            Direction.East => 55,
+            Direction.North => 52,
+            Direction.South => 54,
+            Direction.West => 53,
+            _ => 54
+        };
+    }
 
     private void SetAnimation(Direction direction)
     {
