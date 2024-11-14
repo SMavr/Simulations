@@ -56,15 +56,21 @@ public class SettingsDialog(ContentManager content, GraphicsDevice graphicsDevic
         {
             spriteBatch.Draw(backgroundTexture, backgroundRectangle, Color.White * 0.8f);
             AddText("Hotkeys", 1, spriteBatch);
+            AddText("Move forward: W", 2 , spriteBatch);
+            AddText("Move back: S", 3, spriteBatch);
+            AddText("Move left: A", 4, spriteBatch);
+            AddText("Move right: D", 5, spriteBatch);
+            AddText("Sprint: Shift", 6, spriteBatch);
+            AddText("Full Screen: F11", 7, spriteBatch);
+            AddText("Exit Game: ESC", 8, spriteBatch);
         }
     }
-
 
     public void AddText(string text, int line, SpriteBatch spriteBatch)
     {
         var textPosition = new Vector2(
-            backgroundRectangle.X + 10,
-            backgroundRectangle.Y + line * 10
+            backgroundRectangle.X + 30,
+            backgroundRectangle.Y + line * 25
         );
         spriteBatch.DrawString(font, text, textPosition, Color.Black);
     }
