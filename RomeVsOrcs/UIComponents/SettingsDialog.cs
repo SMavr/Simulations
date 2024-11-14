@@ -9,9 +9,9 @@ public class SettingsDialog(ContentManager content, GraphicsDevice graphicsDevic
     private Texture2D backgroundTexture;
     private Rectangle backgroundRectangle;
     private SpriteFont font;
-    private string text;
+    //private string text;
     private bool isVisible;
-    private Vector2 textPosition;
+    //private Vector2 textPosition;
 
     public bool IsVisible => isVisible;
 
@@ -25,13 +25,7 @@ public class SettingsDialog(ContentManager content, GraphicsDevice graphicsDevic
         backgroundRectangle = new Rectangle(150, 50, 600, 400);
 
         this.font = content.Load<SpriteFont>("Stats");
-        this.text = "Hotkeys";
         isVisible = false;
-
-        textPosition = new Vector2(
-            backgroundRectangle.X + 10,
-            backgroundRectangle.Y + 10
-        );
     }
 
     public void Show()
@@ -61,7 +55,17 @@ public class SettingsDialog(ContentManager content, GraphicsDevice graphicsDevic
         if (isVisible)
         {
             spriteBatch.Draw(backgroundTexture, backgroundRectangle, Color.White * 0.8f);
-            spriteBatch.DrawString(font, text, textPosition, Color.Black);
+            AddText("Hotkeys", 1, spriteBatch);
         }
+    }
+
+
+    public void AddText(string text, int line, SpriteBatch spriteBatch)
+    {
+        var textPosition = new Vector2(
+            backgroundRectangle.X + 10,
+            backgroundRectangle.Y + line * 10
+        );
+        spriteBatch.DrawString(font, text, textPosition, Color.Black);
     }
 }
