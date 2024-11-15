@@ -1,77 +1,48 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Myra.Graphics2D.UI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace RomeVsOrcs.UIComponents;
-public class SettingsDialog(ContentManager content, GraphicsDevice graphicsDevice)
+public class SettingsDialog
 {
-    private Texture2D backgroundTexture;
-    private Rectangle backgroundRectangle;
-    private SpriteFont font;
-    //private string text;
-    private bool isVisible;
-    //private Vector2 textPosition;
-
-    public bool IsVisible => isVisible;
-
-    public void Load()
+    public void Load(Desktop desktop)
     {
-        // Load the background texture (a simple solid color texture can be used)
-        backgroundTexture = new Texture2D(graphicsDevice, 1, 1);
-        backgroundTexture.SetData(new[] { Color.LightGray });
-
-        // Create the dialog instance
-        backgroundRectangle = new Rectangle(150, 50, 600, 400);
-
-        this.font = content.Load<SpriteFont>("Stats");
-        isVisible = false;
-    }
-
-    public void Show()
-    {
-        isVisible = true;
-    }
-
-    public void Hide()
-    {
-        isVisible = false;
-    }
-
-    public void Update(MouseState mouseState, MouseState previousMouseState)
-    {
-        if (isVisible)
+        Dialog dialog = new Dialog
         {
-            // Close dialog when left mouse button is clicked
-            if (mouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released)
+            Title = "Enter Your Name"
+        };
+
+        var stackPanel = new HorizontalStackPanel
+        {
+            Spacing = 8
+        };
+
+        var label1 = new Label
+        {
+            Text = "Name:"
+        };
+        stackPanel.Widgets.Add(label1);
+
+        var textBox1 = new TextBox();
+        StackPanel.SetProportionType(textBox1, ProportionType.Fill);
+        stackPanel.Widgets.Add(textBox1);
+
+        dialog.Content = stackPanel;
+
+        dialog.Closed += (s, a) => {
+            if (!dialog.Result)
             {
-                Hide();
+                // Dialog was either closed or "Cancel" clicked
+                return;
             }
-        }
-    }
 
-    public void Draw(SpriteBatch spriteBatch)
-    {
-        if (isVisible)
-        {
-            spriteBatch.Draw(backgroundTexture, backgroundRectangle, Color.White * 0.8f);
-            AddText("Hotkeys", 1, spriteBatch);
-            AddText("Move forward: W", 2 , spriteBatch);
-            AddText("Move back: S", 3, spriteBatch);
-            AddText("Move left: A", 4, spriteBatch);
-            AddText("Move right: D", 5, spriteBatch);
-            AddText("Sprint: Shift", 6, spriteBatch);
-            AddText("Full Screen: F11", 7, spriteBatch);
-            AddText("Exit Game: ESC", 8, spriteBatch);
-        }
-    }
+            // "Ok" was clicked or Enter key pressed
+            // ...
+        };
 
-    public void AddText(string text, int line, SpriteBatch spriteBatch)
-    {
-        var textPosition = new Vector2(
-            backgroundRectangle.X + 30,
-            backgroundRectangle.Y + line * 25
-        );
-        spriteBatch.DrawString(font, text, textPosition, Color.Black);
+        dialog.ShowModal(desktop);
     }
 }

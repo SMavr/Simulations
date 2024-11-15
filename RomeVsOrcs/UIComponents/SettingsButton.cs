@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 namespace RomeVsOrcs.UIComponents;
 internal class SettingsButton(ContentManager content, GraphicsDevice graphics)
 {
-    private SettingsDialog dialog;
+    private SettingsDialog_Old dialog;
 
     private Texture2D texture;
 
@@ -24,7 +24,7 @@ internal class SettingsButton(ContentManager content, GraphicsDevice graphics)
         // Place the button in the upper right corner
         buttonRectangle = new Rectangle(screenWidth - buttonWidth - 10, 10, buttonWidth, buttonHeight);
 
-        dialog = new SettingsDialog(content, graphics);
+        dialog = new SettingsDialog_Old(content, graphics);
         dialog.Load();
     }
 

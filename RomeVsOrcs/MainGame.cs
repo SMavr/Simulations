@@ -16,7 +16,9 @@ public class MainGame : Game
     private OrcFactory orcFactory;
     private StatsTexture statsTexture;
     private GrassTexture grassTexture;
+    private Desktop desktop;
     private SettingsButton settingsButton;
+    private SettingsDialog settingsDialog;
 
 
     public MainGame()
@@ -48,7 +50,12 @@ public class MainGame : Game
 
         orcFactory = new OrcFactory(Content, viewport);
         orcFactory.Load(4);
-        LoadDialog();
+
+        // Load Dialogss
+        MyraEnvironment.Game = this;
+        desktop = new Desktop();
+        settingsDialog = new SettingsDialog();
+        settingsDialog.Load(desktop);
     }
 
     protected override void Update(GameTime gameTime)
@@ -78,7 +85,7 @@ public class MainGame : Game
         statsTexture.Draw(spriteBatch);
         settingsButton.Draw(spriteBatch);
         spriteBatch.End();
-        _desktop.Render();
+        desktop.Render();
 
         base.Draw(gameTime);
     }
@@ -87,51 +94,5 @@ public class MainGame : Game
     {
         graphics.IsFullScreen = !graphics.IsFullScreen;
         graphics.ApplyChanges();
-    }
-
-    private Desktop _desktop;
-    private Dialog _dialog;
-    private Label _label;
-    private void LoadDialog()
-    {
-        MyraEnvironment.Game = this;
-
-        // Set up the Desktop environment
-        _desktop = new Desktop();
-
-        Dialog dialog = new Dialog
-        {
-            Title = "Enter Your Name"
-        };
-
-        var stackPanel = new HorizontalStackPanel
-        {
-            Spacing = 8
-        };
-
-        var label1 = new Label
-        {
-            Text = "Name:"
-        };
-        stackPanel.Widgets.Add(label1);
-
-        var textBox1 = new TextBox();
-        StackPanel.SetProportionType(textBox1, ProportionType.Fill);
-        stackPanel.Widgets.Add(textBox1);
-
-        dialog.Content = stackPanel;
-
-        dialog.Closed += (s, a) => {
-            if (!dialog.Result)
-            {
-                // Dialog was either closed or "Cancel" clicked
-                return;
-            }
-
-            // "Ok" was clicked or Enter key pressed
-            // ...
-        };
-
-        dialog.ShowModal(_desktop);
     }
 }
