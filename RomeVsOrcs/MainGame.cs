@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Myra.Graphics2D.UI;
+using Myra;
 using RomeVsOrcs.Textures;
 using RomeVsOrcs.UIComponents;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace RomeVsOrcs;
 
@@ -47,6 +48,7 @@ public class MainGame : Game
 
         orcFactory = new OrcFactory(Content, viewport);
         orcFactory.Load(4);
+        LoadDialog();
     }
 
     protected override void Update(GameTime gameTime)
@@ -67,15 +69,16 @@ public class MainGame : Game
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Green);
-
+     
+     
         spriteBatch.Begin();
         grassTexture.Draw(spriteBatch);
         orcFactory.Draw(spriteBatch);
         soldierTexture.Draw(spriteBatch);
         statsTexture.Draw(spriteBatch);
         settingsButton.Draw(spriteBatch);
-     
         spriteBatch.End();
+        _desktop.Render();
 
         base.Draw(gameTime);
     }
@@ -84,5 +87,51 @@ public class MainGame : Game
     {
         graphics.IsFullScreen = !graphics.IsFullScreen;
         graphics.ApplyChanges();
+    }
+
+    private Desktop _desktop;
+    private Dialog _dialog;
+    private Label _label;
+    private void LoadDialog()
+    {
+        MyraEnvironment.Game = this;
+
+        // Set up the Desktop environment
+        _desktop = new Desktop();
+
+        Dialog dialog = new Dialog
+        {
+            Title = "Enter Your Name"
+        };
+
+        var stackPanel = new HorizontalStackPanel
+        {
+            Spacing = 8
+        };
+
+        var label1 = new Label
+        {
+            Text = "Name:"
+        };
+        stackPanel.Widgets.Add(label1);
+
+        var textBox1 = new TextBox();
+        StackPanel.SetProportionType(textBox1, ProportionType.Fill);
+        stackPanel.Widgets.Add(textBox1);
+
+        dialog.Content = stackPanel;
+
+        dialog.Closed += (s, a) => {
+            if (!dialog.Result)
+            {
+                // Dialog was either closed or "Cancel" clicked
+                return;
+            }
+
+            // "Ok" was clicked or Enter key pressed
+            // ...
+        };
+
+        dialog.ShowModal(_desktop);
     }
 }
