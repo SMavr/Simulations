@@ -2,15 +2,16 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Myra.Graphics2D.UI;
 
 namespace RomeVsOrcs.UIComponents;
-internal class SettingsButton(ContentManager content, GraphicsDevice graphics)
+internal class SettingsButton(ContentManager content, GraphicsDevice graphics, Desktop desktop)
 {
-    private SettingsDialog_Old dialog;
-
     private Texture2D texture;
 
     private Rectangle buttonRectangle;
+
+    Dialog dialog;
 
     public void Load()
     {
@@ -24,29 +25,31 @@ internal class SettingsButton(ContentManager content, GraphicsDevice graphics)
         // Place the button in the upper right corner
         buttonRectangle = new Rectangle(screenWidth - buttonWidth - 10, 10, buttonWidth, buttonHeight);
 
-        dialog = new SettingsDialog_Old(content, graphics);
-        dialog.Load();
+        LoadDialog();
     }
 
     public void Update(float elapsedTime)
     {
-        if (dialog.IsVisible && Mouse.GetState().LeftButton == ButtonState.Pressed)
-        {
-            var mousePos = Mouse.GetState().Position;
+        //if (dialog.IsPlaced && Mouse.GetState().LeftButton == ButtonState.Pressed)
+        //{
+        //    var mousePos = Mouse.GetState().Position;
 
-            if (!buttonRectangle.Contains(mousePos))
-            {
-                dialog.Hide();
-            }
-        }
+        //    if (buttonRectangle.Contains(mousePos))
+        //    {
+        //        dialog.Close();
+        //       // dialog.Visible = false;
+        //    }
+        //}
 
-        else if (!dialog.IsVisible && Mouse.GetState().LeftButton == ButtonState.Pressed)
+        if (!dialog.IsPlaced && Mouse.GetState().LeftButton == ButtonState.Pressed)
         {
             var mousePos = Mouse.GetState().Position;
 
             if (buttonRectangle.Contains(mousePos))
             {
-                dialog.Show();
+              
+                //dialog.Visible = true;
+                dialog.ShowModal(desktop);
             }
         }
     }
@@ -54,6 +57,57 @@ internal class SettingsButton(ContentManager content, GraphicsDevice graphics)
     public void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw(texture, buttonRectangle, Color.White);
-        dialog.Draw(spriteBatch);
+        //dialog.Draw(spriteBatch);
+    }
+
+    private void LoadDialog()
+    {
+        dialog = new Dialog
+        {
+            Title = "Enter Your Name"
+        };
+
+        var stackPanel = new HorizontalStackPanel
+        {
+            Spacing = 8
+        };
+
+        var label1 = new Label
+        {
+            Text = "Name:"
+        };
+        stackPanel.Widgets.Add(label1);
+
+        var textBox1 = new TextBox();
+        StackPanel.SetProportionType(textBox1, ProportionType.Fill);
+        stackPanel.Widgets.Add(textBox1);
+
+        dialog.Content = stackPanel;
+
+        dialog.ButtonOk.Click += (s, e) =>
+        {
+            dialog.Close();
+        };
+        //dialog.CloseButton += (s, a) =>
+        //{
+        //};
+
+        //dialog.Closed += (s, a) => {
+        //    if (!dialog.Result)
+        //    {
+        //        // Dialog was either closed or "Cancel" clicked
+        //        dialog.Close();
+        //        return;
+        //    }
+
+
+
+        // "Ok" was clicked or Enter key pressed
+        // ...
+        //};
+
+        //   dialog.Visible = false;
+
+        //  dialog.ShowModal(desktop);
     }
 }

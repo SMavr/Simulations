@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RomeVsOrcs.UIComponents;
-public class SettingsDialog
+public class SettingsDialog(Desktop desktop)
 {
-    public void Load(Desktop desktop)
+    public void Load()
     {
         Dialog dialog = new Dialog
         {

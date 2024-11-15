@@ -37,7 +37,10 @@ public class MainGame : Game
 
         statsTexture = new StatsTexture(Content);
         statsTexture.Load();
-        settingsButton = new SettingsButton(Content, GraphicsDevice);
+
+        MyraEnvironment.Game = this;
+        desktop = new Desktop();
+        settingsButton = new SettingsButton(Content, GraphicsDevice, desktop);
         settingsButton.Load();
 
 
@@ -52,10 +55,8 @@ public class MainGame : Game
         orcFactory.Load(4);
 
         // Load Dialogss
-        MyraEnvironment.Game = this;
-        desktop = new Desktop();
-        settingsDialog = new SettingsDialog();
-        settingsDialog.Load(desktop);
+        //settingsDialog = new SettingsDialog();
+        //settingsDialog.Load(desktop);
     }
 
     protected override void Update(GameTime gameTime)
@@ -69,7 +70,6 @@ public class MainGame : Game
         soldierTexture.Update(elapsed, orcFactory.OrcTextures);
         orcFactory.Update(elapsed);
         settingsButton.Update(elapsed);
-
         base.Update(gameTime);
     }
 
