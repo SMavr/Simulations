@@ -2,58 +2,92 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Myra.Graphics2D;
+using Myra.Graphics2D.TextureAtlases;
+using Myra.Graphics2D.UI;
 
 namespace RomeVsOrcs.UIComponents;
-internal class SettingsButton(ContentManager content, GraphicsDevice graphics)
+internal class SettingsButton(ContentManager content, GraphicsDeviceManager graphics, Desktop desktop)
 {
-    private SettingsDialog dialog;
-
-    private Texture2D texture;
-
-    private Rectangle buttonRectangle;
+    Dialog dialog;
 
     public void Load()
     {
-        texture = content.Load<Texture2D>("cog");
-
-        // Set button size and position
-        int buttonWidth = 25;
-        int buttonHeight = 25;
-        int screenWidth = graphics.Viewport.Width;
-
-        // Place the button in the upper right corner
-        buttonRectangle = new Rectangle(screenWidth - buttonWidth - 10, 10, buttonWidth, buttonHeight);
-
-        dialog = new SettingsDialog(content, graphics);
-        dialog.Load();
+        LoadButton();
+        LoadDialog();
     }
 
-    public void Update(float elapsedTime)
+    private void LoadDialog()
     {
-        if (dialog.IsVisible && Mouse.GetState().LeftButton == ButtonState.Pressed)
+        dialog = new Dialog
         {
-            var mousePos = Mouse.GetState().Position;
+            Title = "Hot Keys",
+            Padding = new Thickness(20)
+        };
 
-            if (!buttonRectangle.Contains(mousePos))
-            {
-                dialog.Hide();
-            }
-        }
 
-        else if (!dialog.IsVisible && Mouse.GetState().LeftButton == ButtonState.Pressed)
+        VerticalStackPanel stackPanel = new VerticalStackPanel();
+        AddLabel("Move forward:","W");
+        AddLabel("Move back:","S");
+        AddLabel("Move left:","A");
+        AddLabel("Move right:","D");
+        AddLabel("Sprint:","Shift");
+        AddLabel("Full Screen:","F11");
+        AddLabel("Exit Game:","ESC");
+
+        dialog.Content = stackPanel;
+
+        dialog.ButtonOk.Click += (s, e) =>
         {
-            var mousePos = Mouse.GetState().Position;
+            dialog.Close();
+        };
 
-            if (buttonRectangle.Contains(mousePos))
+        void AddLabel(string textA, string textB)
+        {
+            HorizontalStackPanel horizontalStackPanel = new HorizontalStackPanel();
+            var labelA = new Label
             {
-                dialog.Show();
-            }
+                Width = 150,
+                Text = textA
+            };
+            horizontalStackPanel.Widgets.Add(labelA);
+
+            var labelB = new Label
+            {
+                Width = 50,
+                Text = textB
+            };
+            horizontalStackPanel.Widgets.Add(labelB);
+            stackPanel.Widgets.Add(horizontalStackPanel);
         }
     }
 
-    public void Draw(SpriteBatch spriteBatch)
+    private void LoadButton()
     {
-        spriteBatch.Draw(texture, buttonRectangle, Color.White);
-        dialog.Draw(spriteBatch);
+        // Create the button and set its properties
+        Button button = new Button
+        {
+            Content = new Image
+            {
+                Renderable = new TextureRegion(content.Load<Texture2D>("cog"))
+            },
+            Width = 40,
+            Height = 40,
+            Background = null,
+            PressedBackground = null,
+        };
+
+        // Set the button position to the upper right corner
+        button.Left = graphics.PreferredBackBufferWidth - button.Width.Value - 10;
+        button.Top = 10;
+
+        // Add an event handler for the button click
+        button.Click += (s, e) =>
+        {
+            dialog.ShowModal(desktop);
+        };
+
+        // Add the button to the desktop
+        desktop.Widgets.Add(button);
     }
 }
