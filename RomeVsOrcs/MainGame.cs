@@ -5,7 +5,6 @@ using Myra.Graphics2D.UI;
 using Myra;
 using RomeVsOrcs.Textures;
 using RomeVsOrcs.UIComponents;
-using Myra.Graphics2D.TextureAtlases;
 
 namespace RomeVsOrcs;
 

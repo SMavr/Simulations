@@ -9,7 +9,6 @@ using Myra.Graphics2D.UI;
 namespace RomeVsOrcs.UIComponents;
 internal class SettingsButton(ContentManager content, GraphicsDeviceManager graphics, Desktop desktop)
 {
-
     Dialog dialog;
 
     public void Load()
@@ -17,25 +16,6 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
         LoadButton();
         LoadDialog();
     }
-
-    //public void Update(float elapsedTime)
-    //{
-    //    if (!dialog.IsPlaced && Mouse.GetState().LeftButton == ButtonState.Pressed)
-    //    {
-    //        var mousePos = Mouse.GetState().Position;
-
-    //        //if (buttonRectangle.Contains(mousePos))
-    //        //{
-              
-    //        //    dialog.ShowModal(desktop);
-    //        //}
-    //    }
-    //}
-
-    //public void Draw(SpriteBatch spriteBatch)
-    //{
-    //    spriteBatch.Draw(texture, buttonRectangle, Color.White);
-    //}
 
     private void LoadDialog()
     {
