@@ -5,6 +5,7 @@ using Myra.Graphics2D.UI;
 using Myra;
 using RomeVsOrcs.Textures;
 using RomeVsOrcs.UIComponents;
+using Myra.Graphics2D.TextureAtlases;
 
 namespace RomeVsOrcs;
 
@@ -50,6 +51,8 @@ public class MainGame : Game
 
         orcFactory = new OrcFactory(Content, viewport);
         orcFactory.Load(4);
+
+        CheckButton();
     }
 
     protected override void Update(GameTime gameTime)
@@ -63,6 +66,8 @@ public class MainGame : Game
         soldierTexture.Update(elapsed, orcFactory.OrcTextures);
         orcFactory.Update(elapsed);
         settingsButton.Update(elapsed);
+
+       
         base.Update(gameTime);
     }
 
@@ -87,5 +92,37 @@ public class MainGame : Game
     {
         graphics.IsFullScreen = !graphics.IsFullScreen;
         graphics.ApplyChanges();
+    }
+
+    Button _button;
+    private void CheckButton()
+    {
+        // Create the button and set its properties
+        _button = new Button
+        {
+            Content = new Image
+            {
+                Renderable = new TextureRegion(Content.Load<Texture2D>("cog"))
+            },
+            Width = 40,
+            Height = 40,
+            Background = null,
+            PressedBackground = null,
+        };
+
+        // Set the button position to the upper right corner
+        _button.Left = graphics.PreferredBackBufferWidth - _button.Width.Value - 100;
+        _button.Top = 10;
+
+        // Add an event handler for the button click
+        //_button.Click += (s, e) =>
+        //{
+        //    // Toggle fullscreen as an example action
+        //    _graphics.IsFullScreen = !_graphics.IsFullScreen;
+        //    _graphics.ApplyChanges();
+        //};
+
+        // Add the button to the desktop
+        desktop.Widgets.Add(_button);
     }
 }
