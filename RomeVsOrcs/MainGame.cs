@@ -62,14 +62,12 @@ public class MainGame : Game
         soldierTexture.Update(elapsed, orcFactory.OrcTextures);
         orcFactory.Update(elapsed);
 
-       
         base.Update(gameTime);
     }
 
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Green);
-     
      
         spriteBatch.Begin();
         grassTexture.Draw(spriteBatch);

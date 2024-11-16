@@ -45,14 +45,15 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
             Padding = new Thickness(20)
         };
 
+
         VerticalStackPanel stackPanel = new VerticalStackPanel();
-        AddLabel("Move forward: W");
-        AddLabel("Move back: S");
-        AddLabel("Move left: A");
-        AddLabel("Move right: D");
-        AddLabel("Sprint: Shift");
-        AddLabel("Full Screen: F11");
-        AddLabel("Exit Game: ESC");
+        AddLabel("Move forward:","W");
+        AddLabel("Move back:","S");
+        AddLabel("Move left:","A");
+        AddLabel("Move right:","D");
+        AddLabel("Sprint:","Shift");
+        AddLabel("Full Screen:","F11");
+        AddLabel("Exit Game:","ESC");
 
         dialog.Content = stackPanel;
 
@@ -61,13 +62,23 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
             dialog.Close();
         };
 
-        void AddLabel(string text)
+        void AddLabel(string textA, string textB)
         {
-            var label = new Label
+            HorizontalStackPanel horizontalStackPanel = new HorizontalStackPanel();
+            var labelA = new Label
             {
-                Text = text
+                Width = 150,
+                Text = textA
             };
-            stackPanel.Widgets.Add(label);
+            horizontalStackPanel.Widgets.Add(labelA);
+
+            var labelB = new Label
+            {
+                Width = 50,
+                Text = textB
+            };
+            horizontalStackPanel.Widgets.Add(labelB);
+            stackPanel.Widgets.Add(horizontalStackPanel);
         }
     }
 
