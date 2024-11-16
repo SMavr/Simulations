@@ -46,7 +46,6 @@ internal class SettingsButton(ContentManager content, GraphicsDevice graphics, D
     public void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw(texture, buttonRectangle, Color.White);
-        //dialog.Draw(spriteBatch);
     }
 
     private void LoadDialog()
@@ -65,23 +64,6 @@ internal class SettingsButton(ContentManager content, GraphicsDevice graphics, D
         AddLabel("Full Screen: F11");
         AddLabel("Exit Game: ESC");
 
-        //var label1 = new Label
-        //{
-        //    Padding = new Thickness(4),
-        //    Text = "Name:"
-        //};
-
-        //var label2 = new Label
-        //{
-        //    Text = "Name:"
-        //};
-        //stackPanel.Widgets.Add(label1);
-        //stackPanel.Widgets.Add(label2);
-
-        //var textBox1 = new TextBox();
-        //StackPanel.SetProportionType(textBox1, ProportionType.Fill);
-        //stackPanel.Widgets.Add(textBox1);
-
         dialog.Content = stackPanel;
 
         dialog.ButtonOk.Click += (s, e) =>
@@ -97,24 +79,5 @@ internal class SettingsButton(ContentManager content, GraphicsDevice graphics, D
             };
             stackPanel.Widgets.Add(label);
         }
-
-        //AddText("Hotkeys", 1, spriteBatch);
-        //AddText("Move forward: W", 2, spriteBatch);
-        //AddText("Move back: S", 3, spriteBatch);
-        //AddText("Move left: A", 4, spriteBatch);
-        //AddText("Move right: D", 5, spriteBatch);
-        //AddText("Sprint: Shift", 6, spriteBatch);
-        //AddText("Full Screen: F11", 7, spriteBatch);
-        //AddText("Exit Game: ESC", 8, spriteBatch);
-
-        // "Ok" was clicked or Enter key pressed
-        // ...
-        //};
-
-        //   dialog.Visible = false;
-
-        //  dialog.ShowModal(desktop);
     }
-
-   
 }
