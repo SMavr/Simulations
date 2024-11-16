@@ -23,7 +23,6 @@ public class MainGame : Game
     {
         graphics = new GraphicsDeviceManager(this);
         graphics.GraphicsProfile = GraphicsProfile.HiDef;
-        //graphics.IsFullScreen = true;
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
     }
@@ -38,9 +37,8 @@ public class MainGame : Game
 
         MyraEnvironment.Game = this;
         desktop = new Desktop();
-        settingsButton = new SettingsButton(Content, GraphicsDevice, desktop);
+        settingsButton = new SettingsButton(Content, graphics, desktop);
         settingsButton.Load();
-
 
         grassTexture = new GrassTexture(Content, viewport);
         grassTexture.Load();
@@ -51,8 +49,6 @@ public class MainGame : Game
 
         orcFactory = new OrcFactory(Content, viewport);
         orcFactory.Load(4);
-
-        CheckButton();
     }
 
     protected override void Update(GameTime gameTime)
@@ -65,7 +61,6 @@ public class MainGame : Game
         float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
         soldierTexture.Update(elapsed, orcFactory.OrcTextures);
         orcFactory.Update(elapsed);
-        settingsButton.Update(elapsed);
 
        
         base.Update(gameTime);
@@ -81,7 +76,6 @@ public class MainGame : Game
         orcFactory.Draw(spriteBatch);
         soldierTexture.Draw(spriteBatch);
         statsTexture.Draw(spriteBatch);
-        settingsButton.Draw(spriteBatch);
         spriteBatch.End();
         desktop.Render();
 
@@ -92,37 +86,5 @@ public class MainGame : Game
     {
         graphics.IsFullScreen = !graphics.IsFullScreen;
         graphics.ApplyChanges();
-    }
-
-    Button _button;
-    private void CheckButton()
-    {
-        // Create the button and set its properties
-        _button = new Button
-        {
-            Content = new Image
-            {
-                Renderable = new TextureRegion(Content.Load<Texture2D>("cog"))
-            },
-            Width = 40,
-            Height = 40,
-            Background = null,
-            PressedBackground = null,
-        };
-
-        // Set the button position to the upper right corner
-        _button.Left = graphics.PreferredBackBufferWidth - _button.Width.Value - 100;
-        _button.Top = 10;
-
-        // Add an event handler for the button click
-        //_button.Click += (s, e) =>
-        //{
-        //    // Toggle fullscreen as an example action
-        //    _graphics.IsFullScreen = !_graphics.IsFullScreen;
-        //    _graphics.ApplyChanges();
-        //};
-
-        // Add the button to the desktop
-        desktop.Widgets.Add(_button);
     }
 }
