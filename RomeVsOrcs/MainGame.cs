@@ -18,9 +18,6 @@ public class MainGame : Game
     private GrassTexture grassTexture;
     private Desktop desktop;
     private SettingsButton settingsButton;
-    private SettingsDialog settingsDialog;
-
-
     public MainGame()
     {
         graphics = new GraphicsDeviceManager(this);
@@ -53,10 +50,6 @@ public class MainGame : Game
 
         orcFactory = new OrcFactory(Content, viewport);
         orcFactory.Load(4);
-
-        // Load Dialogss
-        //settingsDialog = new SettingsDialog();
-        //settingsDialog.Load(desktop);
     }
 
     protected override void Update(GameTime gameTime)

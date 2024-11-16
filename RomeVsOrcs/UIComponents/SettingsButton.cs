@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Myra.Graphics2D;
 using Myra.Graphics2D.UI;
 
 namespace RomeVsOrcs.UIComponents;
@@ -30,17 +31,6 @@ internal class SettingsButton(ContentManager content, GraphicsDevice graphics, D
 
     public void Update(float elapsedTime)
     {
-        //if (dialog.IsPlaced && Mouse.GetState().LeftButton == ButtonState.Pressed)
-        //{
-        //    var mousePos = Mouse.GetState().Position;
-
-        //    if (buttonRectangle.Contains(mousePos))
-        //    {
-        //        dialog.Close();
-        //       // dialog.Visible = false;
-        //    }
-        //}
-
         if (!dialog.IsPlaced && Mouse.GetState().LeftButton == ButtonState.Pressed)
         {
             var mousePos = Mouse.GetState().Position;
@@ -48,7 +38,6 @@ internal class SettingsButton(ContentManager content, GraphicsDevice graphics, D
             if (buttonRectangle.Contains(mousePos))
             {
               
-                //dialog.Visible = true;
                 dialog.ShowModal(desktop);
             }
         }
@@ -64,23 +53,34 @@ internal class SettingsButton(ContentManager content, GraphicsDevice graphics, D
     {
         dialog = new Dialog
         {
-            Title = "Enter Your Name"
+            Title = "Hot Keys",
         };
 
-        var stackPanel = new HorizontalStackPanel
-        {
-            Spacing = 8
-        };
+        VerticalStackPanel stackPanel = new VerticalStackPanel();
+        AddLabel("Move forward: W");
+        AddLabel("Move back: S");
+        AddLabel("Move left: A");
+        AddLabel("Move right: D");
+        AddLabel("Sprint: Shift");
+        AddLabel("Full Screen: F11");
+        AddLabel("Exit Game: ESC");
 
-        var label1 = new Label
-        {
-            Text = "Name:"
-        };
-        stackPanel.Widgets.Add(label1);
+        //var label1 = new Label
+        //{
+        //    Padding = new Thickness(4),
+        //    Text = "Name:"
+        //};
 
-        var textBox1 = new TextBox();
-        StackPanel.SetProportionType(textBox1, ProportionType.Fill);
-        stackPanel.Widgets.Add(textBox1);
+        //var label2 = new Label
+        //{
+        //    Text = "Name:"
+        //};
+        //stackPanel.Widgets.Add(label1);
+        //stackPanel.Widgets.Add(label2);
+
+        //var textBox1 = new TextBox();
+        //StackPanel.SetProportionType(textBox1, ProportionType.Fill);
+        //stackPanel.Widgets.Add(textBox1);
 
         dialog.Content = stackPanel;
 
@@ -88,19 +88,24 @@ internal class SettingsButton(ContentManager content, GraphicsDevice graphics, D
         {
             dialog.Close();
         };
-        //dialog.CloseButton += (s, a) =>
-        //{
-        //};
 
-        //dialog.Closed += (s, a) => {
-        //    if (!dialog.Result)
-        //    {
-        //        // Dialog was either closed or "Cancel" clicked
-        //        dialog.Close();
-        //        return;
-        //    }
+        void AddLabel(string text)
+        {
+            var label = new Label
+            {
+                Text = text
+            };
+            stackPanel.Widgets.Add(label);
+        }
 
-
+        //AddText("Hotkeys", 1, spriteBatch);
+        //AddText("Move forward: W", 2, spriteBatch);
+        //AddText("Move back: S", 3, spriteBatch);
+        //AddText("Move left: A", 4, spriteBatch);
+        //AddText("Move right: D", 5, spriteBatch);
+        //AddText("Sprint: Shift", 6, spriteBatch);
+        //AddText("Full Screen: F11", 7, spriteBatch);
+        //AddText("Exit Game: ESC", 8, spriteBatch);
 
         // "Ok" was clicked or Enter key pressed
         // ...
@@ -110,4 +115,6 @@ internal class SettingsButton(ContentManager content, GraphicsDevice graphics, D
 
         //  dialog.ShowModal(desktop);
     }
+
+   
 }
