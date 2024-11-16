@@ -53,6 +53,7 @@ internal class SettingsButton(ContentManager content, GraphicsDevice graphics, D
         dialog = new Dialog
         {
             Title = "Hot Keys",
+            Padding = new Thickness(20)
         };
 
         VerticalStackPanel stackPanel = new VerticalStackPanel();
