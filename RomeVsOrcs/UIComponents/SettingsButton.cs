@@ -10,19 +10,19 @@ using System.ComponentModel;
 namespace RomeVsOrcs.UIComponents;
 internal class SettingsButton(ContentManager content, GraphicsDeviceManager graphics, Desktop desktop)
 {
-    Dialog hotkeysDialog;
-    Dialog menuDialog;
+    Window hotkeysDialog;
+    Window menuDialog;
 
     public void Load()
     {
         LoadButton();
-        LoadSettingsDialog();
-        LoadMenuDialog();
+        //LoadSettingsDialog();
+        //LoadMenuDialog();
     }
 
     private void LoadSettingsDialog()
     {
-        hotkeysDialog = new Dialog
+        hotkeysDialog = new Window
         {
             Title = "Hot Keys",
             Padding = new Thickness(20)
@@ -38,12 +38,7 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
         AddLabel("Full Screen:","F11");
         AddLabel("Exit Game:","ESC");
 
-        hotkeysDialog.Content = stackPanel;
-
-        hotkeysDialog.ButtonOk.Click += (s, e) =>
-        {
-            hotkeysDialog.Close();
-        };
+        menuDialog.Content = stackPanel;
 
         void AddLabel(string textA, string textB)
         {
@@ -87,6 +82,8 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
         // Add an event handler for the button click
         button.Click += (s, e) =>
         {
+            LoadMenuDialog();
+            menuDialog.Close();
             menuDialog.ShowModal(desktop);
         };
 
@@ -96,7 +93,7 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
 
     private void LoadMenuDialog()
     {
-        menuDialog = new Dialog
+        menuDialog = new Window
         {
             Title = "Menu",
             Padding = new Thickness(20)
@@ -104,12 +101,10 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
 
         var stackPanel = new VerticalStackPanel
         {
-            Spacing = 4
+            Spacing = 20
         };
 
-        var titleContainer = new Panel
-        {
-        };
+        var titleContainer = new Panel();
 
         var titleLabel = new Label
         {
@@ -121,17 +116,19 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
         stackPanel.Widgets.Add(titleContainer);
 
         var menuItem1 = new MenuItem();
-        menuItem1.Text = "Start New Game";
+        menuItem1.Text = "Hotkeys";
         menuItem1.Selected += (s, a) =>
         {
-            // "Start New Game" selected
+            LoadSettingsDialog();
+            menuDialog.Close();
+            menuDialog.ShowModal(desktop);
         };
 
         var menuItem2 = new MenuItem();
-        menuItem2.Text = "Options";
+        menuItem2.Text = "Toggle Fullscreen";
 
         var menuItem3 = new MenuItem();
-        menuItem3.Text = "Quit";
+        menuItem3.Text = "Ranks";
 
         var verticalMenu = new VerticalMenu();
 
