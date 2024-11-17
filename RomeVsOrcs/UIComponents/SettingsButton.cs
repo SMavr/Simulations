@@ -16,50 +16,7 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
     public void Load()
     {
         LoadButton();
-        //LoadSettingsDialog();
-        //LoadMenuDialog();
     }
-
-    private void LoadSettingsDialog()
-    {
-        hotkeysDialog = new Window
-        {
-            Title = "Hot Keys",
-            Padding = new Thickness(20)
-        };
-
-
-        VerticalStackPanel stackPanel = new VerticalStackPanel();
-        AddLabel("Move forward:","W");
-        AddLabel("Move back:","S");
-        AddLabel("Move left:","A");
-        AddLabel("Move right:","D");
-        AddLabel("Sprint:","Shift");
-        AddLabel("Full Screen:","F11");
-        AddLabel("Exit Game:","ESC");
-
-        menuDialog.Content = stackPanel;
-
-        void AddLabel(string textA, string textB)
-        {
-            HorizontalStackPanel horizontalStackPanel = new HorizontalStackPanel();
-            var labelA = new Label
-            {
-                Width = 150,
-                Text = textA
-            };
-            horizontalStackPanel.Widgets.Add(labelA);
-
-            var labelB = new Label
-            {
-                Width = 50,
-                Text = textB
-            };
-            horizontalStackPanel.Widgets.Add(labelB);
-            stackPanel.Widgets.Add(horizontalStackPanel);
-        }
-    }
-
     private void LoadButton()
     {
         // Create the button and set its properties
@@ -90,7 +47,7 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
         // Add the button to the desktop
         desktop.Widgets.Add(button);
     }
-
+    
     private void LoadMenuDialog()
     {
         menuDialog = new Window
@@ -140,5 +97,44 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
 
         menuDialog.Content = stackPanel;
         //desktop.Widgets.Add(stackPanel);
+    }
+
+    private void LoadSettingsDialog()
+    {
+        hotkeysDialog = new Window
+        {
+            Title = "Hot Keys",
+            Padding = new Thickness(20)
+        };
+
+        VerticalStackPanel stackPanel = new VerticalStackPanel();
+        AddLabel("Move forward:","W");
+        AddLabel("Move back:","S");
+        AddLabel("Move left:","A");
+        AddLabel("Move right:","D");
+        AddLabel("Sprint:","Shift");
+        AddLabel("Full Screen:","F11");
+        AddLabel("Exit Game:","ESC");
+
+        menuDialog.Content = stackPanel;
+
+        void AddLabel(string textA, string textB)
+        {
+            HorizontalStackPanel horizontalStackPanel = new HorizontalStackPanel();
+            var labelA = new Label
+            {
+                Width = 150,
+                Text = textA
+            };
+            horizontalStackPanel.Widgets.Add(labelA);
+
+            var labelB = new Label
+            {
+                Width = 50,
+                Text = textB
+            };
+            horizontalStackPanel.Widgets.Add(labelB);
+            stackPanel.Widgets.Add(horizontalStackPanel);
+        }
     }
 }
