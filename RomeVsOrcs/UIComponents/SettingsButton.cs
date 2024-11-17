@@ -135,9 +135,9 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
     {
         
         VerticalStackPanel stackPanel = new VerticalStackPanel();
-        AddLabel("Miles:", "The basic soldier in the Roman army.");
-        AddLabel("Move left:", "A");
-        AddLabel("Move right:", "D");
+        AddLabel("Miles", "The basic soldier in the Roman army.");
+        AddLabel("Equites", "Cavalry unit.");
+        AddLabel("Praetorian Guard", "Elite unit tasked with protecting the Emperor.");
         AddLabel("Sprint:", "Shift");
         AddLabel("Full Screen:", "F11");
         AddLabel("Exit Game:", "ESC");
@@ -158,7 +158,7 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
 
             var labelB = new Label
             {
-                Width = 300,
+                Width = 400,
                 Text = textB
             };
             rankPanel.Widgets.Add(labelB);
