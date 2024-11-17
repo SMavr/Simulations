@@ -135,12 +135,13 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
     {
         
         VerticalStackPanel stackPanel = new VerticalStackPanel();
+        AddLabel("Velites", "Light infantry skirmisher.");
         AddLabel("Miles", "The basic soldier in the Roman army.");
         AddLabel("Equites", "Cavalry unit.");
         AddLabel("Praetorian Guard", "Elite unit tasked with protecting the Emperor.");
-        AddLabel("Sprint:", "Shift");
-        AddLabel("Full Screen:", "F11");
-        AddLabel("Exit Game:", "ESC");
+        AddLabel("Signifer", "Standard bearer for a century.");
+        AddLabel("Aquilifer", "Standard bearer of the legion.");
+        AddLabel("Optio", "Second-in-command to a centurion.");
 
        
         menuDialog.Content = stackPanel;
