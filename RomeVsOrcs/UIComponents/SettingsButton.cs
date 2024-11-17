@@ -1,16 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using Myra.Graphics2D;
 using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
-using System.ComponentModel;
 
 namespace RomeVsOrcs.UIComponents;
 internal class SettingsButton(ContentManager content, GraphicsDeviceManager graphics, Desktop desktop)
 {
-    Window hotkeysDialog;
     Window menuDialog;
 
     public void Load()
@@ -72,26 +69,28 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
         titleContainer.Widgets.Add(titleLabel);
         stackPanel.Widgets.Add(titleContainer);
 
-        var menuItem1 = new MenuItem();
-        menuItem1.Text = "Hotkeys";
-        menuItem1.Selected += (s, a) =>
+        var hotKeysItem = new MenuItem();
+        hotKeysItem.Text = "Hotkeys";
+        hotKeysItem.Selected += (s, a) =>
         {
-            LoadSettingsDialog();
+            LoadHotKeysDialog();
             menuDialog.Close();
             menuDialog.ShowModal(desktop);
         };
 
-        var menuItem2 = new MenuItem();
-        menuItem2.Text = "Toggle Fullscreen";
-
-        var menuItem3 = new MenuItem();
-        menuItem3.Text = "Ranks";
+        var ranksItem = new MenuItem();
+        ranksItem.Text = "Ranks";
+        ranksItem.Selected += (s, a) =>
+        {
+            LoadRanksDialog();
+            menuDialog.Close();
+            menuDialog.ShowModal(desktop);
+        };
 
         var verticalMenu = new VerticalMenu();
 
-        verticalMenu.Items.Add(menuItem1);
-        verticalMenu.Items.Add(menuItem2);
-        verticalMenu.Items.Add(menuItem3);
+        verticalMenu.Items.Add(hotKeysItem);
+        verticalMenu.Items.Add(ranksItem);
 
         stackPanel.Widgets.Add(verticalMenu);
 
@@ -99,14 +98,8 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
         //desktop.Widgets.Add(stackPanel);
     }
 
-    private void LoadSettingsDialog()
+    private void LoadHotKeysDialog()
     {
-        hotkeysDialog = new Window
-        {
-            Title = "Hot Keys",
-            Padding = new Thickness(20)
-        };
-
         VerticalStackPanel stackPanel = new VerticalStackPanel();
         AddLabel("Move forward:","W");
         AddLabel("Move back:","S");
@@ -115,6 +108,41 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
         AddLabel("Sprint:","Shift");
         AddLabel("Full Screen:","F11");
         AddLabel("Exit Game:","ESC");
+
+        menuDialog.Content = stackPanel;
+
+        void AddLabel(string textA, string textB)
+        {
+            HorizontalStackPanel horizontalStackPanel = new HorizontalStackPanel();
+            var labelA = new Label
+            {
+                Width = 150,
+                Text = textA
+            };
+            horizontalStackPanel.Widgets.Add(labelA);
+
+            var labelB = new Label
+            {
+                Width = 50,
+                Text = textB
+            };
+            horizontalStackPanel.Widgets.Add(labelB);
+            stackPanel.Widgets.Add(horizontalStackPanel);
+        }
+    }
+
+
+    private void LoadRanksDialog()
+    {
+        
+        VerticalStackPanel stackPanel = new VerticalStackPanel();
+        AddLabel("Move forward:", "Test");
+        AddLabel("Move back:", "S");
+        AddLabel("Move left:", "A");
+        AddLabel("Move right:", "D");
+        AddLabel("Sprint:", "Shift");
+        AddLabel("Full Screen:", "F11");
+        AddLabel("Exit Game:", "ESC");
 
         menuDialog.Content = stackPanel;
 
