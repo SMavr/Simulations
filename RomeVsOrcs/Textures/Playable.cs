@@ -1,12 +1,4 @@
-﻿using SharpDX.Direct3D9;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RomeVsOrcs.Textures;
+﻿namespace RomeVsOrcs.Textures;
 public abstract class Playable
 {
 

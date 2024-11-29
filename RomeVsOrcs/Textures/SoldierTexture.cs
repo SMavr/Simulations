@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RomeVsOrcs.Enums;
 using System;
-using System.Collections.Generic;
 
 namespace RomeVsOrcs.Textures;
 internal class SoldierTexture(ContentManager content, Viewport viewport) : AnimatedTexture(content, viewport)
