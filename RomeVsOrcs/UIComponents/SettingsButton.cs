@@ -133,21 +133,28 @@ internal class SettingsButton(ContentManager content, GraphicsDeviceManager grap
 
     private void LoadRanksDialog()
     {
-        
+
+        ScrollViewer scrollViewer = new ScrollViewer()
+        {
+            Width = 400,
+            Height = 250,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+        };
         VerticalStackPanel stackPanel = new VerticalStackPanel();
-        AddLabel("Velites", "Light infantry skirmisher.");
-        AddLabel("Miles", "The basic soldier in the Roman army.");
-        AddLabel("Equites", "Cavalry unit.");
-        AddLabel("Praetorian Guard", "Elite unit tasked with protecting the Emperor.");
-        AddLabel("Signifer", "Standard bearer for a century.");
-        AddLabel("Aquilifer", "Standard bearer of the legion.");
-        AddLabel("Optio", "Second-in-command to a centurion.");
-        AddLabel("Centurio", "A centurion commands a century.");
-        AddLabel("Tribunus", "A junior officer rank.");
-        AddLabel("Legatus", "Senior officer, often in command of a legion.");
+        AddLabel("Velites (0)", "Light infantry skirmisher.");
+        AddLabel("Miles (1)", "The basic soldier in the Roman army.");
+        AddLabel("Equites (4)", "Cavalry unit.");
+        AddLabel("Praetorian Guard (8)", "Elite unit tasked with protecting the Emperor.");
+        AddLabel("Signifer (16)", "Standard bearer for a century.");
+        AddLabel("Aquilifer (32)", "Standard bearer of the legion.");
+        AddLabel("Optio (64)", "Second-in-command to a centurion.");
+        AddLabel("Centurio (96)", "A centurion commands a century.");
+        AddLabel("Tribunus (128)", "A junior officer rank.");
+        AddLabel("Legatus (192)", "Senior officer, often in command of a legion.");
 
-
-        menuDialog.Content = stackPanel;
+        scrollViewer.Content = stackPanel;
+        menuDialog.Content = scrollViewer;
 
         void AddLabel(string textA, string textB)
         {
