@@ -63,6 +63,10 @@ public class MainGame : Game
         dotPosition.X += moveX;
         dotPosition.Y += moveY;
 
+        // Ensure the dot stays within screen bounds
+        dotPosition.X = Math.Clamp(dotPosition.X, 0, graphics.PreferredBackBufferWidth);
+        dotPosition.Y = Math.Clamp(dotPosition.Y, 0, graphics.PreferredBackBufferHeight);
+
         double distance = Vector2.Distance(dotPosition, goalPosition);
         double[] targets = { moveX, moveY };
 
