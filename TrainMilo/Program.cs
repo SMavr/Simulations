@@ -1,3 +1,3 @@
 ﻿
-using var game = new TrainMilo.Game1();
+using var game = new TrainMilo.MainGame();
 game.Run();
