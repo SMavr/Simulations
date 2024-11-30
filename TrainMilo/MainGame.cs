@@ -12,7 +12,7 @@ public class MainGame : Game
     private Texture2D dotTexture;
     private Vector2 dotPosition;
     private Vector2 goalPosition;
-    //private NeuralNetwork neuralNetwork;
+    private NeuralNetwork neuralNetwork;
     private Random random = new Random();
 
     public MainGame()
@@ -26,6 +26,7 @@ public class MainGame : Game
     {
         dotPosition = new Vector2(100, 100);
         goalPosition = new Vector2(400, 400);
+        neuralNetwork = new NeuralNetwork(4, 8, 2);
         base.Initialize();
     }
 
@@ -35,7 +36,6 @@ public class MainGame : Game
         dotTexture = new Texture2D(GraphicsDevice, 1, 1);
         dotTexture.SetData(new[] { Color.White });
 
-        // TODO: use this.Content to load your game content here
     }
 
     protected override void Update(GameTime gameTime)
@@ -43,7 +43,7 @@ public class MainGame : Game
         if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // TODO: Add your update logic here
+        TrainDot();
 
         base.Update(gameTime);
     }
@@ -54,19 +54,19 @@ public class MainGame : Game
             dotPosition.X, dotPosition.Y,
             goalPosition.X, goalPosition.Y
         };
-            
-        //double[] outputs = neuralNetwork.Forward(inputs);
 
-        //float moveX = (float)(outputs[0] * 2 - 1);
-        //float moveY = (float)(outputs[1] * 2 - 1);
-            
-        //dotPosition.X += moveX;
-        //dotPosition.Y += moveY;
+        double[] outputs = neuralNetwork.Forward(inputs);
 
-        //double distance = Vector2.Distance(dotPosition, goalPosition);
-        //double[] targets = { moveX, moveY };
+        float moveX = (float)(outputs[0] * 2 - 1);
+        float moveY = (float)(outputs[1] * 2 - 1);
 
-      //  neuralNetwork.Train(inputs, targets);
+        dotPosition.X += moveX;
+        dotPosition.Y += moveY;
+
+        double distance = Vector2.Distance(dotPosition, goalPosition);
+        double[] targets = { moveX, moveY };
+
+        neuralNetwork.Train(inputs, targets);
     }
 
 
