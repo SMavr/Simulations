@@ -20,3 +20,6 @@ Inspired by Jeffrey Ventrella's "Clusters":
 ## Rome vs Orcs
 
 Orcs are invading Rome! Marcus Aurelius a young soldier in the Roman army needs to defend his empire against the orc hordes.
+
+### References
+[Universal LPC Sprite Sheet Character Generator](https://sanderfrenken.github.io/Universal-LPC-Spritesheet-Character-Generator/)
