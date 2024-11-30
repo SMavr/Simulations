@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 
 namespace TrainMilo;
-
+// https://medium.com/analytics-vidhya/building-a-simple-neural-network-in-c-7e917e9fc2cc
 public class MainGame : Game
 {
     private GraphicsDeviceManager graphics;
@@ -13,7 +13,6 @@ public class MainGame : Game
     private Vector2 dotPosition;
     private Vector2 goalPosition;
     private NeuralNetwork neuralNetwork;
-    private Random random = new Random();
 
     public MainGame()
     {
@@ -50,37 +49,54 @@ public class MainGame : Game
 
     private void TrainDot()
     {
+        // Normalize inputs to the range 0-1
         double[] inputs = {
-            dotPosition.X, dotPosition.Y,
-            goalPosition.X, goalPosition.Y
-        };
+                dotPosition.X / graphics.PreferredBackBufferWidth,
+                dotPosition.Y / graphics.PreferredBackBufferHeight,
+                goalPosition.X / graphics.PreferredBackBufferWidth,
+                goalPosition.Y / graphics.PreferredBackBufferHeight
+            };
 
+        // Neural network outputs for movement
         double[] outputs = neuralNetwork.Forward(inputs);
 
+        // Convert outputs to movement (-1 to 1 range)
         float moveX = (float)(outputs[0] * 2 - 1);
         float moveY = (float)(outputs[1] * 2 - 1);
 
+        // Calculate distance to the goal
+        double previousDistance = Vector2.Distance(dotPosition, goalPosition);
+
+        // Update dot position based on neural network outputs
         dotPosition.X += moveX;
         dotPosition.Y += moveY;
 
-        // Ensure the dot stays within screen bounds
+        // Ensure the dot stays on screen
         dotPosition.X = Math.Clamp(dotPosition.X, 0, graphics.PreferredBackBufferWidth);
         dotPosition.Y = Math.Clamp(dotPosition.Y, 0, graphics.PreferredBackBufferHeight);
 
-        double distance = Vector2.Distance(dotPosition, goalPosition);
-        double[] targets = { moveX, moveY };
+        // Calculate new distance to the goal
+        double currentDistance = Vector2.Distance(dotPosition, goalPosition);
+
+        // Reward: positive for getting closer, negative for getting farther
+        double reward = previousDistance - currentDistance;
+
+        // Training targets: scaled movement adjusted by the reward
+        double[] targets = {
+                (moveX + 1) / 2 + reward,
+                (moveY + 1) / 2 + reward
+            };
 
         neuralNetwork.Train(inputs, targets);
     }
-
 
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);
 
         spriteBatch.Begin();
-        spriteBatch.Draw(dotTexture, new Rectangle((int)dotPosition.X, (int)dotPosition.Y, 10, 10), Color.Red);
         spriteBatch.Draw(dotTexture, new Rectangle((int)goalPosition.X, (int)goalPosition.Y, 10, 10), Color.LightGreen);
+        spriteBatch.Draw(dotTexture, new Rectangle((int)dotPosition.X, (int)dotPosition.Y, 10, 10), Color.Red);
         spriteBatch.End();
 
         base.Draw(gameTime);
