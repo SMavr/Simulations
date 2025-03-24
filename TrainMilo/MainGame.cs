@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Diagnostics;
 
 namespace TrainMilo;
 // https://medium.com/analytics-vidhya/building-a-simple-neural-network-in-c-7e917e9fc2cc
@@ -34,7 +35,6 @@ public class MainGame : Game
         spriteBatch = new SpriteBatch(GraphicsDevice);
         dotTexture = new Texture2D(GraphicsDevice, 1, 1);
         dotTexture.SetData(new[] { Color.White });
-
     }
 
     protected override void Update(GameTime gameTime)
@@ -86,6 +86,8 @@ public class MainGame : Game
                 (moveX + 1) / 2 + reward,
                 (moveY + 1) / 2 + reward
             };
+
+        Debug.WriteLine($"x: {targets[0]:F3}, y: {targets[1]:F3}");
 
         neuralNetwork.Train(inputs, targets);
     }
