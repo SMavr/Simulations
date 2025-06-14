@@ -1,4 +1,5 @@
 using TestSimpleIdeas.Models;
+using Generated;
 
 namespace TestSimpleIdeas
 {
@@ -7,6 +8,8 @@ namespace TestSimpleIdeas
         [Fact]
         public void TestMapping()
         {
+
+            HelloWorld.SayHello();
             var person = new Person()
             {
                 FirstName = "Test",
