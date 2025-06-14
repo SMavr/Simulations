@@ -1,5 +1,6 @@
 using TestSimpleIdeas.Models;
 using Generated;
+using CrazyMapper;
 
 namespace TestSimpleIdeas
 {

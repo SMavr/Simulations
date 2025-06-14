@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestSimpleIdeas
+namespace CrazyMapper
 {
-    internal class Mapper
+    public class Mapper
     {
         public TDO Map<TDO, Model>(Model model) where TDO : class
         {
